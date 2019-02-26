@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import MenuButton from '../atoms/MenuButton';
-import HabitatInfo from '../atoms/HabitatInfo';
+import HabitatInfo from '../molecules/HabitatInfo';
 import { navigate } from '@reach/router';
 import ChangeScreenButton from '../molecules/ChangeScreenButton';
-import habitats from '../../../data/habitats.json';
+import habitats from '../../data/habitats.json';
 
 class HabitatMenu extends PureComponent {
   constructor(props) {
@@ -13,12 +13,15 @@ class HabitatMenu extends PureComponent {
 
   changeHabitat = () => {
     this.props.changeHabitat(this.state.habitat);
-    navigate('/pokemon/menu');
+    navigate('/menu');
   };
 
-  renderHabitats = () => {
+  renderHabitatButtons = () => {
     this.props.habitats.map(h => (
-      <MenuButton onClick={() => this.setState({ habitat: h.name })}>
+      <MenuButton
+        active={h.name === this.state.habitat}
+        onClick={() => this.setState({ habitat: h.name })}
+      >
         {h.name}
       </MenuButton>
     ));
@@ -32,15 +35,14 @@ class HabitatMenu extends PureComponent {
           <HabitatInfo habitat={habitats[this.state.habitat]} />
         )}
         {/* View all habitats */}
-        <div>{this.renderHabitats()}</div>
+        <div>{this.renderHabitatButtons()}</div>
         {/* Change habitat */}
         <MenuButton click={this.changeHabitat}>Change Area</MenuButton>
-        <ChangeScreenButton to="/pokemon/menu">Back</ChangeScreenButton>
+        <ChangeScreenButton to="/menu">Back</ChangeScreenButton>
       </div>
     );
   }
 }
-// Maybe make this a modal
 
 HabitatMenu.defaultProps = {
   habitats: [{ name: '' }],

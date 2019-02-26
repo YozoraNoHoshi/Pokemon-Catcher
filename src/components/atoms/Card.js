@@ -17,7 +17,9 @@ class Card extends PureComponent {
     return (
       <div className={`Card ${this.state.flip && 'flip'}`}>
         <div className="card" onClick={this.handleClick}>
-          <div className="card-front" />
+          <div className="card-front">
+            <img src={this.props.ball} alt="" />
+          </div>
           <div className={`card-slot ${this.props.suite}`}>
             <img src={this.props.sprite} alt={this.props.name} />
             <div className="card-text">{this.props.name}</div>
@@ -28,8 +30,10 @@ class Card extends PureComponent {
   }
 }
 
-Card.defaultProps = { name: '', sprite: 'path' };
+Card.defaultProps = { pokemon: {}, ball: '' };
 
 Card.propTypes = {};
 
 export default Card;
+
+// pokemon card, maybe take the structure from Pokedex app

@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.loadgame();
+    this.changeGameState('load');
     this.setState({ loaded: true });
   }
 
@@ -28,7 +28,7 @@ class App extends Component {
     // Item = string means used an item, object means add an item
     let inventory = { ...this.state.inventory };
     if (typeof item === 'string') {
-      inventory[item].quantity - quantity <= 0
+      inventory[item].quantity <= quantity
         ? delete inventory[item]
         : (inventory[item].quantity -= quantity);
     } else {
@@ -64,12 +64,13 @@ class App extends Component {
       localStorage.setItem('inventory', this.state.inventory);
     }
   };
+
   render() {
     return (
       <div className="App">
         <Router>
           <MainMenu default path="/menu" />
-          <HabitatMenu path="/habitats" />
+          <HabitatMenu path="/habitats" changeHabitat={this.changeHabitat} />
         </Router>
       </div>
     );

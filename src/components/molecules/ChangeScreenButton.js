@@ -4,11 +4,11 @@ import MenuButton from '../atoms/MenuButton';
 
 class ChangeScreenButton extends PureComponent {
   handleClick = () => {
-    navigate(`/pokemon/${this.props.to}`);
+    navigate(`${this.props.to}`);
   };
   render() {
     return (
-      <MenuButton click={this.handleClick}>{this.props.children}</MenuButton>
+      <MenuButton onClick={this.handleClick}>{this.props.children}</MenuButton>
     );
   }
 }

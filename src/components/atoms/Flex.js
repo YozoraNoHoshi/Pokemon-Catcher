@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import getCSSProperties from '../../helpers/getCSSProperties';
 
-const StyledFlex = styled.div`
+const Flex = styled.div`
   display: flex;
-  flex-direction: ${getFlexDirection};
+  flex-direction: ${flexDirection};
   justify-content: ${justifyContent};
   align-items: ${alignItems};
+  flex-wrap: ${flexWrap};
   overflow: ${overflow};
 `;
 
-function getFlexDirection(props) {
+function flexDirection(props) {
   return getCSSProperties(props, { row: 'row', column: 'column' }, 'row');
 }
 function overflow(props) {
@@ -33,5 +34,12 @@ function alignItems(props) {
     'flex-start'
   );
 }
+function flexWrap(props) {
+  return getCSSProperties(
+    props,
+    { wrap: 'wrap', nowrap: 'no-wrap' },
+    'initial'
+  );
+}
 
-export default StyledFlex;
+export default Flex;
