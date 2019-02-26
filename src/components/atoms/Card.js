@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
+const StyledCard = styled.div``;
+
 class Card extends PureComponent {
   constructor(props) {
     super(props);
