@@ -1,14 +1,13 @@
 import React, { PureComponent } from 'react';
-import { navigate } from '@reach/router';
+import { Link } from '@reach/router';
 import MenuButton from '../atoms/MenuButton';
 
 class ChangeScreenButton extends PureComponent {
-  handleClick = () => {
-    navigate(`${this.props.to}`);
-  };
   render() {
     return (
-      <MenuButton onClick={this.handleClick}>{this.props.children}</MenuButton>
+      <Link to={this.props.to}>
+        <MenuButton>{this.props.children}</MenuButton>
+      </Link>
     );
   }
 }

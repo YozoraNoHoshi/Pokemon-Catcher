@@ -3,6 +3,7 @@ import './App.css';
 import { Router } from '@reach/router';
 import MainMenu from './components/molecules/MainMenu';
 import HabitatMenu from './components/organisms/HabitatMenu.js';
+import Battle from './components/organisms/Battle';
 
 class App extends Component {
   constructor(props) {
@@ -70,8 +71,14 @@ class App extends Component {
       <div className="App">
         <Router>
           <MainMenu default path="/menu" />
-          <HabitatMenu path="/habitats" changeHabitat={this.changeHabitat} />
+          <Battle path="/battle" />
+          <HabitatMenu
+            path="/habitats"
+            currentHabitat={this.state.habitat}
+            changeHabitat={this.changeHabitat}
+          />
         </Router>
+        {/* Inventory and bag menu buttons go here */}
       </div>
     );
   }

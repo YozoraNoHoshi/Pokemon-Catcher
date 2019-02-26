@@ -1,39 +1,36 @@
 import React, { PureComponent } from 'react';
 import MenuButton from './MenuButton';
+import styled from 'styled-components';
+import getCSSProperties from '../../helpers/getCSSProperties';
+
+const StyledModal = styled.div`
+  display: ${show};
+  & > section.modal-main {
+    position: fixed;
+    background: white;
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
 
 class Modal extends PureComponent {
   render() {
-    const showHideClassName = this.props.open
-      ? 'Modal display-block'
-      : 'Modal display-none';
     return (
-      <div className={showHideClassName}>
+      <StyledModal>
         <section className="modal-main">
           {this.props.children}
-          <MenuButton click={this.props.toggleModal} />
+          <MenuButton onClick={this.props.toggleModal}>Close</MenuButton>
         </section>
-      </div>
+      </StyledModal>
     );
   }
 }
 
-Modal.defaultProps = {};
-
-Modal.propTypes = {};
-
 export default Modal;
 
-/* 
-const Modal = ({ handleClose, show, children }) => {
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
-
-  return (
-    <div className={showHideClassname}>
-      <section className="modal-main">
-        {children}
-        <button onClick={handleClose}>close</button>
-      </section>
-    </div>
-  );
-};
-*/
+function show(props) {
+  return getCSSProperties(props, { show: 'flex' }, 'none');
+}

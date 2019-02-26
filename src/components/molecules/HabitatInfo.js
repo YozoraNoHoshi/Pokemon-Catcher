@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
 import Card from '../atoms/Card';
+import styled from 'styled-components';
+
+const StyledHInfo = styled.div``;
 
 class HabitatInfo extends PureComponent {
   renderPokemonCards = pokemon => {
@@ -8,11 +11,11 @@ class HabitatInfo extends PureComponent {
   render() {
     let habitat = this.props.habitat;
     return (
-      <div className="HabitatInfo">
+      <StyledHInfo className="HabitatInfo">
         {habitat.image && <img src={habitat.image} alt="" />}
         <div>{habitat.description}</div>
         <div>{this.renderPokemonCards(habitat.pokemon)}</div>
-      </div>
+      </StyledHInfo>
     );
   }
 }
