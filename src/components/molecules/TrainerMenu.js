@@ -5,7 +5,7 @@ class TrainerMenu extends PureComponent {
   render() {
     return (
       <div className="TrainerMenu">
-        <ModalMenu text="Trainer">Trainer details components</ModalMenu>
+        <ModalMenu text="Trainer Details">Items in the trainer modal</ModalMenu>
       </div>
     );
   }

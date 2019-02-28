@@ -5,7 +5,7 @@ class InventoryMenu extends PureComponent {
   render() {
     return (
       <div className="InventoryMenu">
-        <ModalMenu text="Bag">InventoryConponents/layout</ModalMenu>
+        <ModalMenu text="Bag">All the stuff inside of the bag</ModalMenu>
       </div>
     );
   }

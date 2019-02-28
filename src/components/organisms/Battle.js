@@ -1,29 +1,22 @@
 import React, { PureComponent } from 'react';
+import Loading from '../atoms/Loading';
 
 class Battle extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { loading: false, pokemon: {} };
   }
 
-  componentDidMount() {}
-
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-  };
-
+  componentDidMount() {
+    // Make an api call to get the pokemon data based on props
+    // Punt the result into state
+  }
   render() {
-    return <div className="Battle" />;
+    return this.state.loading ? <Loading /> : <div className="Battle" />;
   }
 }
 
-Battle.defaultProps = {};
+Battle.defaultProps = { pokemonSpecies: '' };
 
 Battle.propTypes = {};
 
