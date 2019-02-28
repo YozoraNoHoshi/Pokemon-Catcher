@@ -7,6 +7,7 @@ const MenuButton = styled.div`
   padding: 5px;
   margin: 5px;
   background: ${background};
+  border-radius: 10px;
 `;
 
 function background(props) {

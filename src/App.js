@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Router } from '@reach/router';
 import MainMenu from './components/molecules/MainMenu';
-import HabitatMenu from './components/organisms/HabitatMenu.js';
+import HabitatMenu from './components/organisms/HabitatMenu';
 import Battle from './components/organisms/Battle';
 
 class App extends Component {
