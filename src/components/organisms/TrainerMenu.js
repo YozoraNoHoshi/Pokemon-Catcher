@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ModalMenu from './ModalMenu';
+import ModalMenu from '../molecules/ModalMenu';
 
 class TrainerMenu extends PureComponent {
   render() {

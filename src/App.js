@@ -4,6 +4,8 @@ import { Router } from '@reach/router';
 import MainMenu from './components/molecules/MainMenu';
 import HabitatMenu from './components/organisms/HabitatMenu';
 import Battle from './components/organisms/Battle';
+import InventoryMenu from './components/organisms/InventoryMenu';
+import TrainerMenu from './components/organisms/TrainerMenu';
 
 class App extends Component {
   constructor(props) {
@@ -79,6 +81,8 @@ class App extends Component {
           />
         </Router>
         {/* Inventory and bag menu buttons go here */}
+        <InventoryMenu />
+        <TrainerMenu />
       </div>
     );
   }
