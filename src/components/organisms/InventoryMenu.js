@@ -2,6 +2,11 @@ import React, { PureComponent } from 'react';
 import ModalMenu from '../molecules/ModalMenu';
 
 class InventoryMenu extends PureComponent {
+  renderInventoryButtons = buttons => {
+    return buttons.map(m => {
+      return <div>hi</div>;
+    });
+  };
   render() {
     return (
       <div className="InventoryMenu">
