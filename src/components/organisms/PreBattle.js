@@ -17,12 +17,13 @@ class PreBattle extends PureComponent {
       this.setState({ noPokemon: true });
     }
   }
+
   render() {
     if (this.state.noPokemon) return <Redirect to="/menu" />;
     return this.state.loading ? (
       <Loading />
     ) : (
-      <Battle pokemon={this.state.pokemon} />
+      <Battle pokemon={this.state.pokemon} modifyPokemon={this.modifyPokemon} />
     );
   }
 }
