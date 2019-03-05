@@ -1,17 +1,7 @@
 import React, { PureComponent } from 'react';
 import MenuButton from '../atoms/MenuButton';
 import Modal from '../atoms/Modal';
-import styled from 'styled-components';
-//https://alligator.io/react/modal-component/
-
-const StyledModalMenu = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-`;
+import Flex from '../atoms/Flex';
 
 class ModalMenu extends PureComponent {
   constructor(props) {
@@ -27,16 +17,18 @@ class ModalMenu extends PureComponent {
 
   render() {
     return (
-      <StyledModalMenu>
-        <MenuButton click={this.toggleModal}>{this.props.text}</MenuButton>
+      <Flex jCenter className="modal-main">
+        <MenuButton active={this.state.open} onClick={this.toggleModal}>
+          {this.props.buttonText}
+        </MenuButton>
         <Modal show={this.state.open} toggleModal={this.toggleModal}>
           {this.props.children}
         </Modal>
-      </StyledModalMenu>
+      </Flex>
     );
   }
 }
 
-ModalMenu.defaultProps = { text: '' };
+ModalMenu.defaultProps = { header: '' };
 
 export default ModalMenu;

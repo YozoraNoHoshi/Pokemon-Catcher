@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import { Router } from '@reach/router';
 import MainMenu from './components/molecules/MainMenu';
-import HabitatMenu from './components/organisms/HabitatMenu';
+import HabitatMenu from './components/pages/HabitatMenu';
 import PreBattle from './components/organisms/PreBattle';
-import InventoryMenu from './components/organisms/InventoryMenu';
-import TrainerMenu from './components/organisms/TrainerMenu';
+import InventoryMenu from './components/molecules/InventoryMenu';
+import TrainerMenu from './components/molecules/TrainerMenu';
 import AppContainer from './AppContainer';
 
 class App extends Component {
@@ -35,8 +35,8 @@ class App extends Component {
                 />
               </Router>
               {/* Inventory and bag menu buttons go here */}
-              <InventoryMenu />
-              <TrainerMenu />
+              {/* <InventoryMenu /> */}
+              <TrainerMenu changeGameState={changeGameState} />
             </div>
           );
         }}

@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 
 class AppContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      habitat: '',
+      habitat: 'sky',
       currentPokemon: [],
       inventory: {},
       loaded: false
