@@ -4,42 +4,65 @@ import getCSSProperties from '../../helpers/getCSSProperties';
 const Flex = styled.div`
   display: flex;
   flex-direction: ${flexDirection};
-  justify-content: ${justifyContent};
-  align-items: ${alignItems};
-  flex-wrap: ${flexWrap};
-  overflow: ${overflow};
+  ${justifyContent};
+  ${alignItems};
+  ${flexWrap};
+  ${overflow};
+  ${textAlign};
+  ${width};
 `;
 
 function flexDirection(props) {
-  return getCSSProperties(props, { row: 'row', column: 'column' }, 'row');
+  return getCSSProperties(props, { row: 'row', column: 'column' }, 'inherit');
+}
+function width({ width }) {
+  if (typeof width === 'number') return `width: ${width}%`;
+  return null;
 }
 function overflow(props) {
-  return getCSSProperties(
+  let cssProp = getCSSProperties(
     props,
     { hidden: 'hidden', scroll: 'scroll', visible: 'visible' },
-    'initial'
+    false
   );
+  if (cssProp) return `overflow: ${cssProp}`;
+  return null;
 }
 function justifyContent(props) {
-  return getCSSProperties(
+  let cssProp = getCSSProperties(
     props,
     { jCenter: 'center', jStart: 'flex-start', jEnd: 'flex-end' },
-    'flex-start'
+    false
   );
+  if (cssProp) return `justify-content: ${cssProp}`;
+  return null;
 }
 function alignItems(props) {
-  return getCSSProperties(
+  let cssProp = getCSSProperties(
     props,
     { alCenter: 'center', alStart: 'flex-start', alEnd: 'flex-end' },
-    'flex-start'
+    false
   );
+  if (cssProp) return `align-items: ${cssProp}`;
+  return null;
 }
 function flexWrap(props) {
-  return getCSSProperties(
+  let cssProp = getCSSProperties(
     props,
     { wrap: 'wrap', nowrap: 'no-wrap' },
-    'initial'
+    false
   );
+  if (cssProp) return `flex-wrap: ${cssProp}`;
+  return null;
+}
+function textAlign(props) {
+  let cssProp = getCSSProperties(
+    props,
+    { txCenter: 'center', txRight: 'right', txLeft: 'left' },
+    false
+  );
+  if (cssProp) return `text-align: ${cssProp}`;
+  return null;
 }
 
 export default Flex;
