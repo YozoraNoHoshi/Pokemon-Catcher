@@ -9,7 +9,7 @@
 export default function getCSSProperties(props, styleObj, defaultValue) {
   let values = [defaultValue];
   for (let key in props) {
-    styleObj[key] && values.push(styleObj[key]);
+    if (props[key] && styleObj[key]) values.push(styleObj[key]);
   }
   // The last match in props will be the CSS value selected in cases of multiple matches.
   return values[values.length - 1];
