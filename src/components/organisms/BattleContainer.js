@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
-import determineCatchResult from '../../helpers/determineCatchResult';
+import { PureComponent } from 'react';
 import { navigate } from '@reach/router';
+import determineCatchResult from '../../helpers/determineCatchResult';
 
-class Battle extends PureComponent {
+class BattleContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
@@ -24,15 +24,20 @@ class Battle extends PureComponent {
       this.props.modifyPokemon(this.props.pokemon);
       navigate('/menu');
     }
+    // Catch fails
+    else {
+    }
   };
-
   render() {
-    return <div className="Battle" />;
+    return this.props.children({
+      state: this.state,
+      catchRoll: this.catchRoll
+    });
   }
 }
 
-Battle.defaultProps = { pokemon: {}, modifyPokemon: console.log };
+BattleContainer.defaultProps = {};
 
-Battle.propTypes = {};
+BattleContainer.propTypes = {};
 
-export default Battle;
+export default BattleContainer;

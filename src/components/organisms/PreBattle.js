@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Loading from '../atoms/Loading';
 import { Redirect } from '@reach/router';
-import Battle from './Battle';
+import Battle from '../pages/Battle';
 
 class PreBattle extends PureComponent {
   constructor(props) {
@@ -20,9 +20,8 @@ class PreBattle extends PureComponent {
 
   render() {
     if (this.state.noPokemon) return <Redirect to="/menu" />;
-    return this.state.loading ? (
-      <Loading />
-    ) : (
+    if (this.state.loading) return <Loading />;
+    return (
       <Battle pokemon={this.state.pokemon} modifyPokemon={this.modifyPokemon} />
     );
   }
