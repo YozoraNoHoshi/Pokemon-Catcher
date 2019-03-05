@@ -7,6 +7,7 @@ class TrainerMenu extends PureComponent {
       <div className="TrainerMenu">
         <ModalMenu text="Trainer Details">
           {this.props.trainerName}
+          {/* Save/Load Buttons */}
           {this.renderPokemonCards(this.props.pokemon)}
         </ModalMenu>
       </div>

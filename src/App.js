@@ -23,7 +23,11 @@ class App extends Component {
             <div className="App">
               <Router>
                 <MainMenu default path="/menu" />
-                <PreBattle path="/battle" habitat={state.habitat} />
+                <PreBattle
+                  path="/battle"
+                  habitat={state.habitat}
+                  modifyPokemon={modifyPokemon}
+                />
                 <HabitatMenu
                   path="/habitats"
                   currentHabitat={state.habitat}
