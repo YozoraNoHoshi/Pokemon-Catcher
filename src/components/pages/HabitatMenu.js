@@ -29,8 +29,6 @@ class HabitatMenu extends PureComponent {
             <StyledHMenu className="HabitatMenu">
               <HabitatInfo
                 name={habitat.name}
-                pokemon={habitat.pokemon}
-                image={habitat.image}
                 description={habitat.description}
               />
               <Flex row jCenter onClick={handleClick}>
