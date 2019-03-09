@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import { navigate } from '@reach/router';
+import { getAllHabitats } from '../../api';
 
 class HabitatContainer extends PureComponent {
   constructor(props) {
@@ -7,24 +8,19 @@ class HabitatContainer extends PureComponent {
     this.state = {
       selectedHabitat: props.currentHabitat,
       habitats: {
-        sky: { name: 'sky', description: 'CLOUDS' },
-        grass: { name: 'grass', description: "It's grass." },
-        water: { name: 'water', description: 'Water, everywhere' },
-        volcano: { name: 'volcano', description: 'It is really hot' },
-        tower: { name: 'tower', description: 'A giant tower paints the sky' },
-        ruin: { name: 'ruin', description: 'Ruins are scattered about' }
+        field: { name: 'field', description: '' }
       },
       loading: false
     };
   }
 
   async componentDidMount() {
-    // Make API call to database to get all the habitats from local database -> punt it into state
+    await this.setHabitat();
   }
 
   setHabitat = async () => {
     if (!this.state.loading) this.setState({ loading: true });
-    let habitats = await 'MakeAPICallToGetAllHabitats';
+    let habitats = await getAllHabitats();
     this.setState({ habitats, loading: false });
   };
 
