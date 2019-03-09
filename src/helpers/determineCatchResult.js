@@ -1,13 +1,7 @@
-const statusMultiplier = {
-  freeze: 2,
-  sleep: 2,
-  paralyze: 1.5,
-  burn: 1.5,
-  poison: 1.5,
-  normal: 1
-};
+import { statusMultiplier, POKEBALLS } from '../data';
 
-function calculateCatchRate(rate, ballMultiplier, status, hpPercent = false) {
+function calculateCatchRate(rate, pokeball, status, hpPercent = false) {
+  let ballMultiplier = POKEBALLS[pokeball];
   let statusEffect = statusMultiplier[status] || statusMultiplier.normal;
   if (!hpPercent) return (rate * ballMultiplier * statusEffect) / 1.5;
   else
@@ -38,11 +32,11 @@ function shakeCheck(catchRate) {
  */
 export default function determineCatchResult(
   rate,
-  ballMultiplier = 1,
+  pokeball = 'pokeball',
   status = 'normal',
   hpPercent = false
 ) {
-  let catchRate = calculateCatchRate(rate, ballMultiplier, status, hpPercent);
+  let catchRate = calculateCatchRate(rate, pokeball, status, hpPercent);
   let numShakes = 0;
   let currentRoll = true;
   while (currentRoll && numShakes < 4) {
