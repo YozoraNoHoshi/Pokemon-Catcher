@@ -6,6 +6,7 @@ import ChangeScreenButton from '../molecules/ChangeScreenButton';
 import styled from 'styled-components';
 import Flex from '../atoms/Flex';
 import HabitatContainer from '../organisms/HabitatContainer';
+import { title } from '../../helpers/title';
 
 const StyledHMenu = styled.div``;
 
@@ -13,7 +14,7 @@ class HabitatMenu extends PureComponent {
   renderHabitatButtons = (habitats, selectedHabitat) => {
     return habitats.map(h => (
       <MenuButton key={h.name} id={h.name} active={h.name === selectedHabitat}>
-        {h.name}
+        {title(h.name)}
       </MenuButton>
     ));
   };
@@ -27,10 +28,13 @@ class HabitatMenu extends PureComponent {
           let habitat = state.habitats[state.selectedHabitat];
           return (
             <StyledHMenu className="HabitatMenu">
-              <HabitatInfo
-                name={habitat.name}
-                description={habitat.description}
-              />
+              {habitat && (
+                <HabitatInfo
+                  name={habitat.name}
+                  description={habitat.description}
+                  pokemon={state.habitatPokemon}
+                />
+              )}
               <Flex row jCenter onClick={handleClick}>
                 {this.renderHabitatButtons(
                   Object.values(state.habitats),

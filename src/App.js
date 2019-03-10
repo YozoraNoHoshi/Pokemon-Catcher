@@ -4,7 +4,6 @@ import { Router } from '@reach/router';
 import MainMenu from './components/molecules/MainMenu';
 import HabitatMenu from './components/pages/HabitatMenu';
 import PreBattle from './components/organisms/PreBattle';
-import InventoryMenu from './components/molecules/InventoryMenu';
 import TrainerMenu from './components/molecules/TrainerMenu';
 import AppContainer from './AppContainer';
 

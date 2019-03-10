@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { navigate } from '@reach/router';
-import { getAllHabitats } from '../../api';
+import { getAllHabitats, getHabitatPokemon } from '../../api';
 
 class HabitatContainer extends PureComponent {
   constructor(props) {
@@ -15,8 +15,21 @@ class HabitatContainer extends PureComponent {
   }
 
   async componentDidMount() {
-    await this.setHabitat();
+    try {
+      await Promise.all([
+        this.setHabitat(),
+        this.updateHabitatPokemon(this.state.selectedHabitat)
+      ]);
+    } catch (error) {}
   }
+
+  updateHabitatPokemon = async habitat => {
+    let pokemon = await getHabitatPokemon(habitat);
+    this.setState({
+      selectedHabitat: habitat,
+      habitatPokemon: pokemon
+    });
+  };
 
   setHabitat = async () => {
     if (!this.state.loading) this.setState({ loading: true });
@@ -31,10 +44,11 @@ class HabitatContainer extends PureComponent {
     }
   };
 
-  handleClick = evt => {
+  handleClick = async evt => {
     evt.preventDefault();
-    if (this.state.habitats[evt.target.id])
-      this.setState({ selectedHabitat: evt.target.id });
+    if (this.state.habitats[evt.target.id]) {
+      await this.updateHabitatPokemon(evt.target.id);
+    }
   };
 
   render() {

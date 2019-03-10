@@ -4,7 +4,7 @@ class AppContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      habitat: 'sky',
+      habitat: 'field',
       currentPokemon: [],
       inventory: {},
       loaded: false
