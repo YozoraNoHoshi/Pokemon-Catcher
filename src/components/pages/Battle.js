@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
 import BattleContainer from '../organisms/BattleContainer';
 import ChangeScreenButton from '../molecules/ChangeScreenButton';
+import MenuButton from '../atoms/MenuButton';
+import Flex from '../atoms/Flex';
+import Card from '../atoms/Card';
+import InventoryMenu from '../molecules/InventoryMenu';
 
 class Battle extends PureComponent {
   render() {
@@ -9,11 +13,22 @@ class Battle extends PureComponent {
         pokemon={this.props.pokemon}
         modifyPokemon={this.props.modifyPokemon}
       >
-        {({ state, catchRoll }) => {
+        {({ state, throwPokeball, useBerry }) => {
           return (
             <div>
-              Things! Excitement!
-              <ChangeScreenButton to="/menu">Flee</ChangeScreenButton>
+              <Flex>
+                A WILD POKEMON APPEARED
+                <Card
+                  sprite={this.props.pokemon.sprite}
+                  name={this.props.pokemon.name}
+                />
+              </Flex>
+              <Flex row fWrap>
+                <MenuButton onClick={throwPokeball}>Throw PokeBall</MenuButton>
+                <MenuButton onClick={useBerry}>Use Berry</MenuButton>
+                <InventoryMenu />
+                <ChangeScreenButton to="/menu">Run!</ChangeScreenButton>
+              </Flex>
             </div>
           );
         }}

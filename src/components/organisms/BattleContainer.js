@@ -1,23 +1,24 @@
 import { PureComponent } from 'react';
 import { navigate } from '@reach/router';
 import determineCatchResult from '../../helpers/determineCatchResult';
-
 class BattleContainer extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      pokeball: 'pokeball',
+      status: 'normal',
+      selectedBerry: '',
+      hpPercent: 1
+    };
     this.caught = false;
-    this.ballMultiplier = 1;
-    this.status = 'normal';
-    this.hpPercent = 1;
   }
 
-  catchRoll = () => {
+  catchRoll = (pokeball, status, hpPercent) => {
     let result = determineCatchResult(
-      this.props.pokemon.catchRate,
-      this.ballMultiplier,
-      this.status,
-      this.hpPercent
+      this.props.pokemon.catch_rate,
+      pokeball,
+      status,
+      hpPercent
     );
     // Catch successful
     if (result === 4) {
@@ -28,16 +29,37 @@ class BattleContainer extends PureComponent {
     else {
     }
   };
+
+  throwPokeball = () => {
+    this.catchRoll(
+      this.state.pokeball,
+      this.state.status,
+      this.state.hpPercent
+    );
+  };
+
+  selectPokeball = () => {
+    // change this.state.pokeball
+    return;
+  };
+
+  selectBerry = () => {
+    // Change this.state.selectedBerry
+    return;
+  };
+
+  useBerry = () => {
+    // Put the effects of this.state.selectedBerry into effect, make it reflect in either hpPercent or status
+    return;
+  };
+
   render() {
     return this.props.children({
       state: this.state,
-      catchRoll: this.catchRoll
+      throwPokeball: this.throwPokeball,
+      useBerry: this.useBerry
     });
   }
 }
-
-BattleContainer.defaultProps = {};
-
-BattleContainer.propTypes = {};
 
 export default BattleContainer;
