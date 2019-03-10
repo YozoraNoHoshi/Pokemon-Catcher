@@ -49,7 +49,7 @@ function alignItems(props) {
 function flexWrap(props) {
   let cssProp = getCSSProperties(
     props,
-    { wrap: 'wrap', nowrap: 'no-wrap' },
+    { fWrap: 'wrap', noFWrap: 'no-wrap' },
     false
   );
   if (cssProp) return `flex-wrap: ${cssProp}`;

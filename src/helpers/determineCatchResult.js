@@ -2,6 +2,7 @@ import { statusMultiplier, POKEBALLS } from '../data';
 
 function calculateCatchRate(rate, pokeball, status, hpPercent = false) {
   let ballMultiplier = POKEBALLS[pokeball];
+
   let statusEffect = statusMultiplier[status] || statusMultiplier.normal;
   if (!hpPercent) return (rate * ballMultiplier * statusEffect) / 1.5;
   else

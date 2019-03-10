@@ -20,6 +20,8 @@ export async function getBattlePokemon(habitat) {
   let result = await axios.get(`${BASE_URL}/habitats/${habitat}/battle`);
   return result.data.pokemon;
 }
+
+// Only really needs name, species, and sprite
 export async function getHabitatPokemon(habitat) {
   let result = await axios.get(`${BASE_URL}/habitats/${habitat}/pokemon`);
   return result.data.pokemon;
