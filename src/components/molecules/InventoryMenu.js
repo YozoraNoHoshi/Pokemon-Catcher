@@ -15,7 +15,7 @@ class InventoryMenu extends PureComponent {
   render() {
     return (
       <div className="InventoryMenu">
-        <ModalMenu text="Bag">
+        <ModalMenu buttonText="Bag">
           <div>{this.renderPokeBalls(this.props.pokeballs)}</div>
           <div>{this.renderBerries(this.props.berries)}</div>
         </ModalMenu>

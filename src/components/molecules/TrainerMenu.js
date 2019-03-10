@@ -27,7 +27,7 @@ class TrainerMenu extends PureComponent {
           <Flex txCenter jCenter>
             Caught Pokemon
           </Flex>
-          <Flex row wrap jCenter>
+          <Flex row fWrap jCenter>
             {this.renderPokemonCards(Object.values(this.props.pokemon))}
           </Flex>
           <Flex jCenter row>
