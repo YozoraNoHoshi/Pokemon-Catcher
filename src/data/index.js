@@ -12,5 +12,11 @@ export const statusMultiplier = {
   poison: 1.5,
   normal: 1
 };
+export const CATCH_MESSAGES = {
+  0: 'Oh no! The Pokemon broke free!',
+  1: 'Aww! It appeared to be caught!',
+  2: 'Argh! Almost had it!',
+  3: 'Shoot! It was so close too!'
+};
 
 export const BERRIES = {};

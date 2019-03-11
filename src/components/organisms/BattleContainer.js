@@ -1,6 +1,7 @@
 import { PureComponent } from 'react';
 import { navigate } from '@reach/router';
 import determineCatchResult from '../../helpers/determineCatchResult';
+import { CATCH_MESSAGES } from '../../data';
 class BattleContainer extends PureComponent {
   constructor(props) {
     super(props);
@@ -27,6 +28,7 @@ class BattleContainer extends PureComponent {
     }
     // Catch fails
     else {
+      alert(CATCH_MESSAGES[result]);
     }
   };
 
