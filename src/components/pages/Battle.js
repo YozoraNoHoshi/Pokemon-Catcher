@@ -4,7 +4,7 @@ import ChangeScreenButton from '../molecules/ChangeScreenButton';
 import MenuButton from '../atoms/MenuButton';
 import Flex from '../atoms/Flex';
 import Card from '../atoms/Card';
-import InventoryMenu from '../molecules/InventoryMenu';
+import InventoryMenu from './InventoryMenu';
 
 class Battle extends PureComponent {
   render() {

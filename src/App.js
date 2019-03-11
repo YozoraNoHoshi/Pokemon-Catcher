@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Router } from '@reach/router';
-import MainMenu from './components/molecules/MainMenu';
+import MainMenu from './components/pages/MainMenu';
 import HabitatMenu from './components/pages/HabitatMenu';
 import PreBattle from './components/organisms/PreBattle';
-import TrainerMenu from './components/molecules/TrainerMenu';
+import TrainerMenu from './components/pages/TrainerMenu';
 import AppContainer from './AppContainer';
+import Pokedex from './components/organisms/Pokedex';
+import PokedexPage from './components/organisms/PokedexPage';
+import Flex from './components/atoms/Flex';
+import ChangeScreenButton from './components/molecules/ChangeScreenButton';
 
 class App extends Component {
   render() {
@@ -32,10 +36,15 @@ class App extends Component {
                   currentHabitat={state.habitat}
                   changeHabitat={changeHabitat}
                 />
+                <Pokedex path="/pokedex" />
+                <PokedexPage path="/pokedex/:entry" />
               </Router>
               {/* Inventory and bag menu buttons go here */}
               {/* <InventoryMenu /> */}
-              <TrainerMenu changeGameState={changeGameState} />
+              <Flex>
+                <TrainerMenu changeGameState={changeGameState} />
+                <ChangeScreenButton to="/menu">Menu</ChangeScreenButton>
+              </Flex>
             </div>
           );
         }}

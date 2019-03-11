@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react';
 import MenuButton from '../atoms/MenuButton';
 import HabitatInfo from '../molecules/HabitatInfo';
-
-import ChangeScreenButton from '../molecules/ChangeScreenButton';
-import styled from 'styled-components';
 import Flex from '../atoms/Flex';
 import HabitatContainer from '../organisms/HabitatContainer';
 import { title } from '../../helpers/title';
+import styled from 'styled-components';
 
 const StyledHMenu = styled.div``;
 
@@ -49,7 +47,6 @@ class HabitatMenu extends PureComponent {
                   ? 'Current Area'
                   : 'Move to Selected Area!'}
               </MenuButton>
-              <ChangeScreenButton to="/menu">Back</ChangeScreenButton>
             </StyledHMenu>
           );
         }}
