@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ModalMenu from './ModalMenu';
+import ModalMenu from '../molecules/ModalMenu';
 import MenuButton from '../atoms/MenuButton';
 import Card from '../atoms/Card';
 import pokemon from '../../data/pokemon.json';

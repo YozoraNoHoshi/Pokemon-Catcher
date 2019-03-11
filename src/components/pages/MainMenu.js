@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ChangeScreenButton from './ChangeScreenButton';
+import ChangeScreenButton from '../molecules/ChangeScreenButton';
 
 class MainMenu extends PureComponent {
   render() {
@@ -9,6 +9,7 @@ class MainMenu extends PureComponent {
           Search for Pokemon!
         </ChangeScreenButton>
         <ChangeScreenButton to="/habitats">Habitats</ChangeScreenButton>
+        <ChangeScreenButton to="/pokedex">Pokedex</ChangeScreenButton>
       </div>
     );
   }
