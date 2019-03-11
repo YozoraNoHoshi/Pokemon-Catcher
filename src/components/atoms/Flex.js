@@ -4,19 +4,20 @@ import getCSSProperties from '../../helpers/getCSSProperties';
 const Flex = styled.div`
   display: flex;
   flex-direction: ${flexDirection};
-  ${justifyContent};
-  ${alignItems};
-  ${flexWrap};
-  ${overflow};
-  ${textAlign};
-  ${width};
+  ${justifyContent}
+  ${alignItems}
+  ${flexWrap}
+  ${overflow}
+  ${textAlign}
+  ${width}
 `;
 
 function flexDirection(props) {
   return getCSSProperties(props, { row: 'row', column: 'column' }, 'inherit');
 }
 function width({ width }) {
-  if (typeof width === 'number') return `width: ${width}%`;
+  if (typeof width === 'number') return `width: ${width}%;`;
+  if (typeof width === 'string') return `width: ${width};`;
   return null;
 }
 function overflow(props) {
@@ -25,7 +26,7 @@ function overflow(props) {
     { hidden: 'hidden', scroll: 'scroll', visible: 'visible' },
     false
   );
-  if (cssProp) return `overflow: ${cssProp}`;
+  if (cssProp) return `overflow: ${cssProp};`;
   return null;
 }
 function justifyContent(props) {
@@ -34,7 +35,7 @@ function justifyContent(props) {
     { jCenter: 'center', jStart: 'flex-start', jEnd: 'flex-end' },
     false
   );
-  if (cssProp) return `justify-content: ${cssProp}`;
+  if (cssProp) return `justify-content: ${cssProp};`;
   return null;
 }
 function alignItems(props) {
@@ -43,7 +44,7 @@ function alignItems(props) {
     { alCenter: 'center', alStart: 'flex-start', alEnd: 'flex-end' },
     false
   );
-  if (cssProp) return `align-items: ${cssProp}`;
+  if (cssProp) return `align-items: ${cssProp};`;
   return null;
 }
 function flexWrap(props) {
@@ -52,7 +53,7 @@ function flexWrap(props) {
     { fWrap: 'wrap', noFWrap: 'no-wrap' },
     false
   );
-  if (cssProp) return `flex-wrap: ${cssProp}`;
+  if (cssProp) return `flex-wrap: ${cssProp};`;
   return null;
 }
 function textAlign(props) {
@@ -61,7 +62,7 @@ function textAlign(props) {
     { txCenter: 'center', txRight: 'right', txLeft: 'left' },
     false
   );
-  if (cssProp) return `text-align: ${cssProp}`;
+  if (cssProp) return `text-align: ${cssProp};`;
   return null;
 }
 
