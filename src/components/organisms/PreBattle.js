@@ -2,23 +2,29 @@ import React, { PureComponent } from 'react';
 import Loading from '../atoms/Loading';
 import { Redirect } from '@reach/router';
 import Battle from '../pages/Battle';
-import { getBattlePokemon } from '../../api';
+import { getBattlePokemon, getPokemon } from '../../api';
 
 class PreBattle extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = { loading: false, pokemon: {}, noPokemon: false };
+    this.state = { loading: true, pokemon: {}, noPokemon: false };
   }
 
   async componentDidMount() {
-    await this.getBattlePokemon();
+    if (this.props.riggedPokemon) await this.riggedPokemon();
+    else await this.getBattlePokemon();
   }
   async getBattlePokemon() {
-    // Make an api call to get the pokemon data based on props
-    // Punt the result into state
     try {
-      this.setState({ loading: true });
       let pokemon = await getBattlePokemon(this.props.habitat);
+      this.setState({ pokemon, loading: false, noPokemon: false });
+    } catch (error) {
+      this.setState({ noPokemon: true, loading: false });
+    }
+  }
+  async riggedPokemon() {
+    try {
+      let pokemon = await getPokemon(this.props.riggedPokemon);
       this.setState({ pokemon, loading: false, noPokemon: false });
     } catch (error) {
       this.setState({ noPokemon: true, loading: false });
@@ -35,7 +41,7 @@ class PreBattle extends PureComponent {
   }
 }
 
-PreBattle.defaultProps = { habitat: '' };
+PreBattle.defaultProps = { habitat: '', riggedPokemon: '' };
 
 PreBattle.propTypes = {};
 
