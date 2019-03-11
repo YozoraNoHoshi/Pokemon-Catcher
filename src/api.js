@@ -30,11 +30,13 @@ export async function getAllPokemon() {
   let result = await axios.get(`${BASE_URL}/pokemon`);
   return result.data.pokemon;
 }
-export async function getPokemon(nameOrId, column = 'name') {
-  if (column !== 'name') column = 'id';
-  let result = await axios.get(`${BASE_URL}/pokemon/${nameOrId}`, {
-    params: { column }
-  });
+export async function getPokemon(nameOrId) {
+  if (!isNaN(+nameOrId)) nameOrId = +nameOrId;
+  let column = 'name';
+  if (typeof nameOrId === 'number') column = 'id';
+  let result = await axios.get(
+    `${BASE_URL}/pokemon/${nameOrId}?column=${column}`
+  );
   return result.data.pokemon;
 }
 export async function getFullPokemon(pokemonName) {
