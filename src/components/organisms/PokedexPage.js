@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { getPokemon } from '../../api';
-import DetailedCard from '../molecules/DetailedCard';
-import { navigate } from '@reach/router';
+import DetailedCard from '../atoms/DetailedCard';
+import { MISSINGNO } from '../../data';
 
 class PokedexPage extends PureComponent {
   constructor(props) {
@@ -15,7 +15,7 @@ class PokedexPage extends PureComponent {
   async componentDidMount() {
     if (!this.props.location.state) {
       let pokemon = await getPokemon(this.props.entry);
-      if (pokemon.length === 0) return navigate('/menu', { replace: true });
+      if (pokemon.length === 0) pokemon = MISSINGNO;
       this.setState({ pokemon, loaded: true });
     } else this.setState({ loaded: true });
   }

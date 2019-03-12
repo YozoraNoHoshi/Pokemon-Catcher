@@ -20,3 +20,12 @@ export const CATCH_MESSAGES = {
 };
 
 export const BERRIES = {};
+
+export const MISSINGNO = {
+  id: '???',
+  species: 'MissingNo.',
+  sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
+  title: '????',
+  flavor_text: '',
+  catch_rate: '???'
+};

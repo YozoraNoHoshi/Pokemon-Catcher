@@ -29,19 +29,17 @@ class Pokedex extends PureComponent {
       <div className="Pokedex">
         <SearchPokedex submit={this.searchPokemon} />
         {this.state.foundPokemon && (
-          <div>
-            <Link
-              to={`/pokedex/${pokemon.name}`}
-              state={{ ...this.state.pokemon }}
-              style={{
-                color: 'initial',
-                margin: 0,
-                padding: 0
-              }}
-            >
-              <Card name={pokemon.species} sprite={pokemon.sprite} />
-            </Link>
-          </div>
+          <Link
+            to={`/pokedex/${pokemon.name}`}
+            state={{ ...this.state.pokemon }}
+            style={{
+              color: 'initial',
+              margin: 0,
+              padding: 0
+            }}
+          >
+            <Card name={pokemon.species} sprite={pokemon.sprite} />
+          </Link>
         )}
       </div>
     );

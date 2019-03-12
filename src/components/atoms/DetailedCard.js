@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import Text from '../atoms/Text';
-import Sprite from '../atoms/Sprite';
+import Text from './Text';
+import Sprite from './Sprite';
 import styled from 'styled-components';
 
 const DetailCard = styled.div`
