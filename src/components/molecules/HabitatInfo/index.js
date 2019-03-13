@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
 import { title } from '../../../helpers/title';
+import Text from '../../atoms/Text';
 
 class HabitatInfo extends PureComponent {
   renderPokemonCards = pokemon => {
@@ -11,15 +12,19 @@ class HabitatInfo extends PureComponent {
   };
   render() {
     return (
-      <Flex column className="HabitatInfo">
-        <h1>{title(this.props.name)}</h1>
+      <Flex column alCenter className="HabitatInfo">
+        <Text large center>
+          {title(this.props.name)}
+        </Text>
         {this.props.image && <img src={this.props.image} alt="" />}
-        <div>{this.props.description}</div>
-        <Flex column>
-          Available Pokemon
-          <Flex row jCenter fWrap>
-            {this.renderPokemonCards(this.props.pokemon)}
-          </Flex>
+        <Text center>{this.props.description}</Text>
+        <Flex
+          row
+          jCenter
+          fWrap
+          style={{ overflowY: 'auto', height: '60vh', marginTop: '5px' }}
+        >
+          {this.renderPokemonCards(this.props.pokemon)}
         </Flex>
       </Flex>
     );

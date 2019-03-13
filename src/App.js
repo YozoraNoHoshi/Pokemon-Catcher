@@ -23,7 +23,7 @@ class App extends Component {
           state
         }) => {
           return (
-            <div className="App">
+            <Flex jCenter alCenter column>
               <Router>
                 <MainMenu default path="/menu" />
                 <PreBattle
@@ -41,14 +41,14 @@ class App extends Component {
               </Router>
               {/* Inventory and bag menu buttons go here */}
               {/* <InventoryMenu /> */}
-              <Flex>
+              <Flex row>
                 <TrainerMenu
                   changeGameState={changeGameState}
                   pokemon={state.currentPokemon}
                 />
                 <ChangeScreenButton to="/menu">Menu</ChangeScreenButton>
               </Flex>
-            </div>
+            </Flex>
           );
         }}
       </AppContainer>

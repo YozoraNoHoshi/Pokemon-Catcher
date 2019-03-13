@@ -42,8 +42,8 @@ class HabitatContainer extends PureComponent {
   changeHabitat = () => {
     if (this.state.selectedHabitat !== this.props.currentHabitat) {
       this.props.changeHabitat(this.state.selectedHabitat);
-      navigate('/menu');
     }
+    navigate('/menu');
   };
 
   handleClick = async evt => {

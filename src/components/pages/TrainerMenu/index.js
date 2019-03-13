@@ -19,7 +19,7 @@ class TrainerMenu extends PureComponent {
   };
   render() {
     return (
-      <Flex jCenter width={100} className="TrainerMenu">
+      <Flex jCenter cWidth={100} className="TrainerMenu">
         <ModalMenu buttonText="Trainer Details">
           <Text center large>
             {this.props.trainerName}
@@ -27,7 +27,12 @@ class TrainerMenu extends PureComponent {
           {this.props.pokemon.length > 0 ? (
             <>
               <Text center>Caught Pokemon</Text>
-              <Flex row fWrap jCenter>
+              <Flex
+                row
+                fWrap
+                jCenter
+                style={{ overflowY: 'auto', height: '250px' }}
+              >
                 {this.renderPokemonCards(Object.values(this.props.pokemon))}
               </Flex>
             </>
