@@ -25,7 +25,7 @@ class DetailedCard extends PureComponent {
         </Text>
         <Text center>{pokemon.title}</Text>
         <Sprite src={pokemon.sprite} alt="" />
-        <Text left width="50ch">
+        <Text left cWidth="50ch">
           {pokemon.flavor_text}
         </Text>
         <Text center>Catch Rate: {pokemon.catch_rate}</Text>

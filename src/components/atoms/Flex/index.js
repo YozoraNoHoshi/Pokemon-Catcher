@@ -15,9 +15,9 @@ const Flex = styled.div`
 function flexDirection(props) {
   return getCSSProperties(props, { row: 'row', column: 'column' }, 'inherit');
 }
-function width({ width }) {
-  if (typeof width === 'number') return `width: ${width}%;`;
-  if (typeof width === 'string') return `width: ${width};`;
+function width({ cWidth }) {
+  if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
+  if (typeof cWidth === 'string') return `width: ${cWidth};`;
   return null;
 }
 function overflow(props) {

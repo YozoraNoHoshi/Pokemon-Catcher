@@ -1,4 +1,3 @@
-// import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
 
@@ -8,9 +7,9 @@ const MenuButton = styled.div`
   padding: 10px;
   margin: 5px;
   background: ${background};
-  border-radius: 10px;
+  border-radius: 3px;
   text-decoration: none;
-  ${fontSize};
+  ${fontSize}
   ${width}
   :hover {
     background: skyblue;
@@ -23,11 +22,11 @@ function background(props) {
 }
 function fontSize(props) {
   let cssProps = getCSSProperties(props, { large: '2em' }, false);
-  if (cssProps) return `font-size: ${cssProps}`;
+  if (cssProps) return `font-size: ${cssProps};`;
   return null;
 }
-function width({ width }) {
-  if (typeof width === 'number') return `width: ${width}%`;
+function width({ cWidth }) {
+  if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
   return null;
 }
 

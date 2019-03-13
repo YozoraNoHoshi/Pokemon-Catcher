@@ -11,6 +11,10 @@ export const StyledCard = styled.div`
   padding: 10px;
   padding-bottom: 5px;
   height: 100px;
+  width: 80px;
+  :hover {
+    background-color: lightsteelblue;
+  }
 `;
 
 class Card extends PureComponent {

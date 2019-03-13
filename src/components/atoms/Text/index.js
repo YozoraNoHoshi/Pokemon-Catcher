@@ -8,9 +8,9 @@ const Text = styled.div`
   ${width}
 `;
 
-function width({ width }) {
-  if (typeof width === 'number') return `width: ${width}%;`;
-  if (typeof width === 'string') return `width: ${width};`;
+function width({ cWidth }) {
+  if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
+  if (typeof cWidth === 'string') return `width: ${cWidth};`;
   return `width: 100%`;
 }
 
