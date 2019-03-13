@@ -15,7 +15,14 @@ export const StyledCard = styled.div`
 
 class Card extends PureComponent {
   render() {
-    return (
+    return this.props.noLink ? (
+      <StyledCard>
+        <Sprite src={this.props.sprite} alt={this.props.name} />
+        <Flex jCenter txCenter>
+          {this.props.name}
+        </Flex>
+      </StyledCard>
+    ) : (
       <Link
         to={`/pokedex/${this.props.name.toLowerCase()}`}
         state={this.props.passedState || null}
@@ -37,6 +44,7 @@ class Card extends PureComponent {
 }
 
 Card.defaultProps = {
+  noLink: false,
   sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
   name: 'MissingNo.'
 };

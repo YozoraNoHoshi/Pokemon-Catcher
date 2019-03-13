@@ -19,6 +19,7 @@ class Battle extends PureComponent {
               <Flex>
                 A WILD POKEMON APPEARED
                 <Card
+                  noLink
                   sprite={this.props.pokemon.sprite}
                   name={this.props.pokemon.species}
                 />
