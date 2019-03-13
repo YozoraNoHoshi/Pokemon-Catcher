@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Text from '../Text';
+import Flex from '../Flex';
 import Sprite from '../Sprite';
 import styled from 'styled-components';
 
@@ -20,15 +20,15 @@ class DetailedCard extends PureComponent {
     let pokemon = this.props;
     return (
       <DetailCard>
-        <Text center large>
+        <Flex txCenter large>
           #{pokemon.id}: {pokemon.species}
-        </Text>
-        <Text center>{pokemon.title}</Text>
+        </Flex>
+        <Flex center>{pokemon.title}</Flex>
         <Sprite src={pokemon.sprite} alt="" />
-        <Text left cWidth="50ch">
+        <Flex txLeft cWidth="50ch">
           {pokemon.flavor_text}
-        </Text>
-        <Text center>Catch Rate: {pokemon.catch_rate}</Text>
+        </Flex>
+        <Flex txCenter>Catch Rate: {pokemon.catch_rate}</Flex>
       </DetailCard>
     );
   }

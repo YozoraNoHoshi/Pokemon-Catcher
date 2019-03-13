@@ -7,28 +7,42 @@ const Flex = styled.div`
   ${justifyContent}
   ${alignItems}
   ${flexWrap}
-  ${overflow}
   ${textAlign}
+  ${fontWeight}
+  ${fontSize}
   ${width}
 `;
 
 function flexDirection(props) {
   return getCSSProperties(props, { row: 'row', column: 'column' }, 'inherit');
 }
+
 function width({ cWidth }) {
   if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
   if (typeof cWidth === 'string') return `width: ${cWidth};`;
   return null;
 }
-function overflow(props) {
+
+function fontWeight(props) {
   let cssProp = getCSSProperties(
     props,
-    { hidden: 'hidden', scroll: 'scroll', visible: 'visible' },
-    false
+    { bold: 'bold', normal: 'normal', thin: 'thin' },
+    'normal'
   );
-  if (cssProp) return `overflow: ${cssProp};`;
+  if (cssProp) return `font-weight: ${cssProp};`;
   return null;
 }
+
+function fontSize(props) {
+  let cssProp = getCSSProperties(
+    props,
+    { large: '2em', small: '.75em', medium: '1.5em' },
+    false
+  );
+  if (cssProp) return `font-size: ${cssProp};`;
+  return null;
+}
+
 function justifyContent(props) {
   let cssProp = getCSSProperties(
     props,

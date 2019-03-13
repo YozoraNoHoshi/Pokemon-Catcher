@@ -3,7 +3,6 @@ import ModalMenu from '../../molecules/ModalMenu';
 import MenuButton from '../../atoms/MenuButton';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
-import Text from '../../atoms/Text';
 
 class TrainerMenu extends PureComponent {
   saveGame = () => {
@@ -21,12 +20,12 @@ class TrainerMenu extends PureComponent {
     return (
       <Flex jCenter cWidth={100} className="TrainerMenu">
         <ModalMenu buttonText="Trainer Details">
-          <Text center large>
+          <Flex txCenter large>
             {this.props.trainerName}
-          </Text>
+          </Flex>
           {this.props.pokemon.length > 0 ? (
             <>
-              <Text center>Caught Pokemon</Text>
+              <Flex txCenter>Caught Pokemon</Flex>
               <Flex
                 row
                 fWrap
@@ -37,7 +36,7 @@ class TrainerMenu extends PureComponent {
               </Flex>
             </>
           ) : (
-            <Text center>You have not caught any Pokemon yet!</Text>
+            <Flex txCenter>You have not caught any Pokemon yet!</Flex>
           )}
           <Flex jCenter row>
             <MenuButton onClick={this.saveGame}>Save Game</MenuButton>

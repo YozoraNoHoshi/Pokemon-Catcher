@@ -4,7 +4,6 @@ import HabitatInfo from '../../molecules/HabitatInfo';
 import Flex from '../../atoms/Flex';
 import HabitatContainer from '../../organisms/HabitatContainer';
 import { title } from '../../../helpers/title';
-import Text from '../../atoms/Text';
 
 class HabitatMenu extends PureComponent {
   renderHabitatButtons = (habitats, selectedHabitat) => {
@@ -29,12 +28,12 @@ class HabitatMenu extends PureComponent {
           let habitat = state.habitats[state.selectedHabitat];
           return (
             <Flex column>
-              <Text large center>
+              <Flex large txCenter>
                 Transit Center
-              </Text>
-              <Text medium center>
+              </Flex>
+              <Flex medium txCenter>
                 Where would you like to go?
-              </Text>
+              </Flex>
               <MenuButton
                 onClick={changeHabitat}
                 active={this.props.currentHabitat === state.selectedHabitat}
