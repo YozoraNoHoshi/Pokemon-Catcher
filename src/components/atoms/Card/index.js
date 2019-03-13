@@ -15,6 +15,9 @@ export const StyledCard = styled.div`
   :hover {
     background-color: lightsteelblue;
   }
+  & > div {
+    pointer-events: none;
+  }
 `;
 
 class Card extends PureComponent {

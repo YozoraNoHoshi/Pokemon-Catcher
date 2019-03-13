@@ -9,6 +9,7 @@ const MenuButton = styled.div`
   background: ${background};
   border-radius: 3px;
   text-decoration: none;
+  box-shadow: 0 0 3px black;
   ${fontSize}
   ${width}
   :hover {
