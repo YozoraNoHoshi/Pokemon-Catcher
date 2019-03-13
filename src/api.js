@@ -31,15 +31,19 @@ export async function getAllPokemon() {
   return result.data.pokemon;
 }
 export async function getPokemon(nameOrId) {
-  if (!isNaN(+nameOrId)) nameOrId = +nameOrId;
   let column = 'name';
-  if (typeof nameOrId === 'number') column = 'id';
+  if (!isNaN(+nameOrId)) {
+    nameOrId = +nameOrId;
+    column = 'id';
+  } else nameOrId = nameOrId.toLowerCase();
   let result = await axios.get(
     `${BASE_URL}/pokemon/${nameOrId}?column=${column}`
   );
   return result.data.pokemon;
 }
 export async function getFullPokemon(pokemonName) {
-  let result = await axios.get(`${BASE_URL}/pokemon/${pokemonName}/habitats`);
+  let result = await axios.get(
+    `${BASE_URL}/pokemon/${pokemonName.toLowerCase()}/habitats`
+  );
   return result.data.pokemon;
 }
