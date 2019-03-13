@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import ModalMenu from '../molecules/ModalMenu';
 import MenuButton from '../atoms/MenuButton';
 import Card from '../atoms/Card';
-import pokemon from '../../data/pokemon.json';
 import Flex from '../atoms/Flex';
+import Text from '../atoms/Text';
 
 class TrainerMenu extends PureComponent {
   saveGame = () => {
@@ -14,22 +14,26 @@ class TrainerMenu extends PureComponent {
   };
   renderPokemonCards = pokemon => {
     return pokemon.map(p => {
-      return <Card name={p.name} key={p.name} sprite={p.sprite} />;
+      return <Card name={p.species} key={p.name} sprite={p.sprite} />;
     });
   };
   render() {
     return (
       <Flex jCenter width={100} className="TrainerMenu">
         <ModalMenu buttonText="Trainer Details">
-          <Flex txCenter style={{ fontSize: '2em' }}>
+          <Text center large>
             {this.props.trainerName}
-          </Flex>
-          <Flex txCenter jCenter>
-            Caught Pokemon
-          </Flex>
-          <Flex row fWrap jCenter>
-            {this.renderPokemonCards(Object.values(this.props.pokemon))}
-          </Flex>
+          </Text>
+          {this.props.pokemon.length > 0 ? (
+            <>
+              <Text center>Caught Pokemon</Text>
+              <Flex row fWrap jCenter>
+                {this.renderPokemonCards(Object.values(this.props.pokemon))}
+              </Flex>
+            </>
+          ) : (
+            <Text center>You have not caught any Pokemon yet!</Text>
+          )}
           <Flex jCenter row>
             <MenuButton onClick={this.saveGame}>Save Game</MenuButton>
             <MenuButton onClick={this.loadGame}>Load Game</MenuButton>
@@ -41,7 +45,7 @@ class TrainerMenu extends PureComponent {
 }
 
 TrainerMenu.defaultProps = {
-  pokemon,
+  pokemon: [],
   trainerName: 'Red'
 };
 

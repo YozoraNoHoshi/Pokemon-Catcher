@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { getPokemon } from '../../api';
 import SearchPokedex from '../molecules/SearchPokedex';
 import Card from '../atoms/Card';
-import { Link } from '@reach/router';
 
 class Pokedex extends PureComponent {
   constructor(props) {
@@ -29,17 +28,11 @@ class Pokedex extends PureComponent {
       <div className="Pokedex">
         <SearchPokedex submit={this.searchPokemon} />
         {this.state.foundPokemon && (
-          <Link
-            to={`/pokedex/${pokemon.name}`}
-            state={{ ...this.state.pokemon }}
-            style={{
-              color: 'initial',
-              margin: 0,
-              padding: 0
-            }}
-          >
-            <Card name={pokemon.species} sprite={pokemon.sprite} />
-          </Link>
+          <Card
+            name={pokemon.species}
+            sprite={pokemon.sprite}
+            passedState={{ ...this.state.pokemon }}
+          />
         )}
       </div>
     );
