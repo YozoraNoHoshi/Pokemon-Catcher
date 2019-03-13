@@ -42,7 +42,10 @@ class App extends Component {
               {/* Inventory and bag menu buttons go here */}
               {/* <InventoryMenu /> */}
               <Flex>
-                <TrainerMenu changeGameState={changeGameState} />
+                <TrainerMenu
+                  changeGameState={changeGameState}
+                  pokemon={state.currentPokemon}
+                />
                 <ChangeScreenButton to="/menu">Menu</ChangeScreenButton>
               </Flex>
             </div>
