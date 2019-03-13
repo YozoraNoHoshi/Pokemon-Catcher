@@ -4,9 +4,10 @@ import MenuButton from '../../atoms/MenuButton';
 
 class ChangeScreenButton extends PureComponent {
   render() {
+    let { to, prop } = this.props;
     return (
       <Link
-        to={this.props.to}
+        to={to}
         style={{
           textDecoration: 'none',
           color: 'initial',
@@ -14,7 +15,7 @@ class ChangeScreenButton extends PureComponent {
           padding: 0
         }}
       >
-        <MenuButton>{this.props.children}</MenuButton>
+        <MenuButton {...prop}>{this.props.children}</MenuButton>
       </Link>
     );
   }
