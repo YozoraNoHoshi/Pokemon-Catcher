@@ -13,13 +13,17 @@ class PokedexPage extends PureComponent {
   }
   // get pokemon data from this.props.location.state OR if state isnt a thing (came here by direct nav) make an API call to get the information
   async componentDidMount() {
-    let { key, ...passedPokemon } = this.props.location.state || {};
-    if (Object.keys(passedPokemon).length === 0) {
-      let pokemon = await getPokemon(this.props.entry);
-      if (pokemon.length === 0) pokemon = MISSINGNO;
-      this.setState({ pokemon, loaded: true });
-    } else {
-      this.setState({ pokemon: passedPokemon, loaded: true });
+    try {
+      let { key, ...passedPokemon } = this.props.location.state || {};
+      if (Object.keys(passedPokemon).length === 0) {
+        let pokemon = await getPokemon(this.props.entry);
+        if (pokemon.length === 0) pokemon = MISSINGNO;
+        this.setState({ pokemon, loaded: true });
+      } else {
+        this.setState({ pokemon: passedPokemon, loaded: true });
+      }
+    } catch (error) {
+      alert('Oops, something seems to have gone wrong.');
     }
   }
 

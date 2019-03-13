@@ -8,6 +8,7 @@ class PreBattle extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { loading: true, pokemon: {}, noPokemon: false };
+    this.errorMessage = 'Oops, something seems to have gone wrong.';
   }
 
   async componentDidMount() {
@@ -20,6 +21,7 @@ class PreBattle extends PureComponent {
       this.setState({ pokemon, loading: false, noPokemon: false });
     } catch (error) {
       this.setState({ noPokemon: true, loading: false });
+      alert(this.errorMessage);
     }
   }
   async riggedPokemon() {
@@ -28,6 +30,7 @@ class PreBattle extends PureComponent {
       this.setState({ pokemon, loading: false, noPokemon: false });
     } catch (error) {
       this.setState({ noPokemon: true, loading: false });
+      alert(this.errorMessage);
     }
   }
 

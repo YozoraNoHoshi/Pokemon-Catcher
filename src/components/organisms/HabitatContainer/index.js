@@ -20,7 +20,9 @@ class HabitatContainer extends PureComponent {
         this.setHabitat(),
         this.updateHabitatPokemon(this.state.selectedHabitat)
       ]);
-    } catch (error) {}
+    } catch (error) {
+      alert('Oops, something seems to have gone wrong.');
+    }
   }
 
   updateHabitatPokemon = async habitat => {
