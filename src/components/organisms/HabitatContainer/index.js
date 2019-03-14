@@ -10,7 +10,7 @@ class HabitatContainer extends PureComponent {
       habitats: {
         field: { name: 'field', description: '' }
       },
-      loading: false
+      loading: true
     };
   }
 
@@ -43,7 +43,7 @@ class HabitatContainer extends PureComponent {
     if (this.state.selectedHabitat !== this.props.currentHabitat) {
       this.props.changeHabitat(this.state.selectedHabitat);
     }
-    navigate('/menu');
+    navigate('/');
   };
 
   handleClick = async evt => {

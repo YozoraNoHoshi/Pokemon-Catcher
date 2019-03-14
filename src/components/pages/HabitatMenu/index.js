@@ -4,6 +4,7 @@ import HabitatInfo from '../../molecules/HabitatInfo';
 import Flex from '../../atoms/Flex';
 import HabitatContainer from '../../organisms/HabitatContainer';
 import { title } from '../../../helpers/title';
+import Loading from '../../atoms/Loading';
 
 class HabitatMenu extends PureComponent {
   renderHabitatButtons = (habitats, selectedHabitat) => {
@@ -47,26 +48,31 @@ class HabitatMenu extends PureComponent {
                   ? 'Stay here!'
                   : 'Go!'}
               </MenuButton>
-              <Flex
-                row
-                jCenter
-                onClick={handleClick}
-                style={{
-                  borderBottom: '1px solid black',
-                  marginBottom: '20px'
-                }}
-              >
-                {this.renderHabitatButtons(
-                  Object.values(state.habitats),
-                  state.selectedHabitat
-                )}
-              </Flex>
-              {habitat && (
+              {!state.loading ? (
+                <Flex
+                  row
+                  jCenter
+                  onClick={handleClick}
+                  style={{
+                    borderBottom: '1px solid black'
+                  }}
+                >
+                  {this.renderHabitatButtons(
+                    Object.values(state.habitats),
+                    state.selectedHabitat
+                  )}
+                </Flex>
+              ) : (
+                <Loading />
+              )}
+              {!state.loading && habitat ? (
                 <HabitatInfo
                   name={habitat.name}
                   description={habitat.description}
                   pokemon={state.habitatPokemon}
                 />
+              ) : (
+                <Loading />
               )}
             </Flex>
           );

@@ -6,12 +6,17 @@ import { title } from '../../../helpers/title';
 class HabitatInfo extends PureComponent {
   renderPokemonCards = pokemon => {
     return pokemon.map(p => (
-      <Card key={p.name} name={p.species} sprite={p.sprite} />
+      <Card
+        key={`${p.name}`}
+        name={p.name}
+        species={p.species}
+        sprite={p.sprite}
+      />
     ));
   };
   render() {
     return (
-      <Flex column alCenter className="HabitatInfo">
+      <Flex column alCenter style={{ marginTop: '20px', marginBottom: '15px' }}>
         <Flex large txCenter>
           {title(this.props.name)}
         </Flex>
@@ -21,7 +26,7 @@ class HabitatInfo extends PureComponent {
           row
           jCenter
           fWrap
-          style={{ overflowY: 'auto', height: '60vh', marginTop: '5px' }}
+          style={{ overflowY: 'auto', height: '55vh', marginTop: '5px' }}
         >
           {this.renderPokemonCards(this.props.pokemon)}
         </Flex>

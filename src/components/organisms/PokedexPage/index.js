@@ -8,7 +8,7 @@ class PokedexPage extends PureComponent {
     super(props);
     this.state = {
       pokemon: {},
-      loaded: false
+      loading: true
     };
   }
   // get pokemon data from this.props.location.state OR if state isnt a thing (came here by direct nav) make an API call to get the information
@@ -18,9 +18,9 @@ class PokedexPage extends PureComponent {
       if (Object.keys(passedPokemon).length === 0) {
         let pokemon = await getPokemon(this.props.entry);
         if (pokemon.length === 0) pokemon = MISSINGNO;
-        this.setState({ pokemon, loaded: true });
+        this.setState({ pokemon, loading: false });
       } else {
-        this.setState({ pokemon: passedPokemon, loaded: true });
+        this.setState({ pokemon: passedPokemon, loading: false });
       }
     } catch (error) {
       alert('Oops, something seems to have gone wrong.');
@@ -28,7 +28,7 @@ class PokedexPage extends PureComponent {
   }
 
   render() {
-    if (!this.state.loaded) return <div>Loading...</div>;
+    if (this.state.loading) return <div>Loading...</div>;
     let {
       id,
       species,

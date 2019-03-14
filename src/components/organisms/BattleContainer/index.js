@@ -24,7 +24,7 @@ class BattleContainer extends PureComponent {
     // Catch successful
     if (result === 4) {
       this.props.modifyPokemon(this.props.pokemon);
-      navigate('/menu');
+      navigate('/');
     }
     // Catch fails
     else {

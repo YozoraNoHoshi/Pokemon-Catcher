@@ -20,15 +20,16 @@ class Battle extends PureComponent {
                 A WILD POKEMON APPEARED
                 <Card
                   noLink
+                  name={this.props.pokemon.name}
+                  species={this.props.pokemon.species}
                   sprite={this.props.pokemon.sprite}
-                  name={this.props.pokemon.species}
                 />
               </Flex>
               <Flex row fWrap>
                 <MenuButton onClick={throwPokeball}>Throw PokeBall</MenuButton>
                 <MenuButton onClick={useBerry}>Use Berry</MenuButton>
                 <InventoryMenu />
-                <ChangeScreenButton to="/menu">Run!</ChangeScreenButton>
+                <ChangeScreenButton to="/home">Run!</ChangeScreenButton>
               </Flex>
             </div>
           );

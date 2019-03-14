@@ -26,12 +26,12 @@ class Card extends PureComponent {
       <StyledCard>
         <Sprite src={this.props.sprite} alt={this.props.name} />
         <Flex jCenter txCenter>
-          {this.props.name}
+          {this.props.species}
         </Flex>
       </StyledCard>
     ) : (
       <Link
-        to={`/pokedex/${this.props.name.toLowerCase()}`}
+        to={`/pokedex/${this.props.name}`}
         state={this.props.passedState || null}
         style={{
           color: 'initial',
@@ -42,7 +42,7 @@ class Card extends PureComponent {
         <StyledCard>
           <Sprite src={this.props.sprite} alt={this.props.name} />
           <Flex jCenter txCenter>
-            {this.props.name}
+            {this.props.species}
           </Flex>
         </StyledCard>
       </Link>
@@ -53,7 +53,8 @@ class Card extends PureComponent {
 Card.defaultProps = {
   noLink: false,
   sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
-  name: 'MissingNo.'
+  name: 'missingno',
+  species: 'MissingNo.'
 };
 
 export default Card;

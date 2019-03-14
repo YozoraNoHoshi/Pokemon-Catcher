@@ -13,7 +13,14 @@ class TrainerMenu extends PureComponent {
   };
   renderPokemonCards = pokemon => {
     return pokemon.map(p => {
-      return <Card name={p.species} key={p.name} sprite={p.sprite} />;
+      return (
+        <Card
+          key={`${p.name}`}
+          name={p.name}
+          species={p.species}
+          sprite={p.sprite}
+        />
+      );
     });
   };
   render() {

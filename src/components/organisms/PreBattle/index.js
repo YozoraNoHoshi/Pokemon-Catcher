@@ -36,7 +36,7 @@ class PreBattle extends PureComponent {
 
   render() {
     if (this.state.loading) return <Loading />;
-    if (this.state.noPokemon) return <Redirect to="/menu" />;
+    if (this.state.noPokemon) return <Redirect to="/home" />;
     return (
       <Battle
         pokemon={this.state.pokemon}

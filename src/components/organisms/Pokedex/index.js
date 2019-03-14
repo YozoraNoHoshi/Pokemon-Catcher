@@ -29,7 +29,8 @@ class Pokedex extends PureComponent {
         <SearchPokedex submit={this.searchPokemon} />
         {this.state.foundPokemon && (
           <Card
-            name={pokemon.species}
+            name={pokemon.name}
+            species={pokemon.species}
             sprite={pokemon.sprite}
             passedState={{ ...this.state.pokemon }}
           />

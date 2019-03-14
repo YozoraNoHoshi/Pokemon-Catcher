@@ -8,7 +8,7 @@ class MainMenu extends PureComponent {
         <ChangeScreenButton to="/battle">
           Search for Pokemon!
         </ChangeScreenButton>
-        <ChangeScreenButton to="/habitats">Habitats</ChangeScreenButton>
+        <ChangeScreenButton to="/habitats">Transit Center</ChangeScreenButton>
         <ChangeScreenButton to="/pokedex">Pokedex</ChangeScreenButton>
       </div>
     );

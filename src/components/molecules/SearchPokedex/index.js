@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import MenuButton from '../../atoms/MenuButton';
 
+// Can be made into a generic form component if more than one form is used
 class SearchPokedex extends PureComponent {
   constructor(props) {
     super(props);
