@@ -23,3 +23,12 @@ You will also see any lint errors in the console.
 
 Hitting the back button after a redirect results in a blank page.  
 The styling is nonexistent.
+
+## TO-DOs
+
+Improve home screen -> Some sort of landing page and UI rather than a random menu
+~~Make the main menu live in a modal~~
+Store items in local storage as JWTs rather than raw JSON
+Make Pokedex live in a modal so you can view it during a battle
+Pokedex UI
+Battle UI and logic (Bag/Change Pokeball/Change Berry/Use Berry)
