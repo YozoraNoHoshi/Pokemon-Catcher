@@ -4,17 +4,16 @@ class AppContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      habitat: 'field',
-      currentPokemon: [],
-      inventory: {},
-      loaded: false
+      habitat: localStorage.getItem('habitat') || 'field',
+      currentPokemon: localStorage.getItem('currentPokemon') || [],
+      inventory: localStorage.getItem('inventory') || {},
+      loading: false
     };
   }
 
-  componentDidMount() {
-    this.changeGameState('load');
-    this.setState({ loaded: true });
-  }
+  // componentDidMount() {
+  //   this.setState({ loading: false });
+  // }
 
   changeHabitat = habitat => {
     this.setState({ habitat });
@@ -54,10 +53,12 @@ class AppContainer extends PureComponent {
     if (type === 'load') {
       let currentPokemon = localStorage.getItem('currentPokemon') || [];
       let inventory = localStorage.getItem('inventory') || {};
-      this.setState({ currentPokemon, inventory });
+      let habitat = localStorage.getItem('habitat') || 'field';
+      this.setState({ currentPokemon, inventory, habitat });
     } else {
       localStorage.setItem('currentPokemon', this.state.currentPokemon);
       localStorage.setItem('inventory', this.state.inventory);
+      localStorage.setItem('habitat', this.state.habitat);
     }
   };
   render() {
