@@ -18,10 +18,18 @@ class ModalMenu extends PureComponent {
 
   handleClick = e => {
     if (this.node.current.contains(e.target)) {
+      if (
+        this.props.closeOnInteract &&
+        this.state.open &&
+        !e.target.className.includes('modal')
+      ) {
+        this.toggleModal();
+      }
       return;
     }
     if (this.state.open) this.toggleModal();
   };
+
   toggleModal = () => {
     this.setState(prevSt => {
       return { open: !prevSt.open };
@@ -31,10 +39,18 @@ class ModalMenu extends PureComponent {
   render() {
     return (
       <Flex jCenter ref={this.node} className="modal-main">
-        <MenuButton active={this.state.open} onClick={this.toggleModal}>
+        <MenuButton
+          className="modal"
+          active={this.state.open}
+          onClick={this.toggleModal}
+        >
           {this.props.buttonText}
         </MenuButton>
-        <Modal show={this.state.open} toggleModal={this.toggleModal}>
+        <Modal
+          show={this.state.open}
+          closeOnInteract={this.props.closeOnInteract}
+          toggleModal={this.toggleModal}
+        >
           {this.props.children}
         </Modal>
       </Flex>
@@ -42,6 +58,6 @@ class ModalMenu extends PureComponent {
   }
 }
 
-ModalMenu.defaultProps = { header: '' };
+ModalMenu.defaultProps = { buttonText: 'Open', closeOnInteract: false };
 
 export default ModalMenu;
