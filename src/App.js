@@ -9,7 +9,9 @@ import AppContainer from './AppContainer';
 import Pokedex from './components/organisms/Pokedex';
 import PokedexPage from './components/organisms/PokedexPage';
 import Flex from './components/atoms/Flex';
-import ChangeScreenButton from './components/molecules/ChangeScreenButton';
+import HomePage from './components/pages/HomePage';
+import ModalMenu from './components/molecules/ModalMenu';
+import NotFound from './components/pages/NotFound';
 
 class App extends Component {
   render() {
@@ -25,7 +27,8 @@ class App extends Component {
           return (
             <Flex jCenter alCenter column>
               <Router>
-                <MainMenu default path="/menu" />
+                <NotFound default />
+                <HomePage path="/home" />
                 <PreBattle
                   path="/battle"
                   habitat={state.habitat}
@@ -39,14 +42,14 @@ class App extends Component {
                 <Pokedex path="/pokedex" />
                 <PokedexPage path="/pokedex/:entry" />
               </Router>
-              {/* Inventory and bag menu buttons go here */}
-              {/* <InventoryMenu /> */}
-              <Flex row>
+              <Flex row style={{ position: 'fixed', bottom: 0 }}>
                 <TrainerMenu
                   changeGameState={changeGameState}
                   pokemon={state.currentPokemon}
                 />
-                <ChangeScreenButton to="/menu">Menu</ChangeScreenButton>
+                <ModalMenu closeOnInteract buttonText="Menu">
+                  <MainMenu />
+                </ModalMenu>
               </Flex>
             </Flex>
           );
