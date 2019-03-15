@@ -4,7 +4,7 @@ import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
 import Flex from '../../atoms/Flex';
 import Card from '../../atoms/Card';
-import InventoryMenu from '../InventoryMenu';
+import InventoryMenu from '../../organisms/InventoryMenu';
 
 class Battle extends PureComponent {
   render() {
@@ -29,7 +29,7 @@ class Battle extends PureComponent {
                 <MenuButton onClick={throwPokeball}>Throw PokeBall</MenuButton>
                 <MenuButton onClick={useBerry}>Use Berry</MenuButton>
                 <InventoryMenu />
-                <ChangeScreenButton to="/home">Run!</ChangeScreenButton>
+                <ChangeScreenButton to="/">Run!</ChangeScreenButton>
               </Flex>
             </div>
           );
