@@ -4,7 +4,7 @@ import MenuButton from '../../atoms/MenuButton';
 
 class ChangeScreenButton extends PureComponent {
   render() {
-    let { to, prop } = this.props;
+    let { to, ...prop } = this.props;
     return (
       <Link
         to={to}

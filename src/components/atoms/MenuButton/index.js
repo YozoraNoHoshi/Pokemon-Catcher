@@ -13,13 +13,20 @@ const MenuButton = styled.div`
   ${fontSize}
   ${width}
   :hover {
-    background: skyblue;
+    background: ${hoverBackground};
     cursor: pointer;
   }
 `;
 
 function background(props) {
-  return getCSSProperties(props, { active: 'lightblue' }, 'lightgrey');
+  return getCSSProperties(
+    props,
+    { active: 'lightblue', pokeRed: 'firebrick' },
+    'lightgrey'
+  );
+}
+function hoverBackground(props) {
+  return getCSSProperties(props, { pokeRed: 'crimson' }, 'skyblue');
 }
 function fontSize(props) {
   let cssProps = getCSSProperties(props, { large: '2em' }, false);
