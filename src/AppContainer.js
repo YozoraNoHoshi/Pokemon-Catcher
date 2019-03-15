@@ -4,9 +4,9 @@ class AppContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      habitat: localStorage.getItem('habitat') || 'field',
-      currentPokemon: localStorage.getItem('currentPokemon') || [],
-      inventory: localStorage.getItem('inventory') || {},
+      habitat: JSON.parse(localStorage.getItem('habitat')) || 'field',
+      currentPokemon: JSON.parse(localStorage.getItem('currentPokemon')) || [],
+      inventory: JSON.parse(localStorage.getItem('inventory')) || {},
       loading: false
     };
   }
@@ -51,14 +51,18 @@ class AppContainer extends PureComponent {
 
   changeGameState = type => {
     if (type === 'load') {
-      let currentPokemon = localStorage.getItem('currentPokemon') || [];
-      let inventory = localStorage.getItem('inventory') || {};
-      let habitat = localStorage.getItem('habitat') || 'field';
+      let currentPokemon =
+        JSON.parse(localStorage.getItem('currentPokemon')) || [];
+      let inventory = JSON.parse(localStorage.getItem('inventory')) || {};
+      let habitat = JSON.parse(localStorage.getItem('habitat')) || 'field';
       this.setState({ currentPokemon, inventory, habitat });
     } else {
-      localStorage.setItem('currentPokemon', this.state.currentPokemon);
-      localStorage.setItem('inventory', this.state.inventory);
-      localStorage.setItem('habitat', this.state.habitat);
+      localStorage.setItem(
+        'currentPokemon',
+        JSON.stringify(this.state.currentPokemon)
+      );
+      localStorage.setItem('inventory', JSON.stringify(this.state.inventory));
+      localStorage.setItem('habitat', JSON.stringify(this.state.habitat));
     }
   };
   render() {
