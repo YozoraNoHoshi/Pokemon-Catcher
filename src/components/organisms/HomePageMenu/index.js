@@ -8,17 +8,31 @@ class HomePageMenu extends PureComponent {
   render() {
     return (
       <Flex column>
-        <ChangeScreenButton style={{ fontSize: '2em', padding: '20px' }}>
-          Enter Area: {title(this.props.currentHabitat)}
-        </ChangeScreenButton>
-        <ChangeScreenButton to="/habitats">Transit Center</ChangeScreenButton>
-        <ChangeScreenButton to="/pokedex">Pokedex</ChangeScreenButton>
-        <MenuButton cWidth={100} onClick={this.saveGame}>
-          Save Game
-        </MenuButton>
-        <MenuButton cWidth={100} onClick={this.loadGame}>
-          Load Game
-        </MenuButton>
+        <Flex row>
+          <ChangeScreenButton
+            pokeRed
+            cWidth={100}
+            style={{ fontSize: '2em', padding: '20px', color: 'mistyrose' }}
+          >
+            Enter Area: {title(this.props.currentHabitat)}
+          </ChangeScreenButton>
+        </Flex>
+        <Flex row>
+          <ChangeScreenButton cWidth={100} to="/habitats">
+            Transit Center
+          </ChangeScreenButton>
+          <ChangeScreenButton cWidth={100} to="/pokedex">
+            Pokedex
+          </ChangeScreenButton>
+        </Flex>
+        <Flex row>
+          <MenuButton cWidth={100} onClick={this.saveGame}>
+            Save Game
+          </MenuButton>
+          <MenuButton cWidth={100} onClick={this.loadGame}>
+            Load Game
+          </MenuButton>
+        </Flex>
       </Flex>
     );
   }
