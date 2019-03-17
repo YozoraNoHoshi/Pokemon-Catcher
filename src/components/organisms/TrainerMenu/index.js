@@ -17,23 +17,26 @@ class TrainerMenu extends PureComponent {
   };
   render() {
     return (
-      <Flex column cWidth={60} className="TrainerMenu">
-        <Flex txCenter large>
+      <Flex
+        column
+        jCenter
+        alCenter
+        cWidth={this.props.cWidth}
+        className="TrainerMenu"
+      >
+        {/* <Flex txCenter large>
           {this.props.trainerName}
-        </Flex>
+        </Flex> */}
         {this.props.pokemon.length > 0 ? (
-          <>
-            <Flex txCenter>Caught Pokemon</Flex>
-            <Flex
-              row
-              fWrap
-              jCenter
-              alStart
-              style={{ overflowY: 'auto', height: '240px' }}
-            >
-              {this.renderPokemonCards(Object.values(this.props.pokemon))}
-            </Flex>
-          </>
+          <Flex
+            row
+            fWrap
+            jCenter
+            alStart
+            style={{ overflowY: 'auto', height: '240px' }}
+          >
+            {this.renderPokemonCards(Object.values(this.props.pokemon))}
+          </Flex>
         ) : (
           <Flex txCenter>You have not caught any Pokemon yet!</Flex>
         )}
@@ -44,7 +47,8 @@ class TrainerMenu extends PureComponent {
 
 TrainerMenu.defaultProps = {
   pokemon: [],
-  trainerName: 'Red'
+  trainerName: 'Red',
+  cWidth: 100
 };
 
 TrainerMenu.propTypes = {};

@@ -12,19 +12,28 @@ class MainMenu extends PureComponent {
   };
   render() {
     return (
-      <Flex column cWidth={40} style={{ borderLeft: '1px solid black' }}>
-        <ChangeScreenButton
-          to="/battle"
-          pokeRed
-          style={{
-            padding: '30px',
-            color: 'white'
-          }}
-        >
-          Search for Pokemon!
-        </ChangeScreenButton>
-        <ChangeScreenButton to="/habitats">Transit Center</ChangeScreenButton>
-        <ChangeScreenButton to="/pokedex">Pokedex</ChangeScreenButton>
+      <Flex
+        column
+        jCenter
+        cWidth={this.props.cWidth}
+        style={{
+          borderLeft: '1px solid black'
+        }}
+      >
+        <Flex column cWidth={100}>
+          <ChangeScreenButton
+            to="/battle"
+            pokeRed
+            style={{
+              padding: '30px',
+              color: 'white'
+            }}
+          >
+            Search for Pokemon!
+          </ChangeScreenButton>
+          <ChangeScreenButton to="/habitats">Transit Center</ChangeScreenButton>
+          <ChangeScreenButton to="/pokedex">Pokedex</ChangeScreenButton>
+        </Flex>
         <Flex row>
           <MenuButton cWidth={100} onClick={this.saveGame}>
             Save Game
@@ -33,13 +42,17 @@ class MainMenu extends PureComponent {
             Load Game
           </MenuButton>
         </Flex>
-        <ChangeScreenButton to="/">Return to Park Entrance</ChangeScreenButton>
+        <Flex cWidth={100}>
+          <ChangeScreenButton to="/">
+            Return to Park Entrance
+          </ChangeScreenButton>
+        </Flex>
       </Flex>
     );
   }
 }
 
-MainMenu.defaultProps = { changeGameState: console.log };
+MainMenu.defaultProps = { changeGameState: console.log, cWidth: 100 };
 
 MainMenu.propTypes = {};
 

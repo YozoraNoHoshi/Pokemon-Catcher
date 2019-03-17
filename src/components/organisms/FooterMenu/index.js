@@ -18,8 +18,11 @@ class FooterMenu extends PureComponent {
       <FMenu>
         <ModalMenu closeOnInteract buttonText="Menu">
           <Flex row cWidth={100} style={{ justifyContent: 'space-between' }}>
-            <TrainerMenu pokemon={this.props.currentPokemon} />
-            <MainMenu changeGameState={this.props.changeGameState} />
+            <TrainerMenu cWidth={55} pokemon={this.props.currentPokemon} />
+            <MainMenu
+              cWidth={45}
+              changeGameState={this.props.changeGameState}
+            />
           </Flex>
         </ModalMenu>
       </FMenu>
