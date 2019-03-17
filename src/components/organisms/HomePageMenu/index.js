@@ -7,30 +7,29 @@ import MenuButton from '../../atoms/MenuButton';
 class HomePageMenu extends PureComponent {
   render() {
     return (
-      <Flex column>
-        <Flex row>
+      <Flex column cWidth={this.props.cWidth}>
+        <Flex cWidth={100}>
           <ChangeScreenButton
+            to="/battle"
             pokeRed
-            cWidth={100}
             style={{ fontSize: '2em', padding: '20px', color: 'mistyrose' }}
           >
-            Enter Area: {title(this.props.currentHabitat)}
+            Enter Park <br />
+            <span style={{ fontSize: '.33em' }}>
+              Destination: The {title(this.props.currentHabitat)}
+            </span>
           </ChangeScreenButton>
         </Flex>
-        <Flex row>
-          <ChangeScreenButton cWidth={100} to="/habitats">
-            Transit Center
-          </ChangeScreenButton>
-          <ChangeScreenButton cWidth={100} to="/pokedex">
-            Pokedex
-          </ChangeScreenButton>
+        <Flex row cWidth={100}>
+          <ChangeScreenButton to="/habitats">Transit Center</ChangeScreenButton>
+          <ChangeScreenButton to="/pokedex">Pokedex</ChangeScreenButton>
         </Flex>
         <Flex row>
           <MenuButton cWidth={100} onClick={this.saveGame}>
-            Save Game
+            Save
           </MenuButton>
           <MenuButton cWidth={100} onClick={this.loadGame}>
-            Load Game
+            Load
           </MenuButton>
         </Flex>
       </Flex>
@@ -38,7 +37,7 @@ class HomePageMenu extends PureComponent {
   }
 }
 
-HomePageMenu.defaultProps = {};
+HomePageMenu.defaultProps = { cWidth: 100 };
 
 HomePageMenu.propTypes = {};
 

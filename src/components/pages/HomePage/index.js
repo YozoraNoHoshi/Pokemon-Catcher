@@ -1,32 +1,27 @@
 import React, { PureComponent } from 'react';
 import Flex from '../../atoms/Flex';
-import MainMenu from '../../organisms/MainMenu';
 import HomePageMenu from '../../organisms/HomePageMenu';
+import HowItWorks from '../../molecules/HowItWorks';
+import Header from '../../molecules/Header';
 
 class HomePage extends PureComponent {
   render() {
     return (
       <Flex as="section" column alCenter>
-        <Flex as="header">
-          <Flex
-            bold
-            txCenter
-            style={{
-              fontSize: '4em',
-              marginTop: '10px'
-            }}
-          >
-            Welcome to the Pal Park!
-          </Flex>
-          <Flex txCenter large style={{ fontStyle: 'italic' }}>
-            "A Place for New Beginnings"
-          </Flex>
-        </Flex>
-
+        <Header
+          headerStyle={{
+            fontSize: '4em',
+            marginTop: '10px'
+          }}
+          header="Welcome to the Pal Park!"
+          flavorText='"A Place for New Beginnings"'
+        />
         <HomePageMenu
+          cWidth={40}
           currentHabitat={this.props.currentHabitat}
           changeGameState={this.props.changeGameState}
         />
+        <HowItWorks cWidth={50} />
       </Flex>
     );
   }
