@@ -8,11 +8,11 @@ const MessageBox = styled.div`
   box-sizing: border-box;
   text-align: left;
   text-decoration: none;
-  background: darkgrey;
+  background: gainsboro;
   border-radius: 3px;
-  min-height: 100px;
-  padding: 10px;
-  margin: 5px;
+  /* min-height: 75px; */
+  padding: 5px;
+  margin: 3px;
   box-shadow: 0 0 3px black;
 `;
 
