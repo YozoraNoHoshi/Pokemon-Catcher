@@ -46,7 +46,13 @@ function fontSize(props) {
 function justifyContent(props) {
   let cssProp = getCSSProperties(
     props,
-    { jCenter: 'center', jStart: 'flex-start', jEnd: 'flex-end' },
+    {
+      jCenter: 'center',
+      jStart: 'flex-start',
+      jEnd: 'flex-end',
+      jAround: 'space-around',
+      jBetween: 'space-between'
+    },
     false
   );
   if (cssProp) return `justify-content: ${cssProp};`;

@@ -7,7 +7,8 @@ import styled from 'styled-components';
 
 const FMenu = styled(Flex)`
   flex-direction: row;
-  position: fixed; bottom: 0
+  position: fixed;
+  bottom: 0;
   left: calc(50% - 4ch);
 `;
 
@@ -15,7 +16,7 @@ class FooterMenu extends PureComponent {
   render() {
     if (this.props.location.pathname === '/') return null;
     return (
-      <FMenu>
+      <FMenu as="footer">
         <ModalMenu closeOnInteract buttonText="Menu">
           <Flex row cWidth={100} style={{ justifyContent: 'space-between' }}>
             <TrainerMenu
