@@ -23,29 +23,29 @@ export const StyledCard = styled.div`
 class Card extends PureComponent {
   render() {
     return this.props.noLink ? (
-      <StyledCard>
+      <StyledCard className={this.props.className}>
         <Sprite src={this.props.sprite} alt={this.props.name} />
         <Flex jCenter txCenter>
           {this.props.species}
         </Flex>
       </StyledCard>
     ) : (
-      <Link
-        to={`/pokedex/${this.props.name}`}
-        state={this.props.passedState || null}
-        style={{
-          color: 'initial',
-          margin: '5px',
-          padding: 0
-        }}
-      >
-        <StyledCard>
-          <Sprite src={this.props.sprite} alt={this.props.name} />
-          <Flex jCenter txCenter>
-            {this.props.species}
-          </Flex>
-        </StyledCard>
-      </Link>
+      // <Link
+      //   to={`/pokedex/${this.props.name}`}
+      //   state={this.props.passedState || null}
+      //   style={{
+      //     color: 'initial',
+      //     margin: '5px',
+      //     padding: 0
+      //   }}
+      // >
+      <StyledCard style={{ margin: '5px' }} className={this.props.className}>
+        <Sprite src={this.props.sprite} alt={this.props.name} />
+        <Flex jCenter txCenter>
+          {this.props.species}
+        </Flex>
+      </StyledCard>
+      // </Link>
     );
   }
 }

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Router } from '@reach/router';
 import HabitatMenu from './components/pages/HabitatMenu';
 import PreBattle from './components/organisms/PreBattle';
 import AppContainer from './AppContainer';
 import Pokedex from './components/organisms/Pokedex';
-import PokedexPage from './components/organisms/PokedexPage';
 import Flex from './components/atoms/Flex';
 import HomePage from './components/pages/HomePage';
 import NotFound from './components/pages/NotFound';
