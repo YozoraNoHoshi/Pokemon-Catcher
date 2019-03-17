@@ -11,6 +11,7 @@ class TrainerMenu extends PureComponent {
           name={p.name}
           species={p.species}
           sprite={p.sprite}
+          className={this.props.className}
         />
       );
     });
@@ -22,13 +23,14 @@ class TrainerMenu extends PureComponent {
         jCenter
         alCenter
         cWidth={this.props.cWidth}
-        className="TrainerMenu"
+        className={this.props.className}
       >
         {/* <Flex txCenter large>
           {this.props.trainerName}
         </Flex> */}
         {this.props.pokemon.length > 0 ? (
           <Flex
+            className={this.props.className}
             row
             fWrap
             jCenter
@@ -38,7 +40,9 @@ class TrainerMenu extends PureComponent {
             {this.renderPokemonCards(Object.values(this.props.pokemon))}
           </Flex>
         ) : (
-          <Flex txCenter>You have not caught any Pokemon yet!</Flex>
+          <Flex className={this.props.className} txCenter>
+            You have not caught any Pokemon yet!
+          </Flex>
         )}
       </Flex>
     );

@@ -38,7 +38,7 @@ class ModalMenu extends PureComponent {
 
   render() {
     return (
-      <Flex jCenter ref={this.node} className="modal-main">
+      <Flex jCenter ref={this.node} className="modal">
         <MenuButton
           className="modal"
           active={this.state.open}
