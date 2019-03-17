@@ -3,6 +3,8 @@ import { getPokemon } from '../../../api';
 import DetailedCard from '../../atoms/DetailedCard';
 import { MISSINGNO } from '../../../data';
 
+// Likely convert this into the modal version of the pokedex
+
 class PokedexPage extends PureComponent {
   constructor(props) {
     super(props);
@@ -13,6 +15,10 @@ class PokedexPage extends PureComponent {
   }
   // get pokemon data from this.props.location.state OR if state isnt a thing (came here by direct nav) make an API call to get the information
   async componentDidMount() {
+    this.setPokemon();
+  }
+
+  setPokemon = async () => {
     try {
       let { key, ...passedPokemon } = this.props.location.state || {};
       if (Object.keys(passedPokemon).length === 0) {
@@ -25,7 +31,7 @@ class PokedexPage extends PureComponent {
     } catch (error) {
       alert('Oops, something seems to have gone wrong.');
     }
-  }
+  };
 
   render() {
     if (this.state.loading) return <div>Loading...</div>;

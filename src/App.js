@@ -42,7 +42,6 @@ class App extends Component {
                   changeHabitat={changeHabitat}
                 />
                 <Pokedex path="/pokedex" />
-                <PokedexPage path="/pokedex/:entry" />
               </Router>
               <Router primary={false}>
                 <FooterMenu
