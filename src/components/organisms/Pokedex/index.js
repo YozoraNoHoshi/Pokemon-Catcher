@@ -3,7 +3,15 @@ import { getPokemon } from '../../../api';
 import SearchPokedex from '../../molecules/SearchPokedex';
 import DetailedCard from '../../atoms/DetailedCard';
 import Flex from '../../atoms/Flex';
+import { stringifyID } from '../../../helpers/stringifyID';
+import styled from 'styled-components';
 
+const DexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-around;
+`;
 class Pokedex extends PureComponent {
   constructor(props) {
     super(props);
@@ -16,7 +24,10 @@ class Pokedex extends PureComponent {
       let pokemon = await getPokemon(nameOrId);
       if (!Array.isArray(pokemon)) {
         this.setState(prevSt => {
-          let pastSearch = [...prevSt.pastSearch, prevSt.pokemon];
+          let pastSearch =
+            Object.keys(this.state.pokemon).length > 0
+              ? [...prevSt.pastSearch, prevSt.pokemon]
+              : [...prevSt.pastSearch];
           return { pokemon, pastSearch, loading: false, foundPokemon: true };
         });
       } else this.setState({ loading: false, foundPokemon: nameOrId });
@@ -26,9 +37,10 @@ class Pokedex extends PureComponent {
   };
 
   renderPastSearches = pastSearch => {
-    return pastSearch.map(p => {
+    return pastSearch.map((p, i) => {
       return (
         <DetailedCard
+          key={`${p.id}${i}`}
           id={p.id}
           species={p.species}
           title={p.title}
@@ -52,30 +64,34 @@ class Pokedex extends PureComponent {
     let noResults =
       this.state.foundPokemon !== undefined &&
       typeof this.state.foundPokemon === 'string';
+
     return (
-      <Flex column jCenter alCenter>
-        <SearchPokedex submit={this.searchPokemon} />
-        {noResults && <Flex>No pokemon found.</Flex>}
-        {this.state.loading && <div />}
-        {this.state.foundPokemon === true && (
-          <DetailedCard
-            id={id}
-            species={species}
-            title={title}
-            flavor_text={flavor_text}
-            catch_rate={catch_rate}
-            sprite={sprite}
-          />
-        )}
-        {this.state.pastSearch.length > 0 && (
-          <Flex cwidth={100} column>
-            <Flex>Previous Searches:</Flex>
-            <Flex cWidth={100} row fWrap>
-              {this.renderPastSearches(this.state.pastSearch)}
-            </Flex>
+      <DexContainer>
+        <Flex column alCenter>
+          <SearchPokedex submit={this.searchPokemon} />
+          {noResults && <Flex>No pokemon found.</Flex>}
+          {this.state.loading && <div />}
+          {this.state.foundPokemon === true && (
+            <DetailedCard
+              id={stringifyID(id)}
+              species={species}
+              title={title}
+              flavor_text={flavor_text}
+              catch_rate={catch_rate}
+              sprite={sprite}
+            />
+          )}
+        </Flex>
+        <Flex column jCenter alStart>
+          <Flex cWidth={100} alCenter>
+            Previous Searches
           </Flex>
-        )}
-      </Flex>
+          <Flex cWidth={'350px'} alStart style={{ height: '100%' }}>
+            {this.state.pastSearch.length > 0 &&
+              this.renderPastSearches(this.state.pastSearch)}
+          </Flex>
+        </Flex>
+      </DexContainer>
     );
   }
 }

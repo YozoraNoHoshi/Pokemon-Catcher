@@ -7,6 +7,10 @@ const Input = styled.input`
   width: 25ch;
   text-align: center;
   margin: 0;
+  border: 1px solid grey;
+  padding: 5px;
+  font-size: 1.5em;
+  border-radius: 3px;
 `;
 
 // Can be made into a generic form component if more than one form is used
@@ -37,9 +41,9 @@ class SearchPokedex extends PureComponent {
             type="text"
             onChange={this.handleChange}
             value={this.state.pokemon}
-            placeholder="Pokemon name or ID (1-493)"
+            placeholder="Enter name or number (1-493)"
           />
-          <MenuButton cWidth={100} as="button" type="submit">
+          <MenuButton cWidth={100} medium as="button" type="submit">
             Search
           </MenuButton>
         </Flex>
