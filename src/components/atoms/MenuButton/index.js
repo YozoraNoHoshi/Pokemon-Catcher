@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
 
 const MenuButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   box-sizing: border-box;
   padding: 10px;
