@@ -3,7 +3,7 @@ import { Router } from '@reach/router';
 import HabitatMenu from './components/pages/HabitatMenu';
 import PreBattle from './components/organisms/PreBattle';
 import AppContainer from './AppContainer';
-import Pokedex from './components/organisms/Pokedex';
+import Pokedex from './components/pages/Pokedex';
 import Flex from './components/atoms/Flex';
 import HomePage from './components/pages/HomePage';
 import NotFound from './components/pages/NotFound';
