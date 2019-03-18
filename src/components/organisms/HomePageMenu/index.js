@@ -5,6 +5,12 @@ import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
 
 class HomePageMenu extends PureComponent {
+  saveGame = () => {
+    this.props.changeGameState();
+  };
+  loadGame = () => {
+    this.props.changeGameState('load');
+  };
   render() {
     return (
       <Flex column cWidth={this.props.cWidth}>
