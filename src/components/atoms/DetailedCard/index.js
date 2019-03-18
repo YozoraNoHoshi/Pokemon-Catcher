@@ -32,6 +32,7 @@ class DetailedCard extends PureComponent {
               </Flex>
               <Flex style={{ fontStyle: 'italic' }}>{pokemon.title}</Flex>
               <Flex small>Catch Rate: {pokemon.catch_rate}</Flex>
+              <Flex small>Areas: {pokemon.habitats}</Flex>
             </Flex>
           </Flex>
           <MessageBox cWidth={100}>{pokemon.flavor_text}</MessageBox>
@@ -46,7 +47,8 @@ DetailedCard.defaultProps = {
   sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
   title: '????',
   flavor_text: '',
-  catch_rate: '???'
+  catch_rate: '???',
+  habitats: ''
 };
 
 DetailedCard.propTypes = {};

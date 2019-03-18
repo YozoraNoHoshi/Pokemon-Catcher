@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { title } from './helpers/title';
+import { stringifyID } from './helpers/stringifyID';
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
 function convertResultToObject(arr) {
@@ -30,20 +32,23 @@ export async function getAllPokemon() {
   let result = await axios.get(`${BASE_URL}/pokemon`);
   return result.data.pokemon;
 }
-export async function getPokemon(nameOrId) {
+export async function getPokemon(nameOrId, full = '') {
+  if (full) full = '/habitats';
   let column = 'name';
   if (!isNaN(+nameOrId)) {
     nameOrId = +nameOrId;
     column = 'id';
   } else nameOrId = nameOrId.toLowerCase();
   let result = await axios.get(
-    `${BASE_URL}/pokemon/${nameOrId}?column=${column}`
+    `${BASE_URL}/pokemon/${nameOrId}${full}?column=${column}`
   );
-  return result.data.pokemon;
-}
-export async function getFullPokemon(pokemonName) {
-  let result = await axios.get(
-    `${BASE_URL}/pokemon/${pokemonName.toLowerCase()}/habitats`
-  );
+  if (!Array.isArray(result.data.pokemon)) {
+    result.data.pokemon.id = stringifyID(result.data.pokemon.id);
+    if (full) {
+      result.data.pokemon.habitats = result.data.pokemon.habitats
+        .map(h => title(h))
+        .join(', ');
+    }
+  }
   return result.data.pokemon;
 }

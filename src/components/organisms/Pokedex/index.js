@@ -3,7 +3,6 @@ import { getPokemon } from '../../../api';
 import SearchPokedex from '../../molecules/SearchPokedex';
 import DetailedCard from '../../atoms/DetailedCard';
 import Flex from '../../atoms/Flex';
-import { stringifyID } from '../../../helpers/stringifyID';
 import styled from 'styled-components';
 
 const DexContainer = styled.div`
@@ -21,7 +20,7 @@ class Pokedex extends PureComponent {
   searchPokemon = async nameOrId => {
     try {
       this.setState({ loading: true });
-      let pokemon = await getPokemon(nameOrId);
+      let pokemon = await getPokemon(nameOrId, true);
       if (!Array.isArray(pokemon)) {
         this.setState(prevSt => {
           let pastSearch =
@@ -30,7 +29,7 @@ class Pokedex extends PureComponent {
               : [...prevSt.pastSearch];
           return { pokemon, pastSearch, loading: false, foundPokemon: true };
         });
-      } else this.setState({ loading: false, foundPokemon: nameOrId });
+      } else throw new Error(`Could not find ${nameOrId}`);
     } catch (error) {
       this.setState({ loading: false, foundPokemon: nameOrId });
     }
@@ -42,6 +41,7 @@ class Pokedex extends PureComponent {
         <DetailedCard
           key={`${p.id}${i}`}
           id={p.id}
+          habitats={p.habitats}
           species={p.species}
           title={p.title}
           flavor_text={p.flavor_text}
@@ -55,6 +55,7 @@ class Pokedex extends PureComponent {
   render() {
     let {
       id,
+      habitats,
       species,
       title,
       flavor_text,
@@ -73,7 +74,8 @@ class Pokedex extends PureComponent {
           {this.state.loading && <div />}
           {this.state.foundPokemon === true && (
             <DetailedCard
-              id={stringifyID(id)}
+              id={id}
+              habitats={habitats}
               species={species}
               title={title}
               flavor_text={flavor_text}
