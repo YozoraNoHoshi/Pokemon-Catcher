@@ -3,6 +3,7 @@ import Flex from '../Flex';
 import styled from 'styled-components';
 import Sprite from '../Sprite';
 import { Link } from '@reach/router';
+import { emptyFunc } from '../../../helpers/emptyFunc';
 
 export const StyledCard = styled.div`
   background: lightslategray;
@@ -23,7 +24,7 @@ export const StyledCard = styled.div`
 class Card extends PureComponent {
   render() {
     return this.props.noLink ? (
-      <StyledCard className={this.props.className}>
+      <StyledCard className={this.props.className} onClick={this.props.click}>
         <Sprite src={this.props.sprite} alt={this.props.name} />
         <Flex jCenter txCenter>
           {this.props.species}
@@ -51,6 +52,7 @@ class Card extends PureComponent {
 }
 
 Card.defaultProps = {
+  click: emptyFunc,
   noLink: false,
   sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
   name: 'missingno',
