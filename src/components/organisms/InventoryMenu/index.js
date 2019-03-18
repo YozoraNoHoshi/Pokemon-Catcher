@@ -1,30 +1,46 @@
 import React, { PureComponent } from 'react';
-import ModalMenu from '../../molecules/ModalMenu';
+import Card from '../../atoms/Card';
 
 class InventoryMenu extends PureComponent {
-  renderPokeBalls = pokeballs => {
-    return pokeballs.map(m => {
-      return <div>hi</div>;
-    });
-  };
-  renderBerries = berries => {
-    return berries.map(m => {
-      return <div>hi</div>;
+  renderInventoryItems = (itemArray, fn) => {
+    return itemArray.map(p => {
+      return (
+        <Card
+          key={p.name}
+          click={fn}
+          sprite={p.sprite}
+          name={p.name}
+          species={p.name}
+        />
+      );
     });
   };
   render() {
     return (
       <div className="InventoryMenu">
-        <ModalMenu buttonText="Bag">
-          <div>{this.renderPokeBalls(this.props.pokeballs)}</div>
-          <div>{this.renderBerries(this.props.berries)}</div>
-        </ModalMenu>
+        <div>
+          {this.renderInventoryItems(
+            this.props.pokeballs,
+            this.props.selectPokeball
+          )}
+        </div>
+        <div>
+          {this.renderInventoryItems(
+            this.props.berries,
+            this.props.selectBerry
+          )}
+        </div>
       </div>
     );
   }
 }
 
-InventoryMenu.defaultProps = { pokeballs: [], berries: [] };
+InventoryMenu.defaultProps = {
+  pokeballs: [{}],
+  berries: [{}],
+  selectPokeball: console.log,
+  selectBerry: console.log
+};
 
 InventoryMenu.propTypes = {};
 
