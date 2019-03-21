@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
+import Flex from '../../atoms/Flex';
 
 class InventoryMenu extends PureComponent {
   renderInventoryItems = (itemArray, fn) => {
@@ -17,20 +18,22 @@ class InventoryMenu extends PureComponent {
   };
   render() {
     return (
-      <div className="InventoryMenu">
-        <div>
+      <Flex row>
+        <Flex column cWidth={50}>
+          Pokeballs
           {this.renderInventoryItems(
             this.props.pokeballs,
             this.props.selectPokeball
           )}
-        </div>
-        <div>
+        </Flex>
+        <Flex column cWidth={50}>
+          Berries
           {this.renderInventoryItems(
             this.props.berries,
             this.props.selectBerry
           )}
-        </div>
-      </div>
+        </Flex>
+      </Flex>
     );
   }
 }

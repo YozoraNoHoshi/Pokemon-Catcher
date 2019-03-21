@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { navigate } from '@reach/router';
 import determineCatchResult from '../../../helpers/determineCatchResult';
-import { CATCH_MESSAGES } from '../../../data';
+import { CATCH_MESSAGES, POKEBALLS, BERRIES } from '../../../data';
 class BattleContainer extends PureComponent {
   constructor(props) {
     super(props);
@@ -40,26 +40,27 @@ class BattleContainer extends PureComponent {
     );
   };
 
-  selectPokeball = () => {
-    // change this.state.pokeball
-    return;
+  selectPokeball = pokeball => {
+    if (POKEBALLS.hasOwnProperty(pokeball)) this.setState({ pokeball });
   };
 
-  selectBerry = () => {
-    // Change this.state.selectedBerry
-    return;
+  selectBerry = berry => {
+    if (BERRIES.hasOwnProperty(berry)) this.setState({ selectedBerry: berry });
   };
 
   useBerry = () => {
-    // Put the effects of this.state.selectedBerry into effect, make it reflect in either hpPercent or status
-    return;
+    if (BERRIES.hasOwnProperty(this.state.selectedBerry))
+      this.setState({ status: BERRIES[this.state.selectedBerry] });
+    // Should display a message indicating a status change
   };
 
   render() {
     return this.props.children({
       state: this.state,
       throwPokeball: this.throwPokeball,
-      useBerry: this.useBerry
+      useBerry: this.useBerry,
+      selectPokeball: this.selectPokeball,
+      selectBerry: this.selectBerry
     });
   }
 }
