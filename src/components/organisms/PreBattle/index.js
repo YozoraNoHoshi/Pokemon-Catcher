@@ -12,27 +12,30 @@ class PreBattle extends PureComponent {
   }
 
   async componentDidMount() {
-    if (this.props.riggedPokemon) await this.riggedPokemon();
-    else await this.getBattlePokemon();
+    await getBattlePokemon(this.props.riggedPokemon);
+    // if (this.props.riggedPokemon) await this.getBattlePokemon(true);
+    // else await this.getBattlePokemon(false);
   }
-  async getBattlePokemon() {
+  async getBattlePokemon(rigged = '') {
     try {
-      let pokemon = await getBattlePokemon(this.props.habitat);
+      let pokemon = rigged
+        ? await getPokemon(this.props.riggedPokemon)
+        : await getBattlePokemon(this.props.habitat);
       this.setState({ pokemon, loading: false, noPokemon: false });
     } catch (error) {
       this.setState({ noPokemon: true, loading: false });
       alert(this.errorMessage);
     }
   }
-  async riggedPokemon() {
-    try {
-      let pokemon = await getPokemon(this.props.riggedPokemon);
-      this.setState({ pokemon, loading: false, noPokemon: false });
-    } catch (error) {
-      this.setState({ noPokemon: true, loading: false });
-      alert(this.errorMessage);
-    }
-  }
+  // async riggedPokemon() {
+  //   try {
+  //     let pokemon = await getPokemon(this.props.riggedPokemon);
+  //     this.setState({ pokemon, loading: false, noPokemon: false });
+  //   } catch (error) {
+  //     this.setState({ noPokemon: true, loading: false });
+  //     alert(this.errorMessage);
+  //   }
+  // }
 
   render() {
     if (this.state.loading) return <Loading />;
