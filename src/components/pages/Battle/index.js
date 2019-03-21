@@ -5,6 +5,7 @@ import MenuButton from '../../atoms/MenuButton';
 import Flex from '../../atoms/Flex';
 import Card from '../../atoms/Card';
 import InventoryMenu from '../../organisms/InventoryMenu';
+import ModalMenu from '../../molecules/ModalMenu';
 
 class Battle extends PureComponent {
   render() {
@@ -13,10 +14,10 @@ class Battle extends PureComponent {
         pokemon={this.props.pokemon}
         modifyPokemon={this.props.modifyPokemon}
       >
-        {({ state, throwPokeball, useBerry }) => {
+        {({ state, throwPokeball, useBerry, selectBerry, selectPokeball }) => {
           return (
             <div>
-              <Flex>
+              <Flex column alCenter>
                 A WILD POKEMON APPEARED
                 <Card
                   noLink
@@ -25,11 +26,20 @@ class Battle extends PureComponent {
                   sprite={this.props.pokemon.sprite}
                 />
               </Flex>
-              <Flex row fWrap>
-                <MenuButton onClick={throwPokeball}>Throw PokeBall</MenuButton>
-                <MenuButton onClick={useBerry}>Use Berry</MenuButton>
-                <InventoryMenu />
-                <ChangeScreenButton to="/">Run!</ChangeScreenButton>
+              <Flex row cWidth={100}>
+                <Flex column cWidth={100}>
+                  <MenuButton onClick={throwPokeball}>PokeBall</MenuButton>
+                  <ModalMenu buttonText="Bag">
+                    <InventoryMenu
+                      selectBerry={selectBerry}
+                      selectPokeball={selectPokeball}
+                    />
+                  </ModalMenu>
+                </Flex>
+                <Flex column cWidth={100}>
+                  <MenuButton onClick={useBerry}>Berry</MenuButton>
+                  <ChangeScreenButton to="/">Run!</ChangeScreenButton>
+                </Flex>
               </Flex>
             </div>
           );
