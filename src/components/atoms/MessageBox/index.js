@@ -10,7 +10,6 @@ const MessageBox = styled.div`
   text-decoration: none;
   background: gainsboro;
   border-radius: 3px;
-  /* min-height: 75px; */
   padding: 5px;
   margin: 3px;
   box-shadow: 0 0 3px black;
