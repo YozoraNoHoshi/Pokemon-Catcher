@@ -9,6 +9,7 @@ class TrainerMenu extends PureComponent {
         <Card
           key={`${p.name}`}
           name={p.name}
+          pokeball={p.pokeball}
           species={p.species}
           sprite={p.sprite}
           className={this.props.className}
