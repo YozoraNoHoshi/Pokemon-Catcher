@@ -1,12 +1,12 @@
 import { PureComponent } from 'react';
-import { navigate } from '@reach/router';
+// import { navigate } from '@reach/router';
 import determineCatchResult from '../../../helpers/determineCatchResult';
 import { CATCH_MESSAGES, POKEBALLS, BERRIES } from '../../../data';
 class BattleContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      pokeball: 'pokeball',
+      pokeball: 'poke-ball',
       status: 'normal',
       selectedBerry: '',
       hpPercent: 1
@@ -23,8 +23,10 @@ class BattleContainer extends PureComponent {
     );
     // Catch successful
     if (result === 4) {
-      this.props.modifyPokemon(this.props.pokemon);
-      navigate('/');
+      let pokemon = { ...this.props.pokemon, pokeball };
+      this.props.modifyPokemon(pokemon);
+      // navigate('/');
+      this.setState({ caught: true });
     }
     // Catch fails
     else {
