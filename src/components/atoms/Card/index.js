@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import Flex from '../Flex';
 import styled from 'styled-components';
 import Sprite from '../Sprite';
-import { Link } from '@reach/router';
 import { emptyFunc } from '../../../helpers/emptyFunc';
 
 export const StyledCard = styled.div`
+  position: relative;
   background: lightslategray;
   border-radius: 5px;
   box-shadow: 1px 1px 2px black;
@@ -19,6 +19,11 @@ export const StyledCard = styled.div`
   & > div {
     pointer-events: none;
   }
+  & > .pokeball {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 `;
 
 class Card extends PureComponent {
@@ -31,22 +36,17 @@ class Card extends PureComponent {
         </Flex>
       </StyledCard>
     ) : (
-      // <Link
-      //   to={`/pokedex/${this.props.name}`}
-      //   state={this.props.passedState || null}
-      //   style={{
-      //     color: 'initial',
-      //     margin: '5px',
-      //     padding: 0
-      //   }}
-      // >
       <StyledCard style={{ margin: '5px' }} className={this.props.className}>
         <Sprite src={this.props.sprite} alt={this.props.name} />
         <Flex jCenter txCenter>
           {this.props.species}
         </Flex>
+        {this.props.pokeball && (
+          <div className="pokeball">
+            <Sprite src={this.props.pokeball} />
+          </div>
+        )}
       </StyledCard>
-      // </Link>
     );
   }
 }
@@ -54,6 +54,7 @@ class Card extends PureComponent {
 Card.defaultProps = {
   click: emptyFunc,
   noLink: false,
+  pokeball: '',
   sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
   name: 'missingno',
   species: 'MissingNo.'
