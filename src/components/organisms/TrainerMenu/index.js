@@ -9,7 +9,7 @@ class TrainerMenu extends PureComponent {
         <Card
           key={`${p.name}`}
           name={p.name}
-          pokeball={p.pokeball}
+          pokeball={this.props.pokeballs[p.pokeball]}
           species={p.species}
           sprite={p.sprite}
           className={this.props.className}
@@ -53,7 +53,8 @@ class TrainerMenu extends PureComponent {
 TrainerMenu.defaultProps = {
   pokemon: [],
   trainerName: 'Red',
-  cWidth: 100
+  cWidth: 100,
+  pokeballs: {}
 };
 
 TrainerMenu.propTypes = {};

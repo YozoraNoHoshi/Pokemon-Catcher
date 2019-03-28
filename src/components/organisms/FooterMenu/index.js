@@ -4,6 +4,7 @@ import TrainerMenu from '../TrainerMenu';
 import ModalMenu from '../../molecules/ModalMenu';
 import MainMenu from '../../organisms/MainMenu';
 import styled from 'styled-components';
+import { POKEBALL_SPRITES } from '../../../data';
 
 const FMenu = styled(Flex)`
   flex-direction: row;
@@ -21,6 +22,7 @@ class FooterMenu extends PureComponent {
           <Flex row cWidth={100} style={{ justifyContent: 'space-between' }}>
             <TrainerMenu
               className="modal"
+              pokeballs={POKEBALL_SPRITES}
               cWidth={55}
               pokemon={this.props.currentPokemon}
             />
