@@ -12,12 +12,12 @@ class PreBattle extends PureComponent {
   }
 
   async componentDidMount() {
-    await getBattlePokemon(this.props.riggedPokemon);
+    await this.getBattlePokemon(this.props.riggedPokemon);
   }
   async getBattlePokemon(rigged = '') {
     try {
       let pokemon = rigged
-        ? await getPokemon(this.props.riggedPokemon)
+        ? await getPokemon(rigged)
         : await getBattlePokemon(this.props.habitat);
       this.setState({ pokemon, loading: false, noPokemon: false });
     } catch (error) {
