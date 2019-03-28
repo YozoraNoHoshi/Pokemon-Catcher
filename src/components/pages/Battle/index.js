@@ -65,6 +65,7 @@ class Battle extends PureComponent {
                 ) : (
                   <ChangeScreenButton
                     to="/"
+                    pokeRed
                     style={{
                       fontSize: '2em',
                       padding: '20px',
