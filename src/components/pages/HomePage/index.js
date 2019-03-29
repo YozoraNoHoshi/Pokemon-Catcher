@@ -3,11 +3,19 @@ import Flex from '../../atoms/Flex';
 import HomePageMenu from '../../organisms/HomePageMenu';
 import HowItWorks from '../../molecules/HowItWorks';
 import Header from '../../molecules/Header';
+import styled from 'styled-components';
+
+const HomePageContainer = styled(Flex)`
+  width: 75vw;
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
+`;
 
 class HomePage extends PureComponent {
   render() {
     return (
-      <Flex as="section" column alCenter>
+      <HomePageContainer as="section" column alCenter>
         <Header
           headerStyle={{
             fontSize: '4em',
@@ -22,7 +30,7 @@ class HomePage extends PureComponent {
           changeGameState={this.props.changeGameState}
         />
         <HowItWorks cWidth={50} />
-      </Flex>
+      </HomePageContainer>
     );
   }
 }
