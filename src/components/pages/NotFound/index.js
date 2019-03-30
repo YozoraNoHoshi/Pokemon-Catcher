@@ -4,23 +4,6 @@ import Flex from '../../atoms/Flex';
 import Sprite from '../../atoms/Sprite';
 
 class NotFound extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-  };
-
   render() {
     return (
       <Flex jCenter alCenter column style={{ marginTop: '30%' }}>
