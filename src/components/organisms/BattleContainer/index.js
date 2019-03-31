@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-// import { navigate } from '@reach/router';
 import determineCatchResult from '../../../helpers/determineCatchResult';
 import { CATCH_MESSAGES, POKEBALLS, BERRIES } from '../../../data';
 class BattleContainer extends PureComponent {
@@ -22,20 +21,24 @@ class BattleContainer extends PureComponent {
       status,
       hpPercent
     );
+    this.resultOfCatch(result, pokeball);
+  };
+
+  resultOfCatch = result => {
     // Catch successful
     if (result === 4) {
-      let pokemon = { ...this.props.pokemon, pokeball };
-      this.props.modifyPokemon(pokemon);
+      this.props.modifyPokemon({
+        ...this.props.pokemon,
+        pokeball: this.state.pokeball
+      });
       this.setState({
         caught: true,
         message: `Gotcha! The pokemon was caught!`
       });
-      // navigate('/');
     }
     // Catch fails
     else {
       this.setState({ message: CATCH_MESSAGES[result] });
-      // alert(CATCH_MESSAGES[result]);
     }
   };
 
@@ -56,9 +59,13 @@ class BattleContainer extends PureComponent {
   };
 
   useBerry = () => {
-    if (BERRIES.hasOwnProperty(this.state.selectedBerry))
-      this.setState({ status: BERRIES[this.state.selectedBerry] });
-    // Should display a message indicating a status change
+    if (BERRIES.hasOwnProperty(this.state.selectedBerry)) {
+      let message =
+        this.state.selectedBerry === 'oran'
+          ? `The ${this.props.pokemon.species} returned to normal!`
+          : `The berry inflicted ${BERRIES[this.state.selectedBerry]}`;
+      this.setState({ status: BERRIES[this.state.selectedBerry], message });
+    }
   };
 
   render() {
