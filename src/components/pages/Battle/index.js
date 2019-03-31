@@ -44,7 +44,17 @@ class Battle extends PureComponent {
                 {!state.caught ? (
                   <>
                     <Flex column cWidth={100}>
-                      <MenuButton onClick={throwPokeball}>PokeBall</MenuButton>
+                      <MenuButton onClick={throwPokeball}>
+                        <Flex jCenter alCenter cWidth={100}>
+                          <Sprite
+                            sHeight={100}
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${
+                              state.pokeball
+                            }.png`}
+                          />
+                          PokeBall
+                        </Flex>
+                      </MenuButton>
                       <ModalMenu buttonText="Bag">
                         <InventoryMenu
                           selectBerry={selectBerry}

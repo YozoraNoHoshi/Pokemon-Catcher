@@ -13,6 +13,7 @@ const MessageBox = styled.div`
   padding: 5px;
   margin: 3px;
   box-shadow: 0 0 3px black;
+  width: 100%;
 `;
 
 export default MessageBox;
