@@ -9,7 +9,8 @@ class BattleContainer extends PureComponent {
       pokeball: 'poke-ball',
       status: 'normal',
       selectedBerry: '',
-      hpPercent: 1
+      hpPercent: 1,
+      message: `A wild ${props.pokemon.species} appeared!`
     };
     this.caught = false;
   }
@@ -25,12 +26,16 @@ class BattleContainer extends PureComponent {
     if (result === 4) {
       let pokemon = { ...this.props.pokemon, pokeball };
       this.props.modifyPokemon(pokemon);
+      this.setState({
+        caught: true,
+        message: `Gotcha! The pokemon was caught!`
+      });
       // navigate('/');
-      this.setState({ caught: true });
     }
     // Catch fails
     else {
-      alert(CATCH_MESSAGES[result]);
+      this.setState({ message: CATCH_MESSAGES[result] });
+      // alert(CATCH_MESSAGES[result]);
     }
   };
 

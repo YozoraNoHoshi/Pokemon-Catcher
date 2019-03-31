@@ -7,6 +7,7 @@ import Card from '../../atoms/Card';
 import InventoryMenu from '../../organisms/InventoryMenu';
 import ModalMenu from '../../molecules/ModalMenu';
 import Sprite from '../../atoms/Sprite';
+import MessageBox from '../../atoms/MessageBox';
 
 class Battle extends PureComponent {
   render() {
@@ -20,31 +21,25 @@ class Battle extends PureComponent {
             <div>
               <Flex column alCenter>
                 {!state.caught ? (
-                  <>
-                    <Flex>{`A wild ${
-                      this.props.pokemon.species
-                    } appeared!`}</Flex>
-                    <Card
-                      noLink
-                      name={this.props.pokemon.name}
-                      species={this.props.pokemon.species}
-                      sprite={this.props.pokemon.sprite}
-                    />
-                  </>
+                  <Card
+                    noLink
+                    name={this.props.pokemon.name}
+                    species={this.props.pokemon.species}
+                    sprite={this.props.pokemon.sprite}
+                  />
                 ) : (
-                  <>
-                    <Flex>{`The ${
-                      this.props.pokemon.species
-                    } was caught!`}</Flex>
-                    <Sprite
-                      sHeight={100}
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${
-                        state.pokeball
-                      }.png`}
-                    />
-                  </>
+                  <Sprite
+                    sHeight={100}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${
+                      state.pokeball
+                    }.png`}
+                  />
                 )}
               </Flex>
+              <MessageBox>
+                {state.message ||
+                  `The ${this.props.pokemon.species} is staring at you.`}
+              </MessageBox>
               <Flex row cWidth={100}>
                 {!state.caught ? (
                   <>
