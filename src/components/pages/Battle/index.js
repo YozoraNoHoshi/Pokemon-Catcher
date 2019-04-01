@@ -18,8 +18,8 @@ class Battle extends PureComponent {
       >
         {({ state, throwPokeball, useBerry, selectBerry, selectPokeball }) => {
           return (
-            <div>
-              <Flex column alCenter>
+            <Flex column alCenter>
+              <Flex column alCenter style={{ margin: '10px' }}>
                 {!state.caught ? (
                   <Card
                     noLink
@@ -29,7 +29,7 @@ class Battle extends PureComponent {
                   />
                 ) : (
                   <Sprite
-                    sHeight={100}
+                    sHeight={150}
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${
                       state.pokeball
                     }.png`}
@@ -44,8 +44,11 @@ class Battle extends PureComponent {
                 {!state.caught ? (
                   <>
                     <Flex column cWidth={100}>
-                      <MenuButton onClick={throwPokeball}>
-                        <Flex jCenter alCenter cWidth={100}>
+                      <MenuButton
+                        onClick={throwPokeball}
+                        style={{ height: '50px' }}
+                      >
+                        <Flex row jCenter alCenter cWidth={100}>
                           <Sprite
                             sHeight={100}
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${
@@ -55,7 +58,7 @@ class Battle extends PureComponent {
                           PokeBall
                         </Flex>
                       </MenuButton>
-                      <ModalMenu buttonText="Bag">
+                      <ModalMenu buttonText="Bag" style={{ height: '50px' }}>
                         <InventoryMenu
                           selectBerry={selectBerry}
                           selectPokeball={selectPokeball}
@@ -63,8 +66,12 @@ class Battle extends PureComponent {
                       </ModalMenu>
                     </Flex>
                     <Flex column cWidth={100}>
-                      <MenuButton onClick={useBerry}>Berry</MenuButton>
-                      <ChangeScreenButton to="/">Run!</ChangeScreenButton>
+                      <MenuButton onClick={useBerry} style={{ height: '50px' }}>
+                        Berry
+                      </MenuButton>
+                      <ChangeScreenButton to="/" style={{ height: '50px' }}>
+                        Run!
+                      </ChangeScreenButton>
                     </Flex>
                   </>
                 ) : (
@@ -81,7 +88,7 @@ class Battle extends PureComponent {
                   </ChangeScreenButton>
                 )}
               </Flex>
-            </div>
+            </Flex>
           );
         }}
       </BattleContainer>
