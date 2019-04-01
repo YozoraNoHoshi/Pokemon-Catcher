@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const MessageBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
   text-align: left;
@@ -14,6 +14,9 @@ const MessageBox = styled.div`
   margin: 3px;
   box-shadow: 0 0 3px black;
   width: 100%;
+  :hover {
+    cursor: default;
+  }
 `;
 
 export default MessageBox;
