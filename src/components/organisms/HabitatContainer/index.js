@@ -21,7 +21,9 @@ class HabitatContainer extends PureComponent {
         this.updateHabitatPokemon(this.state.selectedHabitat)
       ]);
     } catch (error) {
-      alert('Oops, something seems to have gone wrong.');
+      alert(
+        'The Pal Park is currently experiencing technical difficulties. Please try again later.'
+      );
     }
   }
 

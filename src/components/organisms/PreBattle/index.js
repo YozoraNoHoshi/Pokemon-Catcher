@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import Loading from '../../atoms/Loading';
-import { Redirect } from '@reach/router';
 import Battle from '../../pages/Battle';
 import { getBattlePokemon, getPokemon } from '../../../api';
+import PalParkClosed from '../../molecules/PalParkClosed';
 
 class PreBattle extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { loading: true, pokemon: {}, noPokemon: false };
-    this.errorMessage = 'Oops, something seems to have gone wrong.';
+    this.errorMessage =
+      'The Pal Park is currently closed for maintenance. We apologize for the inconvenience.';
   }
 
   async componentDidMount() {
@@ -22,12 +23,12 @@ class PreBattle extends PureComponent {
       this.setState({ pokemon, loading: false, noPokemon: false });
     } catch (error) {
       this.setState({ noPokemon: true, loading: false });
-      alert(this.errorMessage);
     }
   }
   render() {
     if (this.state.loading) return <Loading />;
-    if (this.state.noPokemon) return <Redirect to="/" />;
+    if (this.state.noPokemon)
+      return <PalParkClosed message={this.errorMessage} />;
     return (
       <Battle
         pokemon={this.state.pokemon}
