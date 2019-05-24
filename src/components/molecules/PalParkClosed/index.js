@@ -8,7 +8,7 @@ class PalParkClosed extends PureComponent {
     return (
       <Flex column alCenter>
         <MessageBox>{this.props.message}</MessageBox>
-        <ChangeScreenButton to="/">Return to Entrance</ChangeScreenButton>;
+        <ChangeScreenButton to="/">Return to Entrance</ChangeScreenButton>
       </Flex>
     );
   }

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import MenuButton from '../../atoms/MenuButton';
 import Modal from '../../atoms/Modal';
 import Flex from '../../atoms/Flex';
+import Sprite from '../../atoms/Sprite';
 
 class ModalMenu extends PureComponent {
   constructor(props) {
@@ -17,6 +18,7 @@ class ModalMenu extends PureComponent {
   }
 
   handleClick = e => {
+    if (this.state.open) this.toggleModal();
     if (this.node.current.contains(e.target)) {
       if (
         this.props.closeOnInteract &&
@@ -27,7 +29,6 @@ class ModalMenu extends PureComponent {
       }
       return;
     }
-    if (this.state.open) this.toggleModal();
   };
 
   toggleModal = () => {
@@ -45,6 +46,9 @@ class ModalMenu extends PureComponent {
           active={this.state.open}
           onClick={this.toggleModal}
         >
+          {this.props.sprite && (
+            <Sprite src={this.props.sprite} style={{ width: 'auto' }} />
+          )}
           {this.props.buttonText}
         </MenuButton>
         <Modal
@@ -59,6 +63,10 @@ class ModalMenu extends PureComponent {
   }
 }
 
-ModalMenu.defaultProps = { buttonText: 'Open', closeOnInteract: false };
+ModalMenu.defaultProps = {
+  buttonText: 'Open',
+  closeOnInteract: false,
+  sprite: ''
+};
 
 export default ModalMenu;
