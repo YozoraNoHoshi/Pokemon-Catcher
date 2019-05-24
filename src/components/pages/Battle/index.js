@@ -8,6 +8,12 @@ import InventoryMenu from '../../organisms/InventoryMenu';
 import ModalMenu from '../../molecules/ModalMenu';
 import Sprite from '../../atoms/Sprite';
 import MessageBox from '../../atoms/MessageBox';
+import {
+  BAG_SPRITE,
+  POKEBALL_SPRITES,
+  BERRY_SPRITES,
+  ESCAPE_ROPE
+} from '../../../data';
 
 class Battle extends PureComponent {
   render() {
@@ -30,9 +36,7 @@ class Battle extends PureComponent {
                 ) : (
                   <Sprite
                     sHeight={150}
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${
-                      state.pokeball
-                    }.png`}
+                    src={POKEBALL_SPRITES[state.pokeball]}
                   />
                 )}
               </Flex>
@@ -51,14 +55,20 @@ class Battle extends PureComponent {
                         <Flex row jCenter alCenter cWidth={100}>
                           <Sprite
                             sHeight={100}
-                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${
-                              state.pokeball
-                            }.png`}
+                            src={POKEBALL_SPRITES[state.pokeball]}
                           />
                           PokeBall
                         </Flex>
                       </MenuButton>
-                      <ModalMenu buttonText="Bag" style={{ height: '50px' }}>
+                      <ModalMenu
+                        buttonText="Bag"
+                        sprite={BAG_SPRITE}
+                        style={{
+                          height: '50px',
+                          flexDirection: 'row',
+                          justifyContent: 'space-around'
+                        }}
+                      >
                         <InventoryMenu
                           selectBerry={selectBerry}
                           selectPokeball={selectPokeball}
@@ -67,10 +77,19 @@ class Battle extends PureComponent {
                     </Flex>
                     <Flex column cWidth={100}>
                       <MenuButton onClick={useBerry} style={{ height: '50px' }}>
-                        Berry
+                        <Flex row jCenter alCenter cWidth={100}>
+                          <Sprite
+                            sHeight={100}
+                            src={BERRY_SPRITES[state.selectedBerry]}
+                          />
+                          Berry
+                        </Flex>
                       </MenuButton>
                       <ChangeScreenButton to="/" style={{ height: '50px' }}>
-                        Run!
+                        <Flex row jCenter alCenter cWidth={100}>
+                          <Sprite sHeight={100} src={ESCAPE_ROPE} />
+                          Run!
+                        </Flex>
                       </ChangeScreenButton>
                     </Flex>
                   </>

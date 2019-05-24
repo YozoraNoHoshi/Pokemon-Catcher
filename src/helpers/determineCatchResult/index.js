@@ -4,11 +4,8 @@ function calculateCatchRate(rate, pokeball, status, hpPercent = false) {
   let ballMultiplier = POKEBALLS[pokeball];
 
   let statusEffect = statusMultiplier[status] || statusMultiplier.normal;
-  if (!hpPercent) return (rate * ballMultiplier * statusEffect) / 1.5;
-  else
-    return (
-      ((300 - 200 * hpPercent) * rate * ballMultiplier * statusEffect) / 300
-    );
+  if (!hpPercent) return (rate * ballMultiplier * statusEffect) / 3;
+  else return (1 - (2 / 3) * hpPercent) * rate * ballMultiplier * statusEffect;
 }
 
 function shakeCheck(catchRate) {

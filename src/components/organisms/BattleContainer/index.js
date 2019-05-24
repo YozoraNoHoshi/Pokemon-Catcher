@@ -1,17 +1,18 @@
 import { PureComponent } from 'react';
 import determineCatchResult from '../../../helpers/determineCatchResult';
-import { CATCH_MESSAGES, POKEBALLS, BERRIES } from '../../../data';
+import hpPercentageMessage from '../../../helpers/hpPercentageMessage';
+import { CATCH_MESSAGES, POKEBALLS, BERRIES, HP_BERRIES } from '../../../data';
+
 class BattleContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       pokeball: 'poke-ball',
       status: 'normal',
-      selectedBerry: '',
+      selectedBerry: 'oran-berry',
       hpPercent: 1,
       message: `A wild ${props.pokemon.species} appeared!`
     };
-    this.caught = false;
   }
 
   catchRoll = (pokeball, status, hpPercent) => {
@@ -33,7 +34,7 @@ class BattleContainer extends PureComponent {
       });
       this.setState({
         caught: true,
-        message: `Gotcha! The pokemon was caught!`
+        message: CATCH_MESSAGES[result]
       });
     }
     // Catch fails
@@ -59,12 +60,25 @@ class BattleContainer extends PureComponent {
   };
 
   useBerry = () => {
-    if (BERRIES.hasOwnProperty(this.state.selectedBerry)) {
+    let berry = this.state.selectedBerry;
+    let pokemon = this.props.pokemon.species;
+    if (BERRIES.hasOwnProperty(berry)) {
+      // Message needs to be changed
       let message =
-        this.state.selectedBerry === 'oran'
-          ? `The ${this.props.pokemon.species} returned to normal!`
-          : `The berry inflicted ${BERRIES[this.state.selectedBerry]}`;
-      this.setState({ status: BERRIES[this.state.selectedBerry], message });
+        berry === 'oran-berry'
+          ? `The ${pokemon} returned to normal!`
+          : `The ${pokemon} ate the berry and had ${BERRIES[berry]} inflicted!`;
+      this.setState({
+        status: BERRIES[berry],
+        message
+      });
+    } else if (HP_BERRIES.hasOwnProperty(berry)) {
+      // Affects HP - Razz Berry and the other Berries from Lets Go!
+      let hpPercent = this.state.hpPercent - HP_BERRIES[berry];
+      let message = `The ${pokemon} ate the berry! It looks ${hpPercentageMessage(
+        hpPercent
+      )}...`;
+      this.setState({ hpPercent, message });
     }
   };
 
