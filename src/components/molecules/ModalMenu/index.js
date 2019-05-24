@@ -18,7 +18,6 @@ class ModalMenu extends PureComponent {
   }
 
   handleClick = e => {
-    if (this.state.open) this.toggleModal();
     if (this.node.current.contains(e.target)) {
       if (
         this.props.closeOnInteract &&
@@ -29,6 +28,7 @@ class ModalMenu extends PureComponent {
       }
       return;
     }
+    if (this.state.open) this.toggleModal();
   };
 
   toggleModal = () => {
@@ -47,7 +47,10 @@ class ModalMenu extends PureComponent {
           onClick={this.toggleModal}
         >
           {this.props.sprite && (
-            <Sprite src={this.props.sprite} style={{ width: 'auto' }} />
+            <Sprite
+              src={this.props.sprite}
+              style={{ width: 'auto', marginRight: '5px' }}
+            />
           )}
           {this.props.buttonText}
         </MenuButton>

@@ -51,6 +51,12 @@ class BattleContainer extends PureComponent {
     );
   };
 
+  pokemonTurn = () => {
+    // rolls a random chance to recover from status effect
+    // or
+    // recovers some HP - recovery is negated while inflicted with status
+  };
+
   selectPokeball = pokeball => {
     if (POKEBALLS.hasOwnProperty(pokeball)) this.setState({ pokeball });
   };
@@ -74,7 +80,8 @@ class BattleContainer extends PureComponent {
       });
     } else if (HP_BERRIES.hasOwnProperty(berry)) {
       // Affects HP - Razz Berry and the other Berries from Lets Go!
-      let hpPercent = this.state.hpPercent - HP_BERRIES[berry];
+      let hpPercent = Math.max(this.state.hpPercent - HP_BERRIES[berry], 0.1);
+      // Pokemon faints if berry brings it below 0? NYI
       let message = `The ${pokemon} ate the berry! It looks ${hpPercentageMessage(
         hpPercent
       )}...`;

@@ -24,7 +24,11 @@ class Battle extends PureComponent {
       >
         {({ state, throwPokeball, useBerry, selectBerry, selectPokeball }) => {
           return (
-            <Flex column alCenter>
+            <Flex column alCenter cWidth={'50vw'}>
+              <MessageBox>
+                {state.message ||
+                  `The ${this.props.pokemon.species} is staring at you.`}
+              </MessageBox>
               <Flex column alCenter style={{ margin: '10px' }}>
                 {!state.caught ? (
                   <Card
@@ -40,10 +44,6 @@ class Battle extends PureComponent {
                   />
                 )}
               </Flex>
-              <MessageBox>
-                {state.message ||
-                  `The ${this.props.pokemon.species} is staring at you.`}
-              </MessageBox>
               <Flex row cWidth={100}>
                 {!state.caught ? (
                   <>
@@ -65,11 +65,12 @@ class Battle extends PureComponent {
                         sprite={BAG_SPRITE}
                         style={{
                           height: '50px',
-                          flexDirection: 'row',
-                          justifyContent: 'space-around'
+                          flexDirection: 'row'
                         }}
                       >
                         <InventoryMenu
+                          // pokeballs={}
+                          // berries={}
                           selectBerry={selectBerry}
                           selectPokeball={selectPokeball}
                         />
