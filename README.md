@@ -33,5 +33,6 @@ Checking a Pokedex entry while already on a Pokedex entry causes the new entry t
 - Make Pokedex live in a modal so you can view it during a battle.
 - Pokedex remembers previous searches globally, not just on the Pokedex page
 - Pokedex UI
-- Battle UI and logic (Bag/Change Pokeball/Change Berry/Use Berry)
+- Battle UI and logic
+- Inventory
 - Responsive Design
