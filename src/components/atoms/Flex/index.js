@@ -4,6 +4,7 @@ import getCSSProperties from '../../../helpers/getCSSProperties';
 const Flex = styled.div`
   display: flex;
   flex-direction: ${flexDirection};
+  user-select: none;
   ${justifyContent}
   ${alignItems}
   ${flexWrap}
