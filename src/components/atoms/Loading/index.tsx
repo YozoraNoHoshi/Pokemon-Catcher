@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
+interface Props {}
+interface State {}
 
-class Loading extends PureComponent {
+class Loading extends PureComponent<Props, State> {
   render() {
     return <div className="Loading">Loading...</div>;
   }
 }
-
-Loading.defaultProps = {};
-
-Loading.propTypes = {};
 
 export default Loading;

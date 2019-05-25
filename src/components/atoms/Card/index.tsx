@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, HTMLAttributes } from 'react';
 import Flex from '../Flex';
 import styled from 'styled-components';
 import Sprite from '../Sprite';
@@ -25,8 +25,30 @@ export const StyledCard = styled.div`
     top: 0;
   }
 `;
+interface Props {
+  noLink?: boolean;
+  click?: (evt: any) => any;
+  pokeball?: string;
+  sprite?: string;
+  name?: string;
+  species?: string;
+}
 
-class Card extends PureComponent {
+interface State {}
+
+class Card extends PureComponent<
+  Props & HTMLAttributes<HTMLDivElement>,
+  State
+> {
+  static defaultProps: Props = {
+    click: emptyFunc,
+    noLink: false,
+    pokeball: '',
+    sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
+    name: 'missingno',
+    species: 'MissingNo.'
+  };
+
   render() {
     return this.props.noLink ? (
       <StyledCard className={this.props.className} onClick={this.props.click}>
@@ -50,14 +72,5 @@ class Card extends PureComponent {
     );
   }
 }
-
-Card.defaultProps = {
-  click: emptyFunc,
-  noLink: false,
-  pokeball: '',
-  sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
-  name: 'missingno',
-  species: 'MissingNo.'
-};
 
 export default Card;

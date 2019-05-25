@@ -7,6 +7,7 @@ class InventoryMenu extends PureComponent {
     return itemArray.map(p => {
       return (
         <Card
+          // noLink
           key={p.name}
           click={fn}
           sprite={p.sprite}

@@ -21,7 +21,17 @@ const StyledModal = styled.div`
   }
 `;
 
-class Modal extends PureComponent {
+interface Props {
+  className?: string;
+  closeOnInteract?: boolean;
+  toggleModal?: (arg: any) => any;
+  show?: boolean;
+}
+
+interface State {}
+
+class Modal extends PureComponent<Props, State> {
+  static defaultProps: Props = { closeOnInteract: false };
   render() {
     if (!this.props.show) return null;
     return (
@@ -34,7 +44,5 @@ class Modal extends PureComponent {
     );
   }
 }
-
-Modal.defaultProps = { closeOnInteract: false };
 
 export default Modal;

@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
 
+interface Props {
+  pokeRed?: boolean;
+  active?: boolean;
+  large?: boolean;
+  cWidth?: number;
+}
+
 const MenuButton = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,22 +29,22 @@ const MenuButton = styled.div`
   }
 `;
 
-function background(props) {
+function background(props: Props) {
   return getCSSProperties(
     props,
     { active: 'lightblue', pokeRed: 'firebrick' },
     'lightgrey'
   );
 }
-function hoverBackground(props) {
+function hoverBackground(props: Props) {
   return getCSSProperties(props, { pokeRed: 'crimson' }, 'skyblue');
 }
-function fontSize(props) {
+function fontSize(props: Props) {
   let cssProps = getCSSProperties(props, { large: '2em' }, false);
   if (cssProps) return `font-size: ${cssProps};`;
   return null;
 }
-function width({ cWidth }) {
+function width({ cWidth }: Props) {
   if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
   return null;
 }

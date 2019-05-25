@@ -3,19 +3,21 @@ import ChangeScreenButton from '../ChangeScreenButton';
 import MessageBox from '../../atoms/MessageBox';
 import Flex from '../../atoms/Flex';
 
-class PalParkClosed extends PureComponent {
+interface Props {
+  message: string;
+}
+interface State {}
+
+class PalParkClosed extends PureComponent<Props, State> {
+  static defaultProps: Props = { message: '' };
   render() {
     return (
-      <Flex column alCenter>
+      <Flex column alCenter jCenter>
         <MessageBox>{this.props.message}</MessageBox>
         <ChangeScreenButton to="/">Return to Entrance</ChangeScreenButton>
       </Flex>
     );
   }
 }
-
-PalParkClosed.defaultProps = { message: '' };
-
-PalParkClosed.propTypes = {};
 
 export default PalParkClosed;
