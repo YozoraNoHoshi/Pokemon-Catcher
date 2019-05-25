@@ -17,7 +17,27 @@ const DetailCard = styled.div`
   padding-bottom: 5px;
 `;
 
-class DetailedCard extends PureComponent {
+interface Props {
+  id?: string;
+  species?: string;
+  sprite?: string;
+  title?: string;
+  flavor_text?: string;
+  catch_rate?: string;
+  habitats?: string;
+}
+interface State {}
+
+class DetailedCard extends PureComponent<Props, State> {
+  static defaultProps: Props = {
+    id: '???',
+    species: 'MissingNo.',
+    sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
+    title: '????',
+    flavor_text: '',
+    catch_rate: '???',
+    habitats: ''
+  };
   render() {
     let pokemon = this.props;
     if (pokemon.id)
@@ -35,22 +55,10 @@ class DetailedCard extends PureComponent {
               <Flex small>Areas: {pokemon.habitats}</Flex>
             </Flex>
           </Flex>
-          <MessageBox cWidth={100}>{pokemon.flavor_text}</MessageBox>
+          <MessageBox>{pokemon.flavor_text}</MessageBox>
         </DetailCard>
       );
   }
 }
-
-DetailedCard.defaultProps = {
-  id: '???',
-  species: 'MissingNo.',
-  sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
-  title: '????',
-  flavor_text: '',
-  catch_rate: '???',
-  habitats: ''
-};
-
-DetailedCard.propTypes = {};
 
 export default DetailedCard;

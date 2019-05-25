@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 
-const MessageBox = styled.div`
+const MessageBox: StyledComponent<'div', any, {}, never> = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;

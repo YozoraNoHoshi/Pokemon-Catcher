@@ -1,10 +1,10 @@
 import styled, { StyledComponent } from 'styled-components';
 
 interface Props {
-  sHeight: string | number;
+  sHeight?: string | number;
 }
 
-const Sprite: StyledComponent<'img', Props> = styled.img`
+const Sprite: StyledComponent<'img', any, Props, never> = styled.img`
   object-fit: contain;
   height: ${height};
   pointer-events: none;

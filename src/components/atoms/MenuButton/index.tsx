@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   cWidth?: number;
 }
 
-const MenuButton = styled.div`
+const MenuButton: StyledComponent<'div', any, Props, never> = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
