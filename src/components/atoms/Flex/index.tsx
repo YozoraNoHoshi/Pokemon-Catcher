@@ -1,32 +1,26 @@
 import styled, { StyledComponent } from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
+import {
+  FlexDirection,
+  Width,
+  FontSize,
+  FontWeight,
+  JustifyContent,
+  AlignItems,
+  Wrap,
+  TextAlign
+} from '../../..';
 
-interface Props {
-  row?: boolean;
-  column?: boolean;
-  cWidth?: string | number;
-  bold?: boolean;
-  normal?: boolean;
-  thin?: boolean;
-  large?: boolean;
-  small?: boolean;
-  medium?: boolean;
-  jCenter?: boolean;
-  jStart?: boolean;
-  jEnd?: boolean;
-  jAround?: boolean;
-  jBetween?: boolean;
-  alCenter?: boolean;
-  alStart?: boolean;
-  alEnd?: boolean;
-  fWrap?: boolean;
-  noFWrap?: boolean;
-  txCenter?: boolean;
-  txLeft?: boolean;
-  txRight?: boolean;
-}
+type Props = FlexDirection &
+  Width &
+  FontWeight &
+  FontSize &
+  JustifyContent &
+  AlignItems &
+  Wrap &
+  TextAlign;
 
-const Flex: any = styled.div`
+const Flex: StyledComponent<'div', any, Props, never> = styled.div`
   display: flex;
   flex-direction: ${flexDirection};
   user-select: none;

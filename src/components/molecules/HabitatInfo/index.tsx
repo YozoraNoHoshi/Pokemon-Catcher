@@ -2,9 +2,23 @@ import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
 import { title } from '../../../helpers/title';
+import { Pokemon } from '../../..';
 
-class HabitatInfo extends PureComponent {
-  renderPokemonCards = pokemon => {
+interface Props {
+  name: string;
+  image: string;
+  description: string;
+  pokemon: Pokemon[];
+}
+
+class HabitatInfo extends PureComponent<Props, {}> {
+  static defaultProps = {
+    pokemon: [{}],
+    description:
+      'A quiet place with a lot of nothing. Sometimes you can see flicks of... something.',
+    name: 'Empty Space'
+  };
+  renderPokemonCards = (pokemon: Pokemon[]) => {
     return pokemon.map(p => (
       <Card
         key={`${p.name}`}
@@ -34,15 +48,6 @@ class HabitatInfo extends PureComponent {
     );
   }
 }
-
-HabitatInfo.defaultProps = {
-  pokemon: [{}],
-  description:
-    'A quiet place with a lot of nothing. Sometimes you can see flicks of... something.',
-  name: 'Empty Space'
-};
-
-HabitatInfo.propTypes = {};
 
 export default HabitatInfo;
 

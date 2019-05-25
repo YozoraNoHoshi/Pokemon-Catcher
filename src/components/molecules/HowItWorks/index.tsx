@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import Flex from '../../atoms/Flex';
+import { Width } from '../../..';
 
-class HowItWorks extends PureComponent {
+class HowItWorks extends PureComponent<Width, {}> {
+  static defaultProps = { cWidth: 100 };
   render() {
     return (
       <Flex column alCenter cWidth={this.props.cWidth}>
@@ -31,9 +33,5 @@ class HowItWorks extends PureComponent {
     );
   }
 }
-
-HowItWorks.defaultProps = { cWidth: 100 };
-
-HowItWorks.propTypes = {};
 
 export default HowItWorks;

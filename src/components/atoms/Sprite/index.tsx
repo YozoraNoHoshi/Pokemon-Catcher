@@ -11,7 +11,7 @@ const Sprite: StyledComponent<'img', any, Props, never> = styled.img`
 `;
 
 function height({ sHeight }: Props) {
-  if (+sHeight) return `${sHeight}%`;
+  if (Number(sHeight)) return `${sHeight}%`;
   return '75%';
 }
 

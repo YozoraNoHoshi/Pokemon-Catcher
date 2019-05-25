@@ -2,7 +2,12 @@ import React, { PureComponent } from 'react';
 import { Link } from '@reach/router';
 import MenuButton from '../../atoms/MenuButton';
 
-class ChangeScreenButton extends PureComponent {
+interface Props {
+  to: string;
+}
+
+class ChangeScreenButton extends PureComponent<Props, {}> {
+  static defaultProps = { to: '', children: '' };
   render() {
     let { to, ...prop } = this.props;
     return (
@@ -21,7 +26,5 @@ class ChangeScreenButton extends PureComponent {
     );
   }
 }
-
-ChangeScreenButton.defaultProps = { to: '', children: '' };
 
 export default ChangeScreenButton;

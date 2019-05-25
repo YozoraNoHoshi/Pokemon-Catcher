@@ -1,7 +1,14 @@
 import React, { PureComponent } from 'react';
 import Flex from '../../atoms/Flex';
 
-class HomePageHeader extends PureComponent {
+interface Props {
+  headerStyle?: object;
+  flavorText: string;
+  header: string;
+}
+
+class HomePageHeader extends PureComponent<Props, {}> {
+  static defaultProps: Props = { headerStyle: {}, flavorText: '', header: '' };
   render() {
     return (
       <Flex as="header">
@@ -15,9 +22,5 @@ class HomePageHeader extends PureComponent {
     );
   }
 }
-
-HomePageHeader.defaultProps = { headerStyle: {}, flavorText: '', header: '' };
-
-HomePageHeader.propTypes = {};
 
 export default HomePageHeader;

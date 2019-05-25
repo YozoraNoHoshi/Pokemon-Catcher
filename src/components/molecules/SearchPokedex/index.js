@@ -13,7 +13,7 @@ const Input = styled.input`
   border-radius: 3px;
 `;
 
-// Can be made into a generic form component if more than one form is used
+// Change this to hooks
 class SearchPokedex extends PureComponent {
   constructor(props) {
     super(props);

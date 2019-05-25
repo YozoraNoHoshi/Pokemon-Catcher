@@ -28,9 +28,7 @@ interface Props {
   show?: boolean;
 }
 
-interface State {}
-
-class Modal extends PureComponent<Props, State> {
+class Modal extends PureComponent<Props, {}> {
   static defaultProps: Props = { closeOnInteract: false };
   render() {
     if (!this.props.show) return null;

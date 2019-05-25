@@ -4,6 +4,7 @@ import Modal from '../../atoms/Modal';
 import Flex from '../../atoms/Flex';
 import Sprite from '../../atoms/Sprite';
 
+// Change this to hooks
 class ModalMenu extends PureComponent {
   constructor(props) {
     super(props);

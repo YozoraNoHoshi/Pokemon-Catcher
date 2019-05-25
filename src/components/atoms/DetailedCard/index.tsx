@@ -3,6 +3,7 @@ import Flex from '../Flex';
 import Sprite from '../Sprite';
 import styled from 'styled-components';
 import MessageBox from '../MessageBox';
+import { Pokemon } from '../../..';
 
 const DetailCard = styled.div`
   display: flex;
@@ -17,19 +18,13 @@ const DetailCard = styled.div`
   padding-bottom: 5px;
 `;
 
-interface Props {
-  id?: string;
-  species?: string;
-  sprite?: string;
-  title?: string;
-  flavor_text?: string;
-  catch_rate?: string;
-  habitats?: string;
-}
 interface State {}
 
-class DetailedCard extends PureComponent<Props, State> {
-  static defaultProps: Props = {
+class DetailedCard extends PureComponent<
+  Pokemon & { habitats: string },
+  State
+> {
+  static defaultProps: Pokemon | { habitats: string; id: number | string } = {
     id: '???',
     species: 'MissingNo.',
     sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',

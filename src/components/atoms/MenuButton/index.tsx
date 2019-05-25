@@ -1,12 +1,8 @@
 import styled, { StyledComponent } from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
+import { Width } from '../../..';
 
-interface Props {
-  pokeRed?: boolean;
-  active?: boolean;
-  large?: boolean;
-  cWidth?: number;
-}
+type Props = { pokeRed?: boolean; active?: boolean; large?: boolean } & Width;
 
 const MenuButton: StyledComponent<'div', any, Props, never> = styled.div`
   display: flex;
