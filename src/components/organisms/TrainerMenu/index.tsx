@@ -1,10 +1,24 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
+import { Width, CaughtPokemon } from '../../..';
+import { Pokeballs } from '../../../data';
 
-class TrainerMenu extends PureComponent {
-  renderPokemonCards = pokemon => {
-    return pokemon.map(p => {
+type Props = Width & {
+  className: string;
+  pokemon: CaughtPokemon[];
+  trainerName: string;
+  pokeballs: Pokeballs;
+};
+class TrainerMenu extends PureComponent<Props, {}> {
+  static defaultProps = {
+    pokemon: [],
+    trainerName: 'Red',
+    cWidth: 100,
+    pokeballs: {}
+  };
+  renderPokemonCards = (pokemon: CaughtPokemon[]) => {
+    return pokemon.map((p: CaughtPokemon) => {
       return (
         <Card
           key={`${p.name}`}
@@ -49,14 +63,5 @@ class TrainerMenu extends PureComponent {
     );
   }
 }
-
-TrainerMenu.defaultProps = {
-  pokemon: [],
-  trainerName: 'Red',
-  cWidth: 100,
-  pokeballs: {}
-};
-
-TrainerMenu.propTypes = {};
 
 export default TrainerMenu;

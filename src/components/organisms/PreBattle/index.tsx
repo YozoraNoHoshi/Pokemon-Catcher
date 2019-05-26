@@ -3,13 +3,26 @@ import Loading from '../../atoms/Loading';
 import Battle from '../../pages/Battle';
 import { getBattlePokemon, getPokemon } from '../../../api';
 import PalParkClosed from '../../molecules/PalParkClosed';
+import { Pokemon } from '../../..';
 
-class PreBattle extends PureComponent {
-  constructor(props) {
+interface Props {
+  habitat: string;
+  riggedPokemon?: string;
+  modifyPokemon: (pokemon: Pokemon) => any;
+}
+interface State {
+  loading: boolean;
+  pokemon: Pokemon | object;
+  noPokemon: boolean;
+}
+
+class PreBattle extends PureComponent<Props, State> {
+  static defaultProps = { habitat: '', riggedPokemon: '' };
+  static errorMessage =
+    'The Pal Park is currently closed for maintenance. We apologize for the inconvenience.';
+  constructor(props: Props) {
     super(props);
     this.state = { loading: true, pokemon: {}, noPokemon: false };
-    this.errorMessage =
-      'The Pal Park is currently closed for maintenance. We apologize for the inconvenience.';
   }
 
   async componentDidMount() {
@@ -28,7 +41,7 @@ class PreBattle extends PureComponent {
   render() {
     if (this.state.loading) return <Loading />;
     if (this.state.noPokemon)
-      return <PalParkClosed message={this.errorMessage} />;
+      return <PalParkClosed message={PreBattle.errorMessage} />;
     return (
       <Battle
         pokemon={this.state.pokemon}
@@ -37,9 +50,5 @@ class PreBattle extends PureComponent {
     );
   }
 }
-
-PreBattle.defaultProps = { habitat: '', riggedPokemon: '' };
-
-PreBattle.propTypes = {};
 
 export default PreBattle;
