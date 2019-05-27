@@ -11,14 +11,19 @@ import {
 function spriteLink(item: string): string {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item}.png`;
 }
-
-export const POKEBALLS: Pokeballs = {
-  'poke-ball': 1,
-  'great-ball': 1.5,
-  'ultra-ball': 2,
-  'park-ball': 3,
-  'master-ball': 255
-};
+/**
+ * Creates a mapping object with links to each sprite from the PokeAPI.
+ * @param obj Objects with keys to map to a sprite from the PokeAPI Github. Keys must match the url in the pokeapi
+ */
+function mapKeyToSprite(...args: { [key: string]: any }[]): any {
+  let acc: any = {};
+  for (let obj of args) {
+    for (let key in obj) {
+      if (!acc.hasOwnProperty(key)) acc[key] = spriteLink(key);
+    }
+  }
+  return acc;
+}
 
 // Change to be benchmarks - each benchmark has a higher catch rate
 export const HP_MULT: { [percentage: string]: string } = {
@@ -49,18 +54,17 @@ export const CATCH_MESSAGES: CatchMessage = {
 export const BERRIES: CatchBerries = { 'oran-berry': 'normal' };
 export const HP_BERRIES: HPBerries = { 'razz-berry': 0.1 };
 
-export const BERRY_SPRITES: Berries = {
-  'razz-berry': spriteLink('razz-berry'),
-  'oran-berry': spriteLink('oran-berry')
+export const BERRY_SPRITES: Berries = mapKeyToSprite(BERRIES, HP_BERRIES);
+
+export const POKEBALLS: Pokeballs = {
+  'poke-ball': 1,
+  'great-ball': 1.5,
+  'ultra-ball': 2,
+  'park-ball': 3,
+  'master-ball': 255
 };
 
-export const POKEBALL_SPRITES: Pokeballs = {
-  'poke-ball': spriteLink('poke-ball'),
-  'great-ball': spriteLink('great-ball'),
-  'ultra-ball': spriteLink('ultra-ball'),
-  'park-ball': spriteLink('park-ball'),
-  'master-ball': spriteLink('master-ball')
-};
+export const POKEBALL_SPRITES: Pokeballs = mapKeyToSprite(POKEBALLS);
 
 export const BAG_SPRITE: string =
   'https://cdn.bulbagarden.net/upload/7/76/Professor_Birch_Bag.png';
