@@ -18,7 +18,7 @@ type Props = FlexDirection &
   JustifyContent &
   AlignItems &
   Wrap &
-  TextAlign;
+  TextAlign & { ref?: any };
 
 const Flex: StyledComponent<'div', any, Props, never> = styled.div`
   display: flex;

@@ -1,9 +1,24 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
+import { Pokeballs, Berries } from '../../../data';
 
-class InventoryMenu extends PureComponent {
-  renderInventoryItems = (itemArray, fn) => {
+interface Props {
+  pokeballs: Pokeballs[];
+  berries: Berries[];
+  selectPokeBall: (poke: string) => void;
+  selectBerry: (berry: string) => void;
+}
+
+// Change how Pokeballs/Berries is structured later, should not be an array of objects
+class InventoryMenu extends PureComponent<Props, {}> {
+  static defaultProps = {
+    pokeballs: [{}],
+    berries: [{}],
+    selectPokeball: console.log,
+    selectBerry: console.log
+  };
+  renderInventoryItems = (itemArray: any[], fn: (evt: any) => any) => {
     return itemArray.map(p => {
       return (
         <Card
@@ -24,7 +39,7 @@ class InventoryMenu extends PureComponent {
           Pokeballs
           {this.renderInventoryItems(
             this.props.pokeballs,
-            this.props.selectPokeball
+            this.props.selectPokeBall
           )}
         </Flex>
         <Flex column cWidth={50}>
@@ -38,14 +53,5 @@ class InventoryMenu extends PureComponent {
     );
   }
 }
-
-InventoryMenu.defaultProps = {
-  pokeballs: [{}],
-  berries: [{}],
-  selectPokeball: console.log,
-  selectBerry: console.log
-};
-
-InventoryMenu.propTypes = {};
 
 export default InventoryMenu;
