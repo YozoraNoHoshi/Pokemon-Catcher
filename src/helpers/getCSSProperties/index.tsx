@@ -6,8 +6,12 @@
  * @param {*} defaultValue Fallback value if nothing found in mapping object. By convention, they live in ../config/styles/DEFAULTS
  * @returns {*} The actual CSS value
  * */
-export default function getCSSProperties(props, styleObj, defaultValue) {
-  let values = [defaultValue];
+export default function getCSSProperties(
+  props: { [prop: string]: any },
+  styleObj: { [prop: string]: any },
+  defaultValue: string | number
+): string | number {
+  let values: (string | number)[] = [defaultValue];
   for (let key in props) {
     if (props[key] && styleObj[key]) values.push(styleObj[key]);
   }

@@ -21,7 +21,7 @@ export const POKEBALLS: Pokeballs = {
 };
 
 // Change to be benchmarks - each benchmark has a higher catch rate
-export const HP_MULT = {
+export const HP_MULT: { [percentage: string]: string } = {
   1: 'normal',
   0.8: 'slightly-fed',
   0.6: 'fed',

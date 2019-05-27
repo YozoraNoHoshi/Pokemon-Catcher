@@ -1,21 +1,30 @@
 import { statusMultiplier, POKEBALLS } from '../../data';
+import { Pokeballs, Status } from '../..';
 
-function calculateCatchRate(rate, pokeball, status, hpPercent = false) {
-  let ballMultiplier = POKEBALLS[pokeball];
+function calculateCatchRate(
+  rate: number,
+  pokeball: keyof Pokeballs,
+  status: keyof Status,
+  hpPercent: number | undefined
+) {
+  let ballMultiplier: number = (POKEBALLS as { [ball: string]: number })[
+    pokeball
+  ];
 
-  let statusEffect = statusMultiplier[status] || statusMultiplier.normal;
+  let statusEffect: number =
+    statusMultiplier[status] || statusMultiplier.normal;
   if (!hpPercent) return (rate * ballMultiplier * statusEffect) / 3;
   else return (1 - (2 / 3) * hpPercent) * rate * ballMultiplier * statusEffect;
 }
 
-function shakeCheck(catchRate) {
-  let probability = Math.floor(
+function shakeCheck(catchRate: number): boolean {
+  let probability: number = Math.floor(
     1048560 /
       Math.floor(
         Math.sqrt(Math.floor(Math.sqrt(Math.floor(16711680 / catchRate))))
       )
   );
-  let genNumber = Math.floor(Math.random() * 65535);
+  let genNumber: number = Math.floor(Math.random() * 65535);
   if (genNumber >= probability) return false;
   else return true;
 }
@@ -29,11 +38,11 @@ function shakeCheck(catchRate) {
  * @returns {Number} If value is === 4, indicates catch was a success. If not, determines the number of shakes before pokemon breaks free.
  */
 export default function determineCatchResult(
-  rate,
-  pokeball = 'poke-ball',
-  status = 'normal',
-  hpPercent = false
-) {
+  rate: number,
+  pokeball: keyof Pokeballs = 'poke-ball',
+  status: keyof Status = 'normal',
+  hpPercent?: number
+): number {
   if (pokeball === 'master-ball' || rate >= 255) return 4;
   let catchRate = calculateCatchRate(rate, pokeball, status, hpPercent);
   let numShakes = 0;

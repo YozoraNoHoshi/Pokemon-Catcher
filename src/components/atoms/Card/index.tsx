@@ -2,7 +2,6 @@ import React, { PureComponent, HTMLAttributes } from 'react';
 import Flex from '../Flex';
 import styled from 'styled-components';
 import Sprite from '../Sprite';
-import { emptyFunc } from '../../../helpers/emptyFunc';
 
 export const StyledCard = styled.div`
   position: relative;
@@ -41,7 +40,7 @@ class Card extends PureComponent<
   State
 > {
   static defaultProps: Props = {
-    click: emptyFunc,
+    click: () => {},
     noLink: false,
     pokeball: '',
     sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
