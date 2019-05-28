@@ -87,3 +87,7 @@ export type TextAlign = {
 export type Style = {
   readonly style?: React.CSSProperties;
 };
+export type Action = {
+  type: string;
+  payload: any;
+};
