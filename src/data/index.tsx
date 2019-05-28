@@ -8,24 +8,7 @@ import {
   CatchMessage
 } from '..';
 
-function spriteLink(item: string): string {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item}.png`;
-}
-/**
- * Creates a mapping object with links to each sprite from the PokeAPI.
- * @param obj Objects with keys to map to a sprite from the PokeAPI Github. Keys must match the url in the pokeapi
- */
-function mapKeyToSprite(...args: { [key: string]: any }[]): any {
-  let acc: any = {};
-  for (let obj of args) {
-    for (let key in obj) {
-      if (!acc.hasOwnProperty(key)) acc[key] = spriteLink(key);
-    }
-  }
-  return acc;
-}
-
-// Change to be benchmarks - each benchmark has a higher catch rate
+// Catching Pokemon Related
 export const HP_MULT: { [percentage: string]: string } = {
   1: 'normal',
   0.8: 'slightly-fed',
@@ -51,11 +34,13 @@ export const CATCH_MESSAGES: CatchMessage = {
   4: 'Gotcha! The Pokemon was caught!'
 };
 
+// Berries and their effects
 export const BERRIES: CatchBerries = { 'oran-berry': 'normal' };
 export const HP_BERRIES: HPBerries = { 'razz-berry': 0.1 };
 
 export const BERRY_SPRITES: Berries = mapKeyToSprite(BERRIES, HP_BERRIES);
 
+// Pokeballs and their effects
 export const POKEBALLS: Pokeballs = {
   'poke-ball': 1,
   'great-ball': 1.5,
@@ -66,6 +51,7 @@ export const POKEBALLS: Pokeballs = {
 
 export const POKEBALL_SPRITES: Pokeballs = mapKeyToSprite(POKEBALLS);
 
+// Other Sprites
 export const BAG_SPRITE: string =
   'https://cdn.bulbagarden.net/upload/7/76/Professor_Birch_Bag.png';
 
@@ -80,3 +66,22 @@ export const MISSINGNO: MissingNo = {
   catch_rate: '???',
   name: 'MissingNo.'
 };
+
+// Helper Functions
+
+function spriteLink(item: string): string {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item}.png`;
+}
+/**
+ * Creates a mapping object with links to each sprite from the PokeAPI.
+ * @param obj Objects with keys to map to a sprite from the PokeAPI Github. Keys must match the url in the pokeapi
+ */
+function mapKeyToSprite(...args: { [key: string]: any }[]): any {
+  let acc: any = {};
+  for (let obj of args) {
+    for (let key in obj) {
+      if (!acc.hasOwnProperty(key)) acc[key] = spriteLink(key);
+    }
+  }
+  return acc;
+}

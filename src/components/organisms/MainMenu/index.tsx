@@ -2,8 +2,12 @@ import React, { PureComponent } from 'react';
 import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
 import Flex from '../../atoms/Flex';
-
-class MainMenu extends PureComponent {
+import { Width } from '../../..';
+interface Props {
+  changeGameState: (arg?: string) => void;
+}
+class MainMenu extends PureComponent<Props & Width, {}> {
+  static defaultProps = { changeGameState: console.log, cWidth: 100 };
   saveGame = () => {
     this.props.changeGameState();
   };
@@ -51,9 +55,5 @@ class MainMenu extends PureComponent {
     );
   }
 }
-
-MainMenu.defaultProps = { changeGameState: console.log, cWidth: 100 };
-
-MainMenu.propTypes = {};
 
 export default MainMenu;

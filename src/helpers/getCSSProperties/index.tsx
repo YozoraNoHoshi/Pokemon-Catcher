@@ -9,9 +9,9 @@
 export default function getCSSProperties(
   props: { [prop: string]: any },
   styleObj: { [prop: string]: any },
-  defaultValue: string | number
+  defaultValue: any
 ): string | number {
-  let values: (string | number)[] = [defaultValue];
+  let values: any[] = [defaultValue];
   for (let key in props) {
     if (props[key] && styleObj[key]) values.push(styleObj[key]);
   }

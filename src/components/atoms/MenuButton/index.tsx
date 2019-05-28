@@ -1,8 +1,13 @@
 import styled, { StyledComponent } from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
-import { Width } from '../../..';
+import { Width, Style } from '../../..';
 
-type Props = { pokeRed?: boolean; active?: boolean; large?: boolean } & Width;
+export type Props = {
+  pokeRed?: boolean;
+  active?: boolean;
+  large?: boolean;
+} & Width &
+  Style;
 
 const MenuButton: StyledComponent<'div', any, Props, never> = styled.div`
   display: flex;
@@ -36,7 +41,7 @@ function hoverBackground(props: Props) {
   return getCSSProperties(props, { pokeRed: 'crimson' }, 'skyblue');
 }
 function fontSize(props: Props) {
-  let cssProps = getCSSProperties(props, { large: '2em' }, false);
+  let cssProps = getCSSProperties(props, { large: '2em' }, null);
   if (cssProps) return `font-size: ${cssProps};`;
   return null;
 }

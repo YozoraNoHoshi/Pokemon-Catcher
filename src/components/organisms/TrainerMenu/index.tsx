@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
-import { Width, CaughtPokemon } from '../../..';
-import { Pokeballs } from '../../../data';
+import { Width, CaughtPokemon, Pokeballs } from '../../..';
 
 type Props = Width & {
   className: string;
@@ -23,7 +22,9 @@ class TrainerMenu extends PureComponent<Props, {}> {
         <Card
           key={`${p.name}`}
           name={p.name}
-          pokeball={this.props.pokeballs[p.pokeball]}
+          pokeball={
+            (this.props.pokeballs as { [pokeball: string]: string })[p.pokeball]
+          }
           species={p.species}
           sprite={p.sprite}
           className={this.props.className}

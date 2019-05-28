@@ -3,8 +3,15 @@ import Flex from '../../atoms/Flex';
 import { title } from '../../../helpers/title';
 import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
+import { Width } from '../../..';
 
-class HomePageMenu extends PureComponent {
+interface Props {
+  changeGameState: (type?: string) => void;
+  currentHabitat: string;
+}
+
+class HomePageMenu extends PureComponent<Props & Width, {}> {
+  static defaultProps = { cWidth: 100 };
   saveGame = () => {
     this.props.changeGameState();
   };
@@ -42,9 +49,5 @@ class HomePageMenu extends PureComponent {
     );
   }
 }
-
-HomePageMenu.defaultProps = { cWidth: 100 };
-
-HomePageMenu.propTypes = {};
 
 export default HomePageMenu;

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Link } from '@reach/router';
-import MenuButton from '../../atoms/MenuButton';
+import MenuButton, { Props as MBProps } from '../../atoms/MenuButton';
 
-interface Props {
+interface Props extends MBProps {
   to: string;
 }
 

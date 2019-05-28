@@ -28,7 +28,7 @@ class PreBattle extends PureComponent<Props, State> {
   async componentDidMount() {
     await this.getBattlePokemon(this.props.riggedPokemon);
   }
-  async getBattlePokemon(rigged = '') {
+  async getBattlePokemon(rigged: string | undefined) {
     try {
       let pokemon = rigged
         ? await getPokemon(rigged)

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
-import { Pokeballs, Berries } from '../../../data';
+import { Pokeballs, Berries } from '../../..';
 
 interface Props {
   pokeballs: Pokeballs[];

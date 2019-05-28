@@ -84,3 +84,6 @@ export type TextAlign = {
   readonly txLeft?: boolean;
   readonly txRight?: boolean;
 };
+export type Style = {
+  readonly style?: React.CSSProperties;
+};
