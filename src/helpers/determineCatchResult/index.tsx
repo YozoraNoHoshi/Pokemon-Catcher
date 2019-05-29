@@ -7,10 +7,7 @@ function calculateCatchRate(
   status: keyof Status,
   hpPercent: number | undefined
 ) {
-  let ballMultiplier: number = (POKEBALLS as { [ball: string]: number })[
-    pokeball
-  ];
-
+  let ballMultiplier: number = POKEBALLS[pokeball];
   let statusEffect: number =
     statusMultiplier[status] || statusMultiplier.normal;
   if (!hpPercent) return (rate * ballMultiplier * statusEffect) / 3;
@@ -39,8 +36,8 @@ function shakeCheck(catchRate: number): boolean {
  */
 export default function determineCatchResult(
   rate: number,
-  pokeball: keyof Pokeballs = 'poke-ball',
-  status: keyof Status = 'normal',
+  pokeball: keyof Pokeballs,
+  status: keyof Status,
   hpPercent?: number
 ): number {
   if (pokeball === 'master-ball' || rate >= 255) return 4;

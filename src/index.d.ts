@@ -1,49 +1,56 @@
+export type Habitat = { name: string; description: string };
+export type Habitats = {
+  [habitat: string]: Habitat;
+};
+
 export type Pokemon = {
   readonly id: number;
   readonly title: string;
   readonly flavor_text: string;
   readonly catch_rate: number;
-  readonly name: string;
+  readonly name?: string;
   readonly species: string;
   readonly sprite: string;
 };
 export type CaughtPokemon = Pokemon & { pokeball: string };
+export type PokemonWithHabitat = Pokemon & { habitats: string };
 export interface MissingNo extends Pokemon {
   readonly id: number | string;
   readonly catch_rate: number | string;
 }
 
 export type Pokeballs = {
-  readonly 'poke-ball': string | number;
-  readonly 'great-ball': string | number;
-  readonly 'ultra-ball': string | number;
-  readonly 'park-ball': string | number;
-  readonly 'master-ball': string | number;
+  readonly 'poke-ball': number;
+  readonly 'great-ball': number;
+  readonly 'ultra-ball': number;
+  readonly 'park-ball': number;
+  readonly 'master-ball': number;
 };
 
 export type HPBerries = {
-  'razz-berry': string | number;
+  readonly 'razz-berry': number;
 };
 
 export type CatchBerries = {
-  'oran-berry': string | number;
+  readonly 'oran-berry': keyof Status;
 };
 
 export type Berries = HPBerries & CatchBerries;
 export type CatchMessage = {
-  0: string;
-  1: string;
-  2: string;
-  3: string;
-  4: string;
+  readonly 0: string;
+  readonly 1: string;
+  readonly 2: string;
+  readonly 3: string;
+  readonly 4: string;
+  [result: string]: string;
 };
 export type Status = {
-  freeze: number;
-  sleep: number;
-  paralyze: number;
-  burn: number;
-  poison: number;
-  normal: number;
+  readonly freeze: number;
+  readonly sleep: number;
+  readonly paralyze: number;
+  readonly burn: number;
+  readonly poison: number;
+  readonly normal: number;
 };
 
 export type FlexDirection = {
@@ -88,6 +95,6 @@ export type Style = {
   readonly style?: React.CSSProperties;
 };
 export type Action = {
-  type: string;
-  payload: any;
+  readonly type: string;
+  readonly payload: any;
 };

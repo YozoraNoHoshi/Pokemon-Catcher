@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import Flex from '../Flex';
 import Sprite from '../Sprite';
 import styled from 'styled-components';
 import MessageBox from '../MessageBox';
-import { Pokemon } from '../../..';
+import { PokemonWithHabitat } from '../../..';
 
 const DetailCard = styled.div`
   display: flex;
@@ -18,42 +18,34 @@ const DetailCard = styled.div`
   padding-bottom: 5px;
 `;
 
-interface State {}
-
-class DetailedCard extends PureComponent<
-  Pokemon & { habitats: string },
-  State
-> {
-  static defaultProps: Pokemon | { habitats: string; id: number | string } = {
-    id: '???',
-    species: 'MissingNo.',
-    sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
-    title: '????',
-    flavor_text: '',
-    catch_rate: '???',
-    habitats: ''
-  };
-  render() {
-    let pokemon = this.props;
-    if (pokemon.id)
-      return (
-        <DetailCard>
-          <Flex row jCenter cWidth={100}>
-            <Sprite sHeight={100} src={pokemon.sprite} />
-            <Flex column alStart jCenter cWidth={100}>
-              <Flex medium row jStart cWidth={100}>
-                <Flex>No. {pokemon.id}</Flex>
-                <Flex style={{ marginLeft: '3%' }}>{pokemon.species}</Flex>
-              </Flex>
-              <Flex style={{ fontStyle: 'italic' }}>{pokemon.title}</Flex>
-              <Flex small>Catch Rate: {pokemon.catch_rate}</Flex>
-              <Flex small>Areas: {pokemon.habitats}</Flex>
-            </Flex>
+function DetailedCard(props: PokemonWithHabitat): JSX.Element {
+  return (
+    <DetailCard>
+      <Flex row jCenter cWidth={100}>
+        <Sprite sHeight={100} src={props.sprite} />
+        <Flex column alStart jCenter cWidth={100}>
+          <Flex medium row jStart cWidth={100}>
+            <Flex>No. {props.id}</Flex>
+            <Flex style={{ marginLeft: '3%' }}>{props.species}</Flex>
           </Flex>
-          <MessageBox>{pokemon.flavor_text}</MessageBox>
-        </DetailCard>
-      );
-  }
+          <Flex style={{ fontStyle: 'italic' }}>{props.title}</Flex>
+          <Flex small>Catch Rate: {props.catch_rate}</Flex>
+          <Flex small>Areas: {props.habitats}</Flex>
+        </Flex>
+      </Flex>
+      <MessageBox>{props.flavor_text}</MessageBox>
+    </DetailCard>
+  );
 }
 
-export default DetailedCard;
+DetailedCard.defaultProps = {
+  id: '???',
+  species: 'MissingNo.',
+  sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
+  title: '????',
+  flavor_text: '',
+  catch_rate: '???',
+  habitats: ''
+};
+
+export default memo(DetailedCard);

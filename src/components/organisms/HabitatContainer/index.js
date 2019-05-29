@@ -41,6 +41,7 @@ class HabitatContainer extends PureComponent {
     this.setState({ habitats, loading: false });
   };
 
+  // Will live on the actual habitat component now
   changeHabitat = () => {
     if (this.state.selectedHabitat !== this.props.currentHabitat) {
       this.props.changeHabitat(this.state.selectedHabitat);

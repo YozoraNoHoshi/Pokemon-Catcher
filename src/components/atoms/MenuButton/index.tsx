@@ -6,6 +6,8 @@ export type Props = {
   pokeRed?: boolean;
   active?: boolean;
   large?: boolean;
+  as?: any;
+  type?: string;
 } & Width &
   Style;
 
