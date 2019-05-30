@@ -1,5 +1,5 @@
 import { statusMultiplier, POKEBALLS } from '../../data';
-import { PokeballIndex, StatusIndex } from '../..';
+import { PokeballIndex, StatusIndex } from '../../types';
 
 function calculateCatchRate(
   rate: number,

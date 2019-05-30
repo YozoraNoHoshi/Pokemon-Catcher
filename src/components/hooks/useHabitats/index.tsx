@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import { getAllHabitats, getHabitatPokemon } from '../../../api';
-import { Pokemon, Habitats } from '../../..';
+import { Pokemon, Habitats } from '../../../types';
 
 export default function useHabitats(currentHabitat: string) {
   const [selectedHabitat, setSelectedHabitat] = useState(currentHabitat);

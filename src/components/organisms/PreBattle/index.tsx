@@ -3,7 +3,7 @@ import Loading from '../../atoms/Loading';
 import Battle from '../../pages/Battle';
 import { getBattlePokemon, getPokemon } from '../../../api';
 import PalParkClosed from '../../molecules/PalParkClosed';
-import { Pokemon } from '../../..';
+import { Pokemon } from '../../../types';
 
 interface Props {
   habitat: string;

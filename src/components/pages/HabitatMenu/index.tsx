@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { navigate } from '@reach/router';
 
-import { Habitat } from '../../..';
+import { Habitat } from '../../../types';
 import { title } from '../../../helpers/title';
 import useHabitats from '../../hooks/useHabitats';
 import MenuButton from '../../atoms/MenuButton';

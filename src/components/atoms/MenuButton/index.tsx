@@ -1,6 +1,6 @@
 import styled, { StyledComponent } from 'styled-components';
 import getCSSProperties from '../../../helpers/getCSSProperties';
-import { Width, Style } from '../../..';
+import { Width, Style } from '../../../types';
 
 export type Props = {
   pokeRed?: boolean;

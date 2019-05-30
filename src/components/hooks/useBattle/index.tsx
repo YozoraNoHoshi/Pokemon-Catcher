@@ -9,7 +9,7 @@ import {
   HPBerriesIndex,
   CatchBerriesIndex,
   StatusIndex
-} from '../../..';
+} from '../../../types';
 
 export default function useBattle(
   pokemon: Pokemon,

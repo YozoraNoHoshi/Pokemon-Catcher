@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getPokemon } from '../../../api';
-import { Pokemon } from '../../..';
+import { Pokemon } from '../../../types';
 
 export default function usePokedex(): {
   pokemon: Pokemon;

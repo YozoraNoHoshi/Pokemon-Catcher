@@ -7,7 +7,7 @@ import {
   Status,
   CatchMessage,
   Sprites
-} from '..';
+} from '../types';
 
 // Catching Pokemon Related
 export const HP_MULT: { [percentage: string]: string } = {

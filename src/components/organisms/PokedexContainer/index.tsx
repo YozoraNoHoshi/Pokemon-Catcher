@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { getPokemon } from '../../../api';
-import { Pokemon } from '../../..';
+import { Pokemon } from '../../../types';
 
 interface Props {
   children: any;

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
 import Flex from '../../atoms/Flex';
-import { Width } from '../../..';
+import { Width } from '../../../types';
 interface Props {
   changeGameState: (arg?: string) => void;
 }

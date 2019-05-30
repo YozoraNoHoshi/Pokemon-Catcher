@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
 import { title } from '../../../helpers/title';
-import { Pokemon } from '../../..';
+import { Pokemon } from '../../../types';
 
 interface Props {
   name: string;

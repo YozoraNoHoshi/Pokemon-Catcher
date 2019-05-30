@@ -6,7 +6,7 @@ import ModalMenu from '../../molecules/ModalMenu';
 import MainMenu from '../MainMenu';
 import styled from 'styled-components';
 import { POKEBALL_SPRITES } from '../../../data';
-import { CaughtPokemon } from '../../..';
+import { CaughtPokemon } from '../../../types';
 import { WindowLocation } from '@reach/router';
 
 const FMenu = styled(Flex)`

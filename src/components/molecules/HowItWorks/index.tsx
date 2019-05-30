@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import Flex from '../../atoms/Flex';
-import { Width } from '../../..';
+import { Width } from '../../../types';
 
 function HowItWorks(props: Width): JSX.Element {
   return (

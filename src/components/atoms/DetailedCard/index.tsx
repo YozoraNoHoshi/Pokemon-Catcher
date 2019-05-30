@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { PokemonWithHabitat } from '../../..';
+import { PokemonWithHabitat } from '../../../types';
 import Flex from '../Flex';
 import Sprite from '../Sprite';
 import MessageBox from '../MessageBox';

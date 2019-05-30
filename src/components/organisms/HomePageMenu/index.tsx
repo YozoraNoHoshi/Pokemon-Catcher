@@ -3,7 +3,7 @@ import Flex from '../../atoms/Flex';
 import { title } from '../../../helpers/title';
 import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
-import { Width } from '../../..';
+import { Width } from '../../../types';
 
 interface Props {
   changeGameState: (type?: string) => void;

@@ -1,9 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { useState, memo } from 'react';
 
-class Loading extends PureComponent<{}, {}> {
-  render() {
-    return <div className="Loading">Loading...</div>;
-  }
+interface Props {}
+
+function Loading(props: Props): JSX.Element {
+  return <div className="Loading">Loading...</div>;
 }
 
-export default Loading;
+Loading.defaultProps = {};
+
+export default memo(Loading);

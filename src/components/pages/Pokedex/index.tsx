@@ -5,7 +5,7 @@ import usePokedex from '../../hooks/usePokedex';
 import SearchPokedex from '../../molecules/SearchPokedex';
 import DetailedCard from '../../atoms/DetailedCard';
 import Flex from '../../atoms/Flex';
-import { PokemonWithHabitat } from '../../..';
+import { PokemonWithHabitat } from '../../../types';
 
 const DexContainer = styled.div`
   display: flex;

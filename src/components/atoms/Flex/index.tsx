@@ -9,7 +9,7 @@ import {
   AlignItems,
   Wrap,
   TextAlign
-} from '../../..';
+} from '../../../types';
 
 type Props = FlexDirection &
   Width &

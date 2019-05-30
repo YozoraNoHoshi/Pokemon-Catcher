@@ -7,7 +7,7 @@ import {
   PokeballIndex,
   HPBerriesIndex,
   CatchBerriesIndex
-} from '../../..';
+} from '../../../types';
 
 // Temporary typing, actual typing is NYI
 interface Props {

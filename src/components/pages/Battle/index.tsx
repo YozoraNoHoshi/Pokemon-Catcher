@@ -15,7 +15,7 @@ import {
 } from '../../../data';
 
 import useBattle from '../../hooks/useBattle';
-import { Pokemon, Berries, Pokeballs } from '../../..';
+import { Pokemon, Berries, Pokeballs } from '../../../types';
 
 interface Props {
   pokemon: Pokemon;
