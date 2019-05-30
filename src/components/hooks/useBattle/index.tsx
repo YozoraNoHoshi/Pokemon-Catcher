@@ -5,47 +5,49 @@ import { CATCH_MESSAGES, POKEBALLS, BERRIES, HP_BERRIES } from '../../../data';
 import {
   Pokemon,
   CaughtPokemon,
-  CatchBerries,
-  HPBerries,
-  Status,
-  PokeballIndex
+  PokeballIndex,
+  HPBerriesIndex,
+  CatchBerriesIndex,
+  StatusIndex
 } from '../../..';
 
-function useBattle(
+export default function useBattle(
   pokemon: Pokemon,
   cb: (CaughtPokemon: CaughtPokemon) => void
 ) {
   const [pokeball, setPokeball] = useState('poke-ball' as PokeballIndex);
-  const [status, setStatus] = useState('normal');
-  const [selectedBerry, setSelectedBerry] = useState('oran-berry');
+  const [status, setStatus] = useState('normal' as StatusIndex);
+  const [selectedBerry, setSelectedBerry] = useState('oran-berry' as
+    | HPBerriesIndex
+    | CatchBerriesIndex);
   const [hpPercent, setHPPercent] = useState(1);
   const [caught, setCaught] = useState(false);
   const [message, setMessage] = useState(`A wild ${pokemon.species} appeared!`);
 
-  const selectBerry = (berry: string) => {
+  const selectBerry = (berry: HPBerriesIndex | CatchBerriesIndex) => {
     if (BERRIES.hasOwnProperty(berry)) setSelectedBerry(berry);
   };
+
   const selectPokeball = (pokeball: PokeballIndex) => {
     if (POKEBALLS.hasOwnProperty(pokeball)) setPokeball(pokeball);
   };
 
   const useBerry = useCallback(() => {
-    let berry: string = selectedBerry;
-    if (BERRIES.hasOwnProperty(berry)) {
-      let berryEffect = BERRIES[berry as keyof CatchBerries];
+    if (BERRIES.hasOwnProperty(selectedBerry)) {
+      let berryEffect = BERRIES[selectedBerry as CatchBerriesIndex];
       // Message needs to be changed
       let newMessage: string =
-        berry === 'oran-berry'
+        selectedBerry === 'oran-berry'
           ? `The ${pokemon.species} returned to normal!`
           : `The ${
               pokemon.species
             } ate the berry and had ${berryEffect} inflicted!`;
       setMessage(newMessage);
       setStatus(berryEffect);
-    } else if (HP_BERRIES.hasOwnProperty(berry)) {
+    } else if (HP_BERRIES.hasOwnProperty(selectedBerry)) {
       // Affects HP - Razz Berry and the other Berries from Lets Go!
       // Pokemon faints if berry brings it below 0? NYI
-      let berryEffect = HP_BERRIES[berry as keyof HPBerries];
+      let berryEffect = HP_BERRIES[selectedBerry as HPBerriesIndex];
       let newHPPercent = Math.max(hpPercent - berryEffect, 0.1);
       let newMessage = `The ${
         pokemon.species
@@ -63,19 +65,15 @@ function useBattle(
         pokeball
       });
       setCaught(true);
-      setMessage(CATCH_MESSAGES[result]);
     }
-    // Catch fails
-    else {
-      setMessage(CATCH_MESSAGES[result]);
-    }
+    setMessage(CATCH_MESSAGES[result]);
   };
 
   const throwPokeball = () => {
     let result = determineCatchResult(
       pokemon.catch_rate,
       pokeball,
-      status as keyof Status,
+      status,
       hpPercent
     );
     resultOfCatch(result);
@@ -94,5 +92,3 @@ function useBattle(
     throwPokeball
   };
 }
-
-export default useBattle;
