@@ -19,12 +19,16 @@ export interface MissingNo extends Pokemon {
   readonly catch_rate: number | string;
 }
 
-export type Pokeballs = {
-  readonly 'poke-ball': number;
-  readonly 'great-ball': number;
-  readonly 'ultra-ball': number;
-  readonly 'park-ball': number;
-  readonly 'master-ball': number;
+export type PokeballIndex =
+  | 'poke-ball'
+  | 'great-ball'
+  | 'ultra-ball'
+  | 'park-ball'
+  | 'master-ball';
+export type Pokeballs = { [pokeball in PokeballIndex]: number };
+export type PokeballSprites = { [pokeball in PokeballIndex]: string };
+export type Sprites = {
+  [sprite: string]: string;
 };
 
 export type HPBerries = {
@@ -32,7 +36,7 @@ export type HPBerries = {
 };
 
 export type CatchBerries = {
-  readonly 'oran-berry': keyof Status;
+  readonly 'oran-berry': StatusIndex;
 };
 
 export type Berries = HPBerries & CatchBerries;
@@ -52,6 +56,7 @@ export type Status = {
   readonly poison: number;
   readonly normal: number;
 };
+export type StatusIndex = keyof Status;
 
 export type FlexDirection = {
   readonly row?: boolean;
