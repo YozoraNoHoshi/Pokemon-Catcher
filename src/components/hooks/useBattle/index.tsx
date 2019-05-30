@@ -7,15 +7,15 @@ import {
   CaughtPokemon,
   CatchBerries,
   HPBerries,
-  Pokeballs,
-  Status
+  Status,
+  PokeballIndex
 } from '../../..';
 
 function useBattle(
   pokemon: Pokemon,
   cb: (CaughtPokemon: CaughtPokemon) => void
-): any {
-  const [pokeball, setPokeball] = useState('poke-ball');
+) {
+  const [pokeball, setPokeball] = useState('poke-ball' as PokeballIndex);
   const [status, setStatus] = useState('normal');
   const [selectedBerry, setSelectedBerry] = useState('oran-berry');
   const [hpPercent, setHPPercent] = useState(1);
@@ -25,7 +25,7 @@ function useBattle(
   const selectBerry = (berry: string) => {
     if (BERRIES.hasOwnProperty(berry)) setSelectedBerry(berry);
   };
-  const selectPokeball = (pokeball: keyof Pokeballs) => {
+  const selectPokeball = (pokeball: PokeballIndex) => {
     if (POKEBALLS.hasOwnProperty(pokeball)) setPokeball(pokeball);
   };
 
@@ -55,29 +55,26 @@ function useBattle(
     }
   }, [selectedBerry, hpPercent, pokemon]);
 
-  const resultOfCatch = useCallback(
-    (result: number) => {
-      // Catch successful
-      if (result === 4) {
-        cb({
-          ...pokemon,
-          pokeball
-        });
-        setCaught(true);
-        setMessage(CATCH_MESSAGES[result]);
-      }
-      // Catch fails
-      else {
-        setMessage(CATCH_MESSAGES[result]);
-      }
-    },
-    [pokemon, pokeball]
-  );
+  const resultOfCatch = (result: number) => {
+    // Catch successful
+    if (result === 4) {
+      cb({
+        ...pokemon,
+        pokeball
+      });
+      setCaught(true);
+      setMessage(CATCH_MESSAGES[result]);
+    }
+    // Catch fails
+    else {
+      setMessage(CATCH_MESSAGES[result]);
+    }
+  };
 
   const throwPokeball = () => {
     let result = determineCatchResult(
       pokemon.catch_rate,
-      pokeball as keyof Pokeballs,
+      pokeball,
       status as keyof Status,
       hpPercent
     );

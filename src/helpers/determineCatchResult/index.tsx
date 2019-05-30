@@ -1,9 +1,9 @@
 import { statusMultiplier, POKEBALLS } from '../../data';
-import { Pokeballs, Status } from '../..';
+import { Pokeballs, Status, PokeballIndex } from '../..';
 
 function calculateCatchRate(
   rate: number,
-  pokeball: keyof Pokeballs,
+  pokeball: PokeballIndex,
   status: keyof Status,
   hpPercent: number | undefined
 ) {
@@ -36,7 +36,7 @@ function shakeCheck(catchRate: number): boolean {
  */
 export default function determineCatchResult(
   rate: number,
-  pokeball: keyof Pokeballs,
+  pokeball: PokeballIndex,
   status: keyof Status,
   hpPercent?: number
 ): number {

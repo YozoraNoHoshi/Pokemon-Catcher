@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import { getAllHabitats, getHabitatPokemon } from '../../../api';
 import { Pokemon, Habitats } from '../../..';
 
-export default function useHabitats(currentHabitat: string): any {
+export default function useHabitats(currentHabitat: string) {
   const [selectedHabitat, setSelectedHabitat] = useState(currentHabitat);
   const [habitatPokemon, setHabitatPokemon] = useState([] as Pokemon[]);
   const [loading, setLoading] = useState(true);
@@ -52,7 +52,6 @@ export default function useHabitats(currentHabitat: string): any {
     habitats,
     selectedHabitat,
     habitatPokemon,
-    handleClick,
-    setHabitat
+    handleClick
   };
 }

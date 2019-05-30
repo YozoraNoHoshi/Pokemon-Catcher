@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
-import { Pokeballs, Berries } from '../../..';
+import { Pokeballs, Berries, PokeballIndex } from '../../..';
 
 interface Props {
   pokeballs: Pokeballs[];
   berries: Berries[];
-  selectPokeBall: (poke: string) => void;
+  selectPokeBall: (poke: PokeballIndex) => void;
   selectBerry: (berry: string) => void;
 }
 

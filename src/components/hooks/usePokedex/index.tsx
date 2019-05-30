@@ -3,12 +3,12 @@ import { getPokemon } from '../../../api';
 import { Pokemon } from '../../..';
 
 export default function usePokedex(): {
-  pokemon: Pokemon | object;
+  pokemon: Pokemon;
   loading: boolean;
   foundPokemon: boolean;
   searchPokemon: (nameOrId: number | string) => void;
 } {
-  const [pokemon, setPokemon] = useState({});
+  const [pokemon, setPokemon] = useState({} as Pokemon);
   const [loading, setLoading] = useState(false);
   const [foundPokemon, setFoundPokemon] = useState(false);
   // const [pastSearch, setPastSearch] = useState([]);

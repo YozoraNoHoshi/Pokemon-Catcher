@@ -8,11 +8,11 @@ import { Pokemon } from '../../..';
 interface Props {
   habitat: string;
   riggedPokemon?: string;
-  modifyPokemon: (pokemon: Pokemon) => any;
+  modifyPokemon: (pokemon: any) => void;
 }
 interface State {
   loading: boolean;
-  pokemon: Pokemon | object;
+  pokemon: Pokemon;
   noPokemon: boolean;
 }
 
@@ -22,7 +22,7 @@ class PreBattle extends PureComponent<Props, State> {
     'The Pal Park is currently closed for maintenance. We apologize for the inconvenience.';
   constructor(props: Props) {
     super(props);
-    this.state = { loading: true, pokemon: {}, noPokemon: false };
+    this.state = { loading: true, pokemon: {} as Pokemon, noPokemon: false };
   }
 
   async componentDidMount() {
