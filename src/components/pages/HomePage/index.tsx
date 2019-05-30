@@ -5,6 +5,7 @@ import HomePageMenu from '../../organisms/HomePageMenu';
 import HowItWorks from '../../molecules/HowItWorks';
 import Header from '../../molecules/Header';
 import styled from 'styled-components';
+import { RouteComponentProps } from '@reach/router';
 
 const HomePageContainer = styled(Flex)`
   width: 75vw;
@@ -13,7 +14,7 @@ const HomePageContainer = styled(Flex)`
   }
 `;
 
-interface Props {
+interface Props extends RouteComponentProps {
   changeGameState: (type?: string) => void;
   currentHabitat: string;
 }

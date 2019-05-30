@@ -6,8 +6,8 @@ import ModalMenu from '../../molecules/ModalMenu';
 import MainMenu from '../MainMenu';
 import styled from 'styled-components';
 import { POKEBALL_SPRITES } from '../../../data';
-import { CaughtPokemon } from '../../../types';
-import { WindowLocation } from '@reach/router';
+import { CaughtPokemon, PokeballSprites } from '../../../types';
+import { WindowLocation, RouteComponentProps } from '@reach/router';
 
 const FMenu = styled(Flex)`
   flex-direction: row;
@@ -16,21 +16,21 @@ const FMenu = styled(Flex)`
   left: calc(50% - 4ch);
 `;
 
-interface Props {
+interface Props extends RouteComponentProps {
   currentPokemon: CaughtPokemon[] | object[];
   changeGameState: (arg?: string) => void;
-  location: WindowLocation;
 }
 
 function FooterMenu(props: Props): JSX.Element | null {
-  if (props.location.pathname === '/') return null;
+  const location = props.location!;
+  if (location.pathname === '/') return null;
   return (
     <FMenu as="footer">
       <ModalMenu closeOnInteract buttonText="Menu">
         <Flex row cWidth={100} style={{ justifyContent: 'space-between' }}>
           <TrainerMenu
             className="modal"
-            pokeballs={POKEBALL_SPRITES}
+            pokeballs={POKEBALL_SPRITES as PokeballSprites}
             cWidth={55}
             pokemon={props.currentPokemon as CaughtPokemon[]}
           />

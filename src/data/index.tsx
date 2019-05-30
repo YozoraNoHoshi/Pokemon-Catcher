@@ -3,10 +3,10 @@ import {
   MissingNo,
   HPBerries,
   CatchBerries,
-  Berries,
   Status,
   CatchMessage,
-  Sprites
+  PokeballSprites,
+  BerrySprites
 } from '../types';
 
 // Catching Pokemon Related
@@ -39,7 +39,7 @@ export const CATCH_MESSAGES: CatchMessage = {
 export const BERRIES: CatchBerries = { 'oran-berry': 'normal' };
 export const HP_BERRIES: HPBerries = { 'razz-berry': 0.1 };
 
-export const BERRY_SPRITES: Sprites = mapKeyToSprite(BERRIES, HP_BERRIES);
+export const BERRY_SPRITES: BerrySprites = mapKeyToSprite(BERRIES, HP_BERRIES);
 
 // Pokeballs and their effects
 export const POKEBALLS: Pokeballs = {
@@ -50,7 +50,7 @@ export const POKEBALLS: Pokeballs = {
   'master-ball': 255
 };
 
-export const POKEBALL_SPRITES: Sprites = mapKeyToSprite(POKEBALLS);
+export const POKEBALL_SPRITES: PokeballSprites = mapKeyToSprite(POKEBALLS);
 
 // Other Sprites
 export const BAG_SPRITE: string =
@@ -77,7 +77,7 @@ function spriteLink(item: string): string {
  * Creates a mapping object with links to each sprite from the PokeAPI.
  * @param obj Objects with keys to map to a sprite from the PokeAPI Github. Keys must match the url in the pokeapi
  */
-function mapKeyToSprite(...args: { [key: string]: any }[]): Sprites {
+function mapKeyToSprite(...args: { [key: string]: any }[]): any {
   let acc: any = {};
   for (let obj of args) {
     for (let key in obj) {

@@ -4,8 +4,9 @@ import Battle from '../../pages/Battle';
 import { getBattlePokemon, getPokemon } from '../../../api';
 import PalParkClosed from '../../molecules/PalParkClosed';
 import { Pokemon } from '../../../types';
+import { RouteComponentProps } from '@reach/router';
 
-interface Props {
+interface Props extends RouteComponentProps {
   habitat: string;
   riggedPokemon?: string;
   modifyPokemon: (pokemon: any) => void;

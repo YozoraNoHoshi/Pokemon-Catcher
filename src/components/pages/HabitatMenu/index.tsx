@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { navigate } from '@reach/router';
+import { navigate, RouteComponentProps } from '@reach/router';
 
 import { Habitat } from '../../../types';
 import { title } from '../../../helpers/title';
@@ -9,7 +9,7 @@ import Flex from '../../atoms/Flex';
 import Loading from '../../atoms/Loading';
 import HabitatInfo from '../../molecules/HabitatInfo';
 
-interface Props {
+interface Props extends RouteComponentProps {
   currentHabitat: string;
   changeHabitat: (selectedHabitat: string) => void;
 }

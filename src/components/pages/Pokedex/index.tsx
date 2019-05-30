@@ -6,6 +6,7 @@ import SearchPokedex from '../../molecules/SearchPokedex';
 import DetailedCard from '../../atoms/DetailedCard';
 import Flex from '../../atoms/Flex';
 import { PokemonWithHabitat } from '../../../types';
+import { RouteComponentProps } from '@reach/router';
 
 const DexContainer = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const DexContainer = styled.div`
   justify-content: space-around;
 `;
 
-interface Props {
+interface Props extends RouteComponentProps {
   pastSearch: PokemonWithHabitat[];
 }
 // pastSearch will come from redux store

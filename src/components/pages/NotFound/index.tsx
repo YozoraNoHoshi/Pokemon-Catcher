@@ -2,8 +2,9 @@ import React, { memo } from 'react';
 import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import Flex from '../../atoms/Flex';
 import Sprite from '../../atoms/Sprite';
+import { RouteComponentProps } from '@reach/router';
 
-function NotFound(props: {}): JSX.Element {
+function NotFound(props: RouteComponentProps): JSX.Element {
   return (
     <Flex jCenter alCenter column style={{ marginTop: '30%' }}>
       <Flex txCenter large>
