@@ -1,13 +1,20 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
-import { Pokeballs, Berries, PokeballIndex } from '../../..';
+import {
+  Pokeballs,
+  Berries,
+  PokeballIndex,
+  HPBerriesIndex,
+  CatchBerriesIndex
+} from '../../..';
 
+// Temporary typing, actual typing is NYI
 interface Props {
   pokeballs: Pokeballs[];
   berries: Berries[];
   selectPokeBall: (poke: PokeballIndex) => void;
-  selectBerry: (berry: string) => void;
+  selectBerry: (berry: HPBerriesIndex | CatchBerriesIndex) => void;
 }
 
 // Change how Pokeballs/Berries is structured later, should not be an array of objects

@@ -77,7 +77,7 @@ function spriteLink(item: string): string {
  * Creates a mapping object with links to each sprite from the PokeAPI.
  * @param obj Objects with keys to map to a sprite from the PokeAPI Github. Keys must match the url in the pokeapi
  */
-function mapKeyToSprite(...args: { [key: string]: any }[]): any {
+function mapKeyToSprite(...args: { [key: string]: any }[]): Sprites {
   let acc: any = {};
   for (let obj of args) {
     for (let key in obj) {
