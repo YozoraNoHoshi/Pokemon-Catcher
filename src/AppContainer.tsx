@@ -1,12 +1,23 @@
 import { PureComponent } from 'react';
+import { CaughtPokemon } from './types';
 
-class AppContainer extends PureComponent {
-  constructor(props) {
+interface Props {
+  children: (arg: any) => any;
+}
+interface State {
+  habitat: string;
+  currentPokemon: CaughtPokemon[];
+  inventory: { [item: string]: { name: string; quantity: number } };
+  loading: boolean;
+}
+// Move this to redux eventually
+class AppContainer extends PureComponent<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      habitat: JSON.parse(localStorage.getItem('habitat')) || 'field',
-      currentPokemon: JSON.parse(localStorage.getItem('currentPokemon')) || [],
-      inventory: JSON.parse(localStorage.getItem('inventory')) || {},
+      habitat: JSON.parse(localStorage.getItem('habitat')!) || 'field',
+      currentPokemon: JSON.parse(localStorage.getItem('currentPokemon')!) || [],
+      inventory: JSON.parse(localStorage.getItem('inventory')!) || {},
       loading: false
     };
   }
@@ -15,11 +26,14 @@ class AppContainer extends PureComponent {
   //   this.setState({ loading: false });
   // }
 
-  changeHabitat = habitat => {
+  changeHabitat = (habitat: any) => {
     this.setState({ habitat });
   };
 
-  modifyItems = (item, quantity = 1) => {
+  modifyItems = (
+    item: string | { name: string; quantity: number },
+    quantity: number = 1
+  ) => {
     // Item = string means used an item, object means add an item
     let inventory = { ...this.state.inventory };
     if (typeof item === 'string') {
@@ -34,7 +48,7 @@ class AppContainer extends PureComponent {
     this.setState({ inventory });
   };
 
-  modifyPokemon = pokemon => {
+  modifyPokemon = (pokemon: CaughtPokemon | string | number) => {
     // Object means adding pokemon, string/number means removing
     if (typeof pokemon === 'object') {
       this.setState(prevSt => {
@@ -49,12 +63,12 @@ class AppContainer extends PureComponent {
     }
   };
 
-  changeGameState = type => {
+  changeGameState = (type?: string) => {
     if (type === 'load') {
       let currentPokemon =
-        JSON.parse(localStorage.getItem('currentPokemon')) || [];
-      let inventory = JSON.parse(localStorage.getItem('inventory')) || {};
-      let habitat = JSON.parse(localStorage.getItem('habitat')) || 'field';
+        JSON.parse(localStorage.getItem('currentPokemon')!) || [];
+      let inventory = JSON.parse(localStorage.getItem('inventory')!) || {};
+      let habitat = JSON.parse(localStorage.getItem('habitat')!) || 'field';
       this.setState({ currentPokemon, inventory, habitat });
     } else {
       localStorage.setItem(
@@ -75,9 +89,5 @@ class AppContainer extends PureComponent {
     });
   }
 }
-
-AppContainer.defaultProps = {};
-
-AppContainer.propTypes = {};
 
 export default AppContainer;
