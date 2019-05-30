@@ -5,7 +5,8 @@ import {
   CatchBerries,
   Berries,
   Status,
-  CatchMessage
+  CatchMessage,
+  Sprites
 } from '..';
 
 // Catching Pokemon Related
@@ -38,7 +39,7 @@ export const CATCH_MESSAGES: CatchMessage = {
 export const BERRIES: CatchBerries = { 'oran-berry': 'normal' };
 export const HP_BERRIES: HPBerries = { 'razz-berry': 0.1 };
 
-export const BERRY_SPRITES: Berries = mapKeyToSprite(BERRIES, HP_BERRIES);
+export const BERRY_SPRITES: Sprites = mapKeyToSprite(BERRIES, HP_BERRIES);
 
 // Pokeballs and their effects
 export const POKEBALLS: Pokeballs = {
@@ -49,7 +50,7 @@ export const POKEBALLS: Pokeballs = {
   'master-ball': 255
 };
 
-export const POKEBALL_SPRITES: Pokeballs = mapKeyToSprite(POKEBALLS);
+export const POKEBALL_SPRITES: Sprites = mapKeyToSprite(POKEBALLS);
 
 // Other Sprites
 export const BAG_SPRITE: string =

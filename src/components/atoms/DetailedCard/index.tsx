@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
+import styled from 'styled-components';
+import { PokemonWithHabitat } from '../../..';
 import Flex from '../Flex';
 import Sprite from '../Sprite';
-import styled from 'styled-components';
 import MessageBox from '../MessageBox';
-import { PokemonWithHabitat } from '../../..';
 
 const DetailCard = styled.div`
   display: flex;

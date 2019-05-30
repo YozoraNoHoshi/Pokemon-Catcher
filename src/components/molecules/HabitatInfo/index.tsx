@@ -6,7 +6,7 @@ import { Pokemon } from '../../..';
 
 interface Props {
   name: string;
-  image: string;
+  image?: string;
   description: string;
   pokemon: Pokemon[];
 }
