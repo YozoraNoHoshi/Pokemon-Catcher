@@ -37,10 +37,6 @@ export type Pokeballs = { readonly [pokeball in PokeballIndex]: number };
 
 export type PokeballSprites = { readonly [pokeball in PokeballIndex]: string };
 
-export type Sprites = {
-  readonly [sprite: string]: string;
-};
-
 export type HPBerriesIndex = 'razz-berry';
 
 export type HPBerries = { readonly [berry in HPBerriesIndex]: number };
@@ -52,6 +48,9 @@ export type CatchBerries = {
 };
 
 export type Berries = HPBerries & CatchBerries;
+export type BerrySprites =
+  | { readonly [berry in HPBerriesIndex]: string }
+  | { readonly [berry in CatchBerriesIndex]: string };
 
 // Battle-Related Types
 export type CatchMessage = {
