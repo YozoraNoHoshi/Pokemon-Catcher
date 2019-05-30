@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { memo, ReactChildren } from 'react';
 import MenuButton from '../MenuButton';
 import styled from 'styled-components';
 
@@ -26,21 +26,21 @@ interface Props {
   closeOnInteract?: boolean;
   toggleModal?: (arg: any) => any;
   show?: boolean;
+  children: ReactChildren;
 }
 
-class Modal extends PureComponent<Props, {}> {
-  static defaultProps: Props = { closeOnInteract: false };
-  render() {
-    if (!this.props.show) return null;
-    return (
-      <StyledModal className="modal">
-        {this.props.children}
-        {!this.props.closeOnInteract && (
-          <MenuButton onClick={this.props.toggleModal}>Close</MenuButton>
-        )}
-      </StyledModal>
-    );
-  }
+function Modal(props: Props): JSX.Element | null {
+  if (!props.show) return null;
+  return (
+    <StyledModal className="modal">
+      {props.children}
+      {!props.closeOnInteract && (
+        <MenuButton onClick={props.toggleModal}>Close</MenuButton>
+      )}
+    </StyledModal>
+  );
 }
 
-export default Modal;
+Modal.defaultProps = { closeOnInteract: false };
+
+export default memo(Modal);

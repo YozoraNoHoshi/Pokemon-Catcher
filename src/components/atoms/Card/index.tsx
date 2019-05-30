@@ -1,4 +1,4 @@
-import React, { PureComponent, HTMLAttributes } from 'react';
+import React, { memo, HTMLAttributes } from 'react';
 import Flex from '../Flex';
 import styled from 'styled-components';
 import Sprite from '../Sprite';
@@ -33,43 +33,36 @@ interface Props {
   species?: string;
 }
 
-interface State {}
-
-class Card extends PureComponent<
-  Props & HTMLAttributes<HTMLDivElement>,
-  State
-> {
-  static defaultProps: Props = {
-    click: () => {},
-    noLink: false,
-    pokeball: '',
-    sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
-    name: 'missingno',
-    species: 'MissingNo.'
-  };
-
-  render() {
-    return this.props.noLink ? (
-      <StyledCard className={this.props.className} onClick={this.props.click}>
-        <Sprite src={this.props.sprite} alt={this.props.name} />
-        <Flex jCenter txCenter>
-          {this.props.species}
-        </Flex>
-      </StyledCard>
-    ) : (
-      <StyledCard style={{ margin: '5px' }} className={this.props.className}>
-        <Sprite src={this.props.sprite} alt={this.props.name} />
-        <Flex jCenter txCenter>
-          {this.props.species}
-        </Flex>
-        {this.props.pokeball && (
-          <div className="pokeball">
-            <Sprite src={this.props.pokeball} />
-          </div>
-        )}
-      </StyledCard>
-    );
-  }
+function Card(props: Props & HTMLAttributes<HTMLDivElement>): JSX.Element {
+  return props.noLink ? (
+    <StyledCard className={props.className} onClick={props.click}>
+      <Sprite src={props.sprite} alt={props.name} />
+      <Flex jCenter txCenter>
+        {props.species}
+      </Flex>
+    </StyledCard>
+  ) : (
+    <StyledCard style={{ margin: '5px' }} className={props.className}>
+      <Sprite src={props.sprite} alt={props.name} />
+      <Flex jCenter txCenter>
+        {props.species}
+      </Flex>
+      {props.pokeball && (
+        <div className="pokeball">
+          <Sprite src={props.pokeball} />
+        </div>
+      )}
+    </StyledCard>
+  );
 }
 
-export default Card;
+Card.defaultProps = {
+  click: () => {},
+  noLink: false,
+  pokeball: '',
+  sprite: 'https://cdn.bulbagarden.net/upload/9/98/Missingno_RB.png',
+  name: 'missingno',
+  species: 'MissingNo.'
+};
+
+export default memo(Card);
