@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect } from 'react';
+import React, { useState, memo, useEffect, useRef } from 'react';
 import MenuButton from '../../atoms/MenuButton';
 import Modal from '../../atoms/Modal';
 import Flex from '../../atoms/Flex';
@@ -13,13 +13,13 @@ interface Props {
 }
 
 function ModalMenu(props: Props): JSX.Element {
-  const ref = React.createRef<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const toggleModal = () => setOpen(s => !s);
 
   // Fix typing for e: Event later
   const handleClick = (e: any) => {
-    const node: HTMLDivElement = ref.current!;
+    const node = ref.current!;
     if (node.contains(e.target)) {
       if (
         props.closeOnInteract &&
