@@ -7,7 +7,7 @@ import MainMenu from '../MainMenu';
 import styled from 'styled-components';
 import { POKEBALL_SPRITES } from '../../../data';
 import { CaughtPokemon, PokeballSprites } from '../../../types';
-import { WindowLocation, RouteComponentProps } from '@reach/router';
+import { RouteComponentProps } from '@reach/router';
 
 const FMenu = styled(Flex)`
   flex-direction: row;

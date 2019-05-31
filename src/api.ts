@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Pokemon } from '.';
+import { Pokemon } from './types';
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
 function convertResultToObject(arr: any[]): object {

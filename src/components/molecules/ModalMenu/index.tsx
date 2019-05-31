@@ -9,7 +9,7 @@ interface Props {
   closeOnInteract?: boolean;
   sprite?: string;
   style?: any;
-  children: JSX.Element;
+  children: any; // Children typing seems to be buggy
 }
 
 function ModalMenu(props: Props): JSX.Element {

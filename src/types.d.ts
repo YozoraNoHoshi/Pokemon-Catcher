@@ -47,10 +47,9 @@ export type CatchBerries = {
   readonly [berry in CatchBerriesIndex]: StatusIndex
 };
 
+export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
 export type Berries = HPBerries & CatchBerries;
-export type BerrySprites =
-  | { readonly [berry in HPBerriesIndex]: string }
-  | { readonly [berry in CatchBerriesIndex]: string };
+export type BerrySprites = { readonly [berry in BerryIndex]: string };
 
 // Battle-Related Types
 export type CatchMessage = {

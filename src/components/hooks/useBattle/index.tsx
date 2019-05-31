@@ -8,7 +8,8 @@ import {
   PokeballIndex,
   HPBerriesIndex,
   CatchBerriesIndex,
-  StatusIndex
+  StatusIndex,
+  BerryIndex
 } from '../../../types';
 
 export default function useBattle(
@@ -17,14 +18,14 @@ export default function useBattle(
 ) {
   const [pokeball, setPokeball] = useState('poke-ball' as PokeballIndex);
   const [status, setStatus] = useState('normal' as StatusIndex);
-  const [selectedBerry, setSelectedBerry] = useState('oran-berry' as
-    | HPBerriesIndex
-    | CatchBerriesIndex);
+  const [selectedBerry, setSelectedBerry] = useState(
+    'oran-berry' as BerryIndex
+  );
   const [hpPercent, setHPPercent] = useState(1);
   const [caught, setCaught] = useState(false);
   const [message, setMessage] = useState(`A wild ${pokemon.species} appeared!`);
 
-  const selectBerry = (berry: HPBerriesIndex | CatchBerriesIndex) => {
+  const selectBerry = (berry: BerryIndex) => {
     if (BERRIES.hasOwnProperty(berry)) setSelectedBerry(berry);
   };
 

@@ -35,8 +35,8 @@ function Battle(props: Props): JSX.Element {
     useBerry,
     throwPokeball
   } = useBattle(props.pokemon, props.modifyPokemon);
-  const pokeballSprite: string = POKEBALL_SPRITES[pokeball] as string;
-
+  const pokeballSprite: string = POKEBALL_SPRITES[pokeball];
+  const berrySprite: string = BERRY_SPRITES[selectedBerry];
   return (
     <Flex column alCenter cWidth={'50vw'}>
       <MessageBox>
@@ -83,7 +83,7 @@ function Battle(props: Props): JSX.Element {
             <Flex column cWidth={100}>
               <MenuButton onClick={useBerry} style={{ height: '50px' }}>
                 <Flex row jCenter alCenter cWidth={100}>
-                  <Sprite sHeight={100} src={BERRY_SPRITES[selectedBerry]} />
+                  <Sprite sHeight={100} src={berrySprite} />
                   Berry
                 </Flex>
               </MenuButton>
