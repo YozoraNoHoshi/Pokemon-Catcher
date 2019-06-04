@@ -20,17 +20,15 @@ function ModalMenu(props: Props): JSX.Element {
   // Fix typing for e: Event later
   const handleClick = (e: any) => {
     const node = ref.current!;
-    if (node.contains(e.target)) {
-      if (
-        props.closeOnInteract &&
-        open &&
-        !e.target.className.includes('modal')
-      ) {
-        toggleModal();
-      }
-      return;
-    }
-    if (open) toggleModal();
+    const clickOutsideModal: boolean | undefined =
+      props.closeOnInteract && open && !e.target.className.includes('modal');
+    // if (node.contains(e.target)) {
+    //   if (clickOutsideModal) {
+    //     toggleModal();
+    //   }
+    //   return;
+    // }
+    if (open || (node.contains(e.target) && clickOutsideModal)) toggleModal();
   };
 
   useEffect(() => {
