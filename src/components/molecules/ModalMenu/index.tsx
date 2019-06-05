@@ -22,12 +22,6 @@ function ModalMenu(props: Props): JSX.Element {
     const node = ref.current!;
     const clickOutsideModal: boolean | undefined =
       props.closeOnInteract && open && !e.target.className.includes('modal');
-    // if (node.contains(e.target)) {
-    //   if (clickOutsideModal) {
-    //     toggleModal();
-    //   }
-    //   return;
-    // }
     if (open || (node.contains(e.target) && clickOutsideModal)) toggleModal();
   };
 
@@ -72,74 +66,3 @@ ModalMenu.defaultProps = {
 };
 
 export default memo(ModalMenu);
-
-// import React, { PureComponent } from 'react';
-// class ModalMenu extends PureComponent {
-//   constructor(props) {
-//     super(props);
-//     this.state = { open: false };
-//     this.node = React.createRef();
-//   }
-//   componentDidMount() {
-//     document.addEventListener('click', this.handleClick, false);
-//   }
-//   componentWillUnmount() {
-//     document.removeEventListener('click', this.handleClick, false);
-//   }
-
-//   handleClick = e => {
-//     if (this.node.current.contains(e.target)) {
-//       if (
-//         this.props.closeOnInteract &&
-//         this.state.open &&
-//         !e.target.className.includes('modal')
-//       ) {
-//         this.toggleModal();
-//       }
-//       return;
-//     }
-//     if (this.state.open) this.toggleModal();
-//   };
-
-//   toggleModal = () => {
-//     this.setState(prevSt => {
-//       return { open: !prevSt.open };
-//     });
-//   };
-
-//   render() {
-//     return (
-//       <Flex jCenter ref={this.node} className="modal">
-//         <MenuButton
-//           style={this.props.style}
-//           className="modal"
-//           active={this.state.open}
-//           onClick={this.toggleModal}
-//         >
-//           {this.props.sprite && (
-//             <Sprite
-//               src={this.props.sprite}
-//               style={{ width: 'auto', marginRight: '5px' }}
-//             />
-//           )}
-//           {this.props.buttonText}
-//         </MenuButton>
-//         <Modal
-//           show={this.state.open}
-//           closeOnInteract={this.props.closeOnInteract}
-//           toggleModal={this.toggleModal}
-//         >
-//           {this.props.children}
-//         </Modal>
-//       </Flex>
-//     );
-//   }
-// }
-
-// ModalMenu.defaultProps = {
-//   buttonText: 'Open',
-//   closeOnInteract: false,
-//   sprite: ''
-// };
-
-// export default ModalMenu;
