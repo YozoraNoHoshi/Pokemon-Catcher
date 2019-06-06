@@ -1,30 +1,30 @@
-import React, { PureComponent } from 'react';
+import React, { memo, ReactNode } from 'react';
 import { Link } from '@reach/router';
 import MenuButton, { Props as MBProps } from '../../atoms/MenuButton';
 
 interface Props extends MBProps {
   to: string;
+  children: ReactNode;
 }
 
-class ChangeScreenButton extends PureComponent<Props, {}> {
-  static defaultProps = { to: '', children: '' };
-  render() {
-    let { to, ...prop } = this.props;
-    return (
-      <Link
-        to={to}
-        style={{
-          textDecoration: 'none',
-          color: 'initial',
-          margin: 0,
-          padding: 0,
-          width: 'inherit'
-        }}
-      >
-        <MenuButton {...prop}>{this.props.children}</MenuButton>
-      </Link>
-    );
-  }
+function ChangeScreenButton(props: Props): JSX.Element {
+  let { to, ...prop } = props;
+  return (
+    <Link
+      to={to}
+      style={{
+        textDecoration: 'none',
+        color: 'initial',
+        margin: 0,
+        padding: 0,
+        width: 'inherit'
+      }}
+    >
+      <MenuButton {...prop}>{props.children}</MenuButton>
+    </Link>
+  );
 }
 
-export default ChangeScreenButton;
+ChangeScreenButton.defaultProps = { to: '', children: '' };
+
+export default memo(ChangeScreenButton);

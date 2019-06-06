@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import Flex from '../../atoms/Flex';
 
 interface Props {
@@ -7,20 +7,19 @@ interface Props {
   header: string;
 }
 
-class HomePageHeader extends PureComponent<Props, {}> {
-  static defaultProps: Props = { headerStyle: {}, flavorText: '', header: '' };
-  render() {
-    return (
-      <Flex as="header">
-        <Flex bold txCenter style={this.props.headerStyle}>
-          {this.props.header}
-        </Flex>
-        <Flex txCenter large style={{ fontStyle: 'italic' }}>
-          {this.props.flavorText}
-        </Flex>
+function HomePageHeader(props: Props): JSX.Element {
+  return (
+    <Flex as="header">
+      <Flex bold txCenter style={props.headerStyle}>
+        {props.header}
       </Flex>
-    );
-  }
+      <Flex txCenter large style={{ fontStyle: 'italic' }}>
+        {props.flavorText}
+      </Flex>
+    </Flex>
+  );
 }
 
-export default HomePageHeader;
+HomePageHeader.defaultProps = { headerStyle: {}, flavorText: '', header: '' };
+
+export default memo(HomePageHeader);
