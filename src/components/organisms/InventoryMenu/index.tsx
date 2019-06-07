@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
 import {
@@ -9,7 +9,6 @@ import {
   CatchBerriesIndex
 } from '../../../types';
 
-// Temporary typing, actual typing is NYI
 interface Props {
   pokeballs: Pokeballs[];
   berries: Berries[];
@@ -17,19 +16,11 @@ interface Props {
   selectBerry: (berry: HPBerriesIndex | CatchBerriesIndex) => void;
 }
 
-// Change how Pokeballs/Berries is structured later, should not be an array of objects
-class InventoryMenu extends PureComponent<Props, {}> {
-  static defaultProps = {
-    pokeballs: [{}],
-    berries: [{}],
-    selectPokeball: console.log,
-    selectBerry: console.log
-  };
-  renderInventoryItems = (itemArray: any[], fn: (evt: any) => any) => {
+function InventoryMenu(props: Props): JSX.Element {
+  const renderInventoryItems = (itemArray: any[], fn: (evt: any) => any) => {
     return itemArray.map(p => {
       return (
         <Card
-          // noLink
           key={p.name}
           click={fn}
           sprite={p.sprite}
@@ -39,26 +30,27 @@ class InventoryMenu extends PureComponent<Props, {}> {
       );
     });
   };
-  render() {
-    return (
-      <Flex row>
-        <Flex column cWidth={50}>
-          Pokeballs
-          {this.renderInventoryItems(
-            this.props.pokeballs,
-            this.props.selectPokeBall
-          )}
-        </Flex>
-        <Flex column cWidth={50}>
-          Berries
-          {this.renderInventoryItems(
-            this.props.berries,
-            this.props.selectBerry
-          )}
-        </Flex>
+
+  return (
+    <Flex row>
+      <Flex column cWidth={50}>
+        Pokeballs
+        {renderInventoryItems(props.pokeballs, props.selectPokeBall)}
       </Flex>
-    );
-  }
+      <Flex column cWidth={50}>
+        Berries
+        {renderInventoryItems(props.berries, props.selectBerry)}
+      </Flex>
+    </Flex>
+  );
 }
 
-export default InventoryMenu;
+// Change how Pokeballs/Berries is structured later, should not be an array of objects
+InventoryMenu.defaultProps = {
+  pokeballs: [{}],
+  berries: [{}],
+  selectPokeball: console.log,
+  selectBerry: console.log
+};
+
+export default memo(InventoryMenu);
