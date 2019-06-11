@@ -1,9 +1,13 @@
 import React, { memo, HTMLAttributes } from 'react';
 import Flex from '../Flex';
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 import Sprite from '../Sprite';
 
-export const StyledCard = styled.div`
+interface Props {
+  addMargin?: boolean;
+}
+
+export const StyledCard: StyledComponent<'div', any, Props, never> = styled.div`
   position: relative;
   background: lightslategray;
   border-radius: 5px;
@@ -15,6 +19,9 @@ export const StyledCard = styled.div`
   :hover {
     background-color: lightsteelblue;
   }
+
+  margin: ${({ addMargin }: Props) => (addMargin ? '5px' : 'unset')};
+
   & > div {
     pointer-events: none;
   }
@@ -42,7 +49,7 @@ function Card(props: Props & HTMLAttributes<HTMLDivElement>): JSX.Element {
       </Flex>
     </StyledCard>
   ) : (
-    <StyledCard style={{ margin: '5px' }} className={props.className}>
+    <StyledCard addMargin className={props.className}>
       <Sprite src={props.sprite} alt={props.name} />
       <Flex jCenter txCenter>
         {props.species}

@@ -3,6 +3,16 @@ import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
 import { title } from '../../../helpers/title';
 import { Pokemon } from '../../../types';
+import styled from 'styled-components';
+
+const MarginYFlex = styled(Flex)`
+  margin: 20px unset;
+  & > section {
+    overflow-y: auto;
+    height: 55vh;
+    margin-top: 5px;
+  }
+`;
 
 interface Props {
   name: string;
@@ -22,21 +32,16 @@ function HabitatInfo(props: Props): JSX.Element {
   ));
 
   return (
-    <Flex column alCenter style={{ marginTop: '20px', marginBottom: '15px' }}>
+    <MarginYFlex column alCenter>
       <Flex large txCenter>
         {title(props.name)}
       </Flex>
       {props.image && <img src={props.image} alt="" />}
       <Flex txCenter>{props.description}</Flex>
-      <Flex
-        row
-        jCenter
-        fWrap
-        style={{ overflowY: 'auto', height: '55vh', marginTop: '5px' }}
-      >
+      <Flex as="section" row jCenter fWrap>
         {pokemonCards}
       </Flex>
-    </Flex>
+    </MarginYFlex>
   );
 }
 
