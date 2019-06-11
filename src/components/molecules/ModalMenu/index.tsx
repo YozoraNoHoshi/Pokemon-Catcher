@@ -1,8 +1,14 @@
 import React, { useState, memo, useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import MenuButton from '../../atoms/MenuButton';
 import Modal from '../../atoms/Modal';
 import Flex from '../../atoms/Flex';
 import Sprite from '../../atoms/Sprite';
+
+const StyledSprite = styled(Sprite)`
+  width: auto;
+  margin-right: 5px;
+`;
 
 interface Props {
   buttonText: string;
@@ -40,12 +46,7 @@ function ModalMenu(props: Props): JSX.Element {
         active={open}
         onClick={toggleModal}
       >
-        {props.sprite && (
-          <Sprite
-            src={props.sprite}
-            style={{ width: 'auto', marginRight: '5px' }}
-          />
-        )}
+        {props.sprite && <StyledSprite src={props.sprite} />}
         {props.buttonText}
       </MenuButton>
       <Modal

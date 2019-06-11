@@ -27,7 +27,7 @@ function FooterMenu(props: Props): JSX.Element | null {
   return (
     <FMenu as="footer">
       <ModalMenu closeOnInteract buttonText="Menu">
-        <Flex row cWidth={100} style={{ justifyContent: 'space-between' }}>
+        <Flex row cWidth={100} jBetween>
           <TrainerMenu
             className="modal"
             pokeballs={POKEBALL_SPRITES as PokeballSprites}

@@ -3,6 +3,12 @@ import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
 import Flex from '../../atoms/Flex';
 import { Width } from '../../../types';
+import styled from 'styled-components';
+
+const MenuFlex = styled(Flex)`
+  border-left: 1px solid black;
+`;
+
 interface Props {
   changeGameState: (arg?: string) => void;
 }
@@ -12,14 +18,7 @@ import useSaveLoad from '../../hooks/useSaveLoad';
 function MainMenu(props: Props & Width): JSX.Element {
   const { saveGame, loadGame } = useSaveLoad(props.changeGameState);
   return (
-    <Flex
-      column
-      jCenter
-      cWidth={props.cWidth}
-      style={{
-        borderLeft: '1px solid black'
-      }}
-    >
+    <MenuFlex column jCenter cWidth={props.cWidth}>
       <Flex column cWidth={100}>
         <ChangeScreenButton
           to="/battle"
@@ -45,7 +44,7 @@ function MainMenu(props: Props & Width): JSX.Element {
       <Flex cWidth={100}>
         <ChangeScreenButton to="/">Return to Park Entrance</ChangeScreenButton>
       </Flex>
-    </Flex>
+    </MenuFlex>
   );
 }
 

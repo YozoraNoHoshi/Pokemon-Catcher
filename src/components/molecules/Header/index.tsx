@@ -1,6 +1,13 @@
 import React, { memo } from 'react';
 import Flex from '../../atoms/Flex';
+import styled from 'styled-components';
 
+const Header = styled.header`
+  display: flex;
+  flex-direction: inherit;
+  & > div {
+  }
+`;
 interface Props {
   headerStyle?: object;
   flavorText: string;
@@ -13,7 +20,7 @@ function HomePageHeader(props: Props): JSX.Element {
       <Flex bold txCenter style={props.headerStyle}>
         {props.header}
       </Flex>
-      <Flex txCenter large style={{ fontStyle: 'italic' }}>
+      <Flex txCenter italic large>
         {props.flavorText}
       </Flex>
     </Flex>

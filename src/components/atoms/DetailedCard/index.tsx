@@ -16,6 +16,11 @@ const DetailCard = styled.div`
   margin: 5px;
   width: 325px;
   padding-bottom: 5px;
+  & > div > div {
+    & > i {
+      font-style: italic;
+    }
+  }
 `;
 
 function DetailedCard(props: PokemonWithHabitat): JSX.Element {
@@ -24,11 +29,11 @@ function DetailedCard(props: PokemonWithHabitat): JSX.Element {
       <Flex row jCenter cWidth={100}>
         <Sprite sHeight={100} src={props.sprite} />
         <Flex column alStart jCenter cWidth={100}>
-          <Flex medium row jStart cWidth={100}>
-            <Flex>No. {props.id}</Flex>
-            <Flex style={{ marginLeft: '3%' }}>{props.species}</Flex>
+          <Flex>
+            No. {props.id}: {props.species}
           </Flex>
-          <Flex style={{ fontStyle: 'italic' }}>{props.title}</Flex>
+
+          <i>{props.title}</i>
           <Flex small>Catch Rate: {props.catch_rate}</Flex>
           <Flex small>Areas: {props.habitats}</Flex>
         </Flex>

@@ -1,10 +1,15 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
+import styled from 'styled-components';
 import Flex from '../../atoms/Flex';
 import { title } from '../../../helpers/title';
 import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 import MenuButton from '../../atoms/MenuButton';
 import { Width } from '../../../types';
 import useSaveLoad from '../../hooks/useSaveLoad';
+
+const Span = styled.span`
+  font-size: 0.33em;
+`;
 
 interface Props {
   changeGameState: (type?: string) => void;
@@ -23,9 +28,7 @@ function HomePageMenu(props: Props & Width): JSX.Element {
           style={{ fontSize: '2em', padding: '20px', color: 'mistyrose' }}
         >
           Enter Park <br />
-          <span style={{ fontSize: '.33em' }}>
-            Destination: The {title(props.currentHabitat)}
-          </span>
+          <Span>Destination: The {title(props.currentHabitat)}</Span>
         </ChangeScreenButton>
       </Flex>
       <Flex row cWidth={100}>
