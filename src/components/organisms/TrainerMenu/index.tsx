@@ -1,7 +1,12 @@
 import React, { PureComponent } from 'react';
 import Card from '../../atoms/Card';
 import Flex from '../../atoms/Flex';
-import { Width, CaughtPokemon, PokeballIndex, PokeballSprites } from '../../../types';
+import {
+  Width,
+  CaughtPokemon,
+  PokeballIndex,
+  PokeballSprites
+} from '../../../types';
 
 type Props = Width & {
   className: string;
@@ -39,9 +44,6 @@ class TrainerMenu extends PureComponent<Props, {}> {
         cWidth={this.props.cWidth}
         className={this.props.className}
       >
-        {/* <Flex txCenter large>
-          {this.props.trainerName}
-        </Flex> */}
         {this.props.pokemon.length > 0 ? (
           <Flex
             className={this.props.className}

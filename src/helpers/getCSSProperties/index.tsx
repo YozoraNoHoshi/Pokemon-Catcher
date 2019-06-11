@@ -18,3 +18,80 @@ export default function getCSSProperties(
   // The last match in props will be the CSS value selected in cases of multiple matches.
   return values[values.length - 1];
 }
+
+export function width({ cWidth }: { [prop: string]: any }) {
+  if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
+  if (typeof cWidth === 'string') return `width: ${cWidth};`;
+  return null;
+}
+
+export function fontWeight(props: { [prop: string]: any }) {
+  let cssProp = getCSSProperties(
+    props,
+    { bold: 'bold', normal: 'normal', thin: 'thin' },
+    'normal'
+  );
+  if (cssProp) return `font-weight: ${cssProp};`;
+  return null;
+}
+
+export function fontSize(props: { [prop: string]: any }) {
+  let cssProp = getCSSProperties(
+    props,
+    { large: '2em', small: '.75em', medium: '1.5em' },
+    false
+  );
+  if (cssProp) return `font-size: ${cssProp};`;
+  return null;
+}
+
+export function justifyContent(props: { [prop: string]: any }) {
+  let cssProp = getCSSProperties(
+    props,
+    {
+      jCenter: 'center',
+      jStart: 'flex-start',
+      jEnd: 'flex-end',
+      jAround: 'space-around',
+      jBetween: 'space-between'
+    },
+    false
+  );
+  if (cssProp) return `justify-content: ${cssProp};`;
+  return null;
+}
+
+export function alignItems(props: { [prop: string]: any }) {
+  let cssProp = getCSSProperties(
+    props,
+    { alCenter: 'center', alStart: 'flex-start', alEnd: 'flex-end' },
+    false
+  );
+  if (cssProp) return `align-items: ${cssProp};`;
+  return null;
+}
+
+export function flexWrap(props: { [prop: string]: any }) {
+  let cssProp = getCSSProperties(
+    props,
+    { fWrap: 'wrap', noFWrap: 'no-wrap' },
+    false
+  );
+  if (cssProp) return `flex-wrap: ${cssProp};`;
+  return null;
+}
+
+export function textAlign(props: { [prop: string]: any }) {
+  let cssProp = getCSSProperties(
+    props,
+    { txCenter: 'center', txRight: 'right', txLeft: 'left' },
+    false
+  );
+  if (cssProp) return `text-align: ${cssProp};`;
+  return null;
+}
+
+export function fontStyle(props: { [prop: string]: any }) {
+  let cssProp = getCSSProperties(props, { italic: 'italic' }, false);
+  return cssProp ? `font-style: ${cssProp}` : null;
+}

@@ -1,5 +1,8 @@
 import styled, { StyledComponent } from 'styled-components';
-import getCSSProperties from '../../../helpers/getCSSProperties';
+import getCSSProperties, {
+  width,
+  fontSize
+} from '../../../helpers/getCSSProperties';
 import { Width, Style } from '../../../types';
 
 export type Props = {
@@ -42,14 +45,15 @@ function background(props: Props) {
 function hoverBackground(props: Props) {
   return getCSSProperties(props, { pokeRed: 'crimson' }, 'skyblue');
 }
-function fontSize(props: Props) {
-  let cssProps = getCSSProperties(props, { large: '2em' }, null);
-  if (cssProps) return `font-size: ${cssProps};`;
-  return null;
-}
-function width({ cWidth }: Props) {
-  if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
-  return null;
-}
+
+// function fontSize(props: Props) {
+//   let cssProps = getCSSProperties(props, { large: '2em' }, null);
+//   if (cssProps) return `font-size: ${cssProps};`;
+//   return null;
+// }
+// function width({ cWidth }: Props) {
+//   if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
+//   return null;
+// }
 
 export default MenuButton;

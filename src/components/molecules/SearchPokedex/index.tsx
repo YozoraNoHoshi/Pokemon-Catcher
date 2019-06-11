@@ -21,7 +21,8 @@ interface Props {
 function SearchPokedex(props: Props): JSX.Element {
   const { input: pokemon, handleChange, setInput: setPokemon } = useInput('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     props.submit(pokemon);
     setPokemon('');
   };
