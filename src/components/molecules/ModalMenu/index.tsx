@@ -28,7 +28,14 @@ function ModalMenu(props: Props): JSX.Element {
     const node = ref.current!;
     const clickOutsideModal: boolean | undefined =
       props.closeOnInteract && open && !e.target.className.includes('modal');
-    if (open || (node.contains(e.target) && clickOutsideModal)) toggleModal();
+
+    if (node.contains(e.target)) {
+      if (clickOutsideModal) {
+        setOpen(false);
+      }
+      return;
+    }
+    if (open) setOpen(false);
   };
 
   useEffect(() => {

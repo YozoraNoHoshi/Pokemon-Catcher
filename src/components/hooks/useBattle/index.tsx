@@ -25,15 +25,23 @@ export default function useBattle(
   const [caught, setCaught] = useState(false);
   const [message, setMessage] = useState(`A wild ${pokemon.species} appeared!`);
 
-  const selectBerry = (berry: BerryIndex) => {
+  const selectBerry = (berry: BerryIndex): void => {
     if (BERRIES.hasOwnProperty(berry)) setSelectedBerry(berry);
   };
 
-  const selectPokeball = (pokeball: PokeballIndex) => {
+  const selectPokeball = (pokeball: PokeballIndex): void => {
     if (POKEBALLS.hasOwnProperty(pokeball)) setPokeball(pokeball);
   };
 
-  const useBerry = useCallback(() => {
+  const pokemonTurn = (triggeringAction: BerryIndex | PokeballIndex): void => {
+    if (POKEBALLS.hasOwnProperty(triggeringAction)) {
+      // Pokemon has a chance to regain some health, or possibly run away
+    } else {
+      // pokemon has a chance to recover from status effect
+    }
+  };
+
+  const useBerry = useCallback((): void => {
     if (BERRIES.hasOwnProperty(selectedBerry)) {
       let berryEffect = BERRIES[selectedBerry as CatchBerriesIndex];
       // Message needs to be changed
@@ -58,7 +66,7 @@ export default function useBattle(
     }
   }, [selectedBerry, hpPercent, pokemon]);
 
-  const resultOfCatch = (result: number) => {
+  const resultOfCatch = (result: number): void => {
     // Catch successful
     if (result === 4) {
       cb({
@@ -70,7 +78,7 @@ export default function useBattle(
     setMessage(CATCH_MESSAGES[result]);
   };
 
-  const throwPokeball = () => {
+  const throwPokeball = (): void => {
     let result = determineCatchResult(
       pokemon.catch_rate,
       pokeball,
