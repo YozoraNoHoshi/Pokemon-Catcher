@@ -124,7 +124,7 @@ export type Style = {
 
 export type Action = {
   readonly type: string;
-  readonly payload: any;
+  readonly payload?: any;
 };
 
 export type FontStyle = { readonly italic?: boolean };

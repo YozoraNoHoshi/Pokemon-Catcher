@@ -1,1 +1,9 @@
-export const CATCH_POKEMON: string = 'CATCH_POKEMON';
+export const ADD_POKEMON: string = 'ADD_POKEMON';
+export const RELEASE_POKEMON: string = 'RELEASE_POKEMON';
+export const ALTER_INVENTORY: string = 'ALTER_INVENTORY';
+export const ADD_ITEM: string = 'ADD_ITEM';
+export const USE_ITEM: string = 'USE_ITEM';
+export const REMOVE_ITEM: string = 'REMOVE_ITEM';
+export const MOVE_AREA: string = 'MOVE_AREA';
+export const SAVE_GAME: string = 'SAVE_GAME';
+export const LOAD_GAME: string = 'LOAD_GAME';
