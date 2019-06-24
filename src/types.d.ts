@@ -122,9 +122,9 @@ export type Style = {
   readonly style?: React.CSSProperties;
 };
 
-export type Action = {
+export type Action<T> = {
   readonly type: string;
-  readonly payload?: any;
+  readonly payload?: T;
 };
 
 export type FontStyle = { readonly italic?: boolean };
