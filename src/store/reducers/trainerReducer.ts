@@ -3,7 +3,7 @@ import { Action } from '../../types';
 
 const INITIAL_STATE = {};
 
-function trainerReducer(state = INITIAL_STATE, action: Action) {
+function trainerReducer(state = INITIAL_STATE, action: Action<any>) {
   switch (action.type) {
     case 'INSERTACTIONHERE':
       return { ...state };
