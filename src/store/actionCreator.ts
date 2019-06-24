@@ -12,13 +12,14 @@ export function addPokemon(pokemonObj: Pokemon): Action {
   return { type: ADD_POKEMON, payload: pokemonObj };
 }
 
-export function releasePokeemon(pokemonId: string | number): Action {
+export function releasePokemon(pokemonId: string | number): Action {
   return { type: RELEASE_POKEMON, payload: pokemonId };
 }
 
 export function moveArea(newLocation: string): Action {
   return { type: MOVE_AREA, payload: newLocation };
 }
+
 export function alterInventory(item: any): Action {
   return { type: ALTER_INVENTORY, payload: item };
 }
