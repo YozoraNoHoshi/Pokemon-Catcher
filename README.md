@@ -1,5 +1,6 @@
 Note: This Readme assumes you have Node > 10.2 installed, and are using npm as your package manager. 
 
+For the backend commit history, see the (now deprecated) [repo here](https://github.com/YozoraNoHoshi/pokesimbackend).
 
 ## Installation Guide
 
