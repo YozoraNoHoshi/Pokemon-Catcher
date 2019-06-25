@@ -1,4 +1,4 @@
-This readme assumes you are using npm as your package manager.
+This guide assumes you are using npm as your package manager.
 
 For the backend commit history, see the (now deprecated) [repo here](https://github.com/YozoraNoHoshi/pokesimbackend).
 
