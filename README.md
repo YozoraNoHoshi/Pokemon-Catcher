@@ -1,19 +1,23 @@
+Note: This Readme assumes you have Node > 10.2 installed, and are using npm as your package manager. 
+
+
 ## Installation Guide
 
-To get a local copy of this repository:
-`git clone git@github.com:YozoraNoHoshi/Pokemon-Catcher.git`
+Clone the repository:   `git clone git@github.com:YozoraNoHoshi/PokemonPalPark.git`
 
-Ensure you have cloned the backend server: `git@github.com:YozoraNoHoshi/pokesimbackend.git`
+Install packages by running the following command in the root directory of the project (where `package.json` is located):   
+```npm install```
 
-### Complete the following for both repositories.
+To run a local version of the app, you will need two terminal windows, one for the frontend and one for the backend. 
 
-Use `npm install` to install packages.
+Run the following commands in the root directory.
 
-In both project directories, you can run:
+###To start the backend:
+```npm run backend```
 
-`npm start`
+###To start the frontend:
+```npm start```
 
-Runs the app in the development mode.  
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.  
@@ -21,14 +25,13 @@ You will also see any lint errors in the console.
 
 ## Known Issues
 
-Hitting the back button after a redirect results in a blank page.  
-The styling is nonexistent.
-Checking a Pokedex entry while already on a Pokedex entry causes the new entry to not render properly.
+* Hitting the back button after a redirect results in a blank page.  
+* The styling is nonexistent.   
+* Checking a Pokedex entry while already on a Pokedex entry causes the new entry to not render properly.
+* Viewing the Inventory renders MissingNo. rather than your actual items.
 
 ## To-Dos
 
-- ~~Improve home screen -> Some sort of landing page and UI rather than a random menu.~~
-- ~~Make the main menu live in a modal~~.
 - Store items in local storage as JWTs rather than raw JSON.
 - Make Pokedex live in a modal so you can view it during a battle.
 - Pokedex remembers previous searches globally, not just on the Pokedex page
@@ -36,3 +39,10 @@ Checking a Pokedex entry while already on a Pokedex entry causes the new entry t
 - Battle UI and logic
 - Inventory
 - Responsive Design
+- Backend for storing trainer information and their caught pokemon / progress / items rather than over local storage
+
+
+## Credits
+All data / resources are from the public, free [PokeAPI](https://pokeapi.co).
+
+This is a fan project and is not an official product of Nintendo, or Pokemon. 
