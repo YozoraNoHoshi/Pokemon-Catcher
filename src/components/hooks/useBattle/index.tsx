@@ -34,10 +34,15 @@ export default function useBattle(
   };
 
   const pokemonTurn = (triggeringAction: BerryIndex | PokeballIndex): void => {
+    // This function should fire after useBerry or throwPokeball, IFF throwPokeball fails to catch pokemon.
     if (POKEBALLS.hasOwnProperty(triggeringAction)) {
       // Pokemon has a chance to regain some health, or possibly run away
+      // Randomly add a hp percent from .01 -> .1%
+      // For each pokeball, increase the run probability by up to 5%, depending on the catch multiplier
+      // Make a run check, if the check fails then pokemon escapes and you are kicked back to home screen
     } else {
       // pokemon has a chance to recover from status effect
+      // Percentage based on the status multiplier - if it is a hard status then the chance is larger
     }
   };
 
