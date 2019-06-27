@@ -48,10 +48,15 @@ export type CatchBerries = {
 };
 
 export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
+
 export type Berries = HPBerries & CatchBerries;
+
 export type BerrySprites = { readonly [berry in BerryIndex]: string };
 
 // Battle-Related Types
+
+export type BattleStates = 'active' | 'caught' | 'flee';
+
 export type CatchMessage = {
   readonly 0: string;
   readonly 1: string;
