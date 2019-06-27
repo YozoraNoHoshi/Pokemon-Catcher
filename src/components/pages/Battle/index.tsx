@@ -25,6 +25,7 @@ interface Props {
 function Battle(props: Props): JSX.Element {
   const {
     pokeball,
+    battleStatus,
     status,
     selectedBerry,
     hpPercent,
@@ -43,7 +44,7 @@ function Battle(props: Props): JSX.Element {
         {message || `The ${props.pokemon.species} is staring at you.`}
       </MessageBox>
       <Flex column alCenter style={{ margin: '10px' }}>
-        {!caught ? (
+        {battleStatus !== 'caught' ? (
           <Card
             noLink
             name={props.pokemon.name}
@@ -55,7 +56,7 @@ function Battle(props: Props): JSX.Element {
         )}
       </Flex>
       <Flex row cWidth={100}>
-        {!caught ? (
+        {battleStatus === 'active' ? (
           <>
             <Flex column cWidth={100}>
               <MenuButton onClick={throwPokeball} style={{ height: '50px' }}>

@@ -23,7 +23,10 @@ export default function useBattle(
   );
   const [hpPercent, setHPPercent] = useState(1);
   const [caught, setCaught] = useState(false);
+  const [battleStatus, setBattleStatus] = useState('active');
   const [message, setMessage] = useState(`A wild ${pokemon.species} appeared!`);
+  const [turns, setTurns] = useState(0);
+  const [statusDuration, setStatusDuraton] = useState(0);
 
   const selectBerry = (berry: BerryIndex): void => {
     if (BERRIES.hasOwnProperty(berry)) setSelectedBerry(berry);
@@ -37,13 +40,25 @@ export default function useBattle(
     // This function should fire after useBerry or throwPokeball, IFF throwPokeball fails to catch pokemon.
     if (POKEBALLS.hasOwnProperty(triggeringAction)) {
       // Pokemon has a chance to regain some health, or possibly run away
-      // Randomly add a hp percent from .01 -> .1%
+      let runChance = turns / 1;
+      let runRoll = Math.random();
+      if (runRoll < runChance) {
+        // Pokemon flees
+        setBattleStatus('flee');
+        setMessage('Oh no! The Pokemon fled!');
+      } else {
+        setHPPercent(hp => hp + 0.1);
+      }
       // For each pokeball, increase the run probability by up to 5%, depending on the catch multiplier
       // Make a run check, if the check fails then pokemon escapes and you are kicked back to home screen
+      // If run check passes, then randomly add a hp percent from .01 - 5%.
     } else {
-      // pokemon has a chance to recover from status effect
+      // If berry is hp altering berry, chance to recover from status effect
       // Percentage based on the status multiplier - if it is a hard status then the chance is larger
+      // Chance to recover increases every turn
+      // if berry is status inflicting berry, do nothing
     }
+    setTurns(t => t + 1);
   };
 
   const useBerry = useCallback((): void => {
@@ -78,9 +93,13 @@ export default function useBattle(
         ...pokemon,
         pokeball
       });
-      setCaught(true);
+      // setCaught(true);
+      setBattleStatus('caught');
     }
     setMessage(CATCH_MESSAGES[result]);
+    if (result !== 4) {
+      pokemonTurn(pokeball);
+    }
   };
 
   const throwPokeball = (): void => {
@@ -101,6 +120,7 @@ export default function useBattle(
     caught,
     message,
     selectBerry,
+    battleStatus,
     selectPokeball,
     useBerry,
     throwPokeball

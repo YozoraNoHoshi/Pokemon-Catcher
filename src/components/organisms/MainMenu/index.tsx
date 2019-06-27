@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
-import ChangeScreenButton from '../../molecules/ChangeScreenButton';
+import styled from 'styled-components';
+import { Width } from '../../../types';
+import useSaveLoad from '../../hooks/useSaveLoad';
 import MenuButton from '../../atoms/MenuButton';
 import Flex from '../../atoms/Flex';
-import { Width } from '../../../types';
-import styled from 'styled-components';
+import ChangeScreenButton from '../../molecules/ChangeScreenButton';
 
 const MenuFlex = styled(Flex)`
   border-left: 1px solid black;
@@ -12,8 +13,6 @@ const MenuFlex = styled(Flex)`
 interface Props {
   changeGameState: (arg?: string) => void;
 }
-
-import useSaveLoad from '../../hooks/useSaveLoad';
 
 function MainMenu(props: Props & Width): JSX.Element {
   const { saveGame, loadGame } = useSaveLoad(props.changeGameState);
