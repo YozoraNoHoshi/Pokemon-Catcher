@@ -29,7 +29,6 @@ function Battle(props: Props): JSX.Element {
     status,
     selectedBerry,
     hpPercent,
-    caught,
     message,
     selectBerry,
     selectPokeball,
