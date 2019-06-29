@@ -16,6 +16,17 @@ import {
 
 import useBattle from '../../hooks/useBattle';
 import { Pokemon, Berries, Pokeballs } from '../../../types';
+import styled from 'styled-components';
+
+const BattleScreen = styled.div`
+  position: relative;
+  width: 33vw;
+  & > aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
 
 interface Props {
   pokemon: Pokemon;
@@ -37,6 +48,7 @@ function Battle(props: Props): JSX.Element {
   } = useBattle(props.pokemon, props.modifyPokemon);
   const pokeballSprite: string = POKEBALL_SPRITES[pokeball];
   const berrySprite: string = BERRY_SPRITES[selectedBerry];
+  const hp = Math.floor(hpPercent * 100);
   return (
     <Flex column alCenter cWidth={'50vw'}>
       <MessageBox>
@@ -44,12 +56,20 @@ function Battle(props: Props): JSX.Element {
       </MessageBox>
       <Flex column alCenter style={{ margin: '10px' }}>
         {battleStatus !== 'caught' ? (
-          <Card
-            noLink
-            name={props.pokemon.name}
-            species={props.pokemon.species}
-            sprite={props.pokemon.sprite}
-          />
+          <BattleScreen>
+            <aside>
+              <div>Status: {status}</div>
+              <div>
+                HP: <progress value={hp} max={100} />
+              </div>
+            </aside>
+            <Card
+              noLink
+              name={props.pokemon.name}
+              species={props.pokemon.species}
+              sprite={props.pokemon.sprite}
+            />
+          </BattleScreen>
         ) : (
           <Sprite sHeight={150} src={pokeballSprite} />
         )}
