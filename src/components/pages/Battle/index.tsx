@@ -17,15 +17,11 @@ import {
 import useBattle from '../../hooks/useBattle';
 import { Pokemon, Berries, Pokeballs } from '../../../types';
 import styled from 'styled-components';
+import StatusBar from '../../atoms/StatusBar';
 
 const BattleScreen = styled.div`
   position: relative;
   width: 33vw;
-  & > aside {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
 `;
 
 interface Props {
@@ -57,12 +53,7 @@ function Battle(props: Props): JSX.Element {
       <Flex column alCenter style={{ margin: '10px' }}>
         {battleStatus !== 'caught' ? (
           <BattleScreen>
-            <aside>
-              <div>Status: {status}</div>
-              <div>
-                HP: <progress value={hp} max={100} />
-              </div>
-            </aside>
+            <StatusBar hp={hp} status={status} />
             <Card
               noLink
               name={props.pokemon.name}
