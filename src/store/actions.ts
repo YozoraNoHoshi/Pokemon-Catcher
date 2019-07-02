@@ -7,3 +7,4 @@ export const REMOVE_ITEM: string = 'REMOVE_ITEM';
 export const MOVE_AREA: string = 'MOVE_AREA';
 export const SAVE_GAME: string = 'SAVE_GAME';
 export const LOAD_GAME: string = 'LOAD_GAME';
+export const UPDATE_TRAINER: string = 'UPDATE_TRAINER';

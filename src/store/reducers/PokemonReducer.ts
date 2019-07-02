@@ -14,9 +14,12 @@ function pokemonReducer(
     }
 
     case RELEASE_POKEMON: {
-      // Remove Pokemon by action.payload (it's the ID)
-      return { ...state };
+      const payload = action.payload as string;
+      const newState = { ...state };
+      delete newState[payload];
+      return newState;
     }
+
     default:
       return state;
   }

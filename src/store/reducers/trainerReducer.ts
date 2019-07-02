@@ -1,12 +1,20 @@
 import { Action } from '../../types';
+import { UPDATE_TRAINER } from '../actions';
 // import { #1 } from "./actions.js"
 
-const INITIAL_STATE = {};
+interface TrainerInfo {
+  name: string;
+}
 
-function trainerReducer(state = INITIAL_STATE, action: Action<any>) {
+const INITIAL_STATE: TrainerInfo = { name: '' };
+
+function trainerReducer(
+  state: TrainerInfo = INITIAL_STATE,
+  action: Action<string>
+) {
   switch (action.type) {
-    case 'INSERTACTIONHERE':
-      return { ...state };
+    case UPDATE_TRAINER:
+      return { ...state, name: action.payload };
 
     default:
       return state;
