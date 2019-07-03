@@ -2,7 +2,7 @@ import styled, { StyledComponent } from 'styled-components';
 
 const MessageBox: StyledComponent<'div', any, {}, never> = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
