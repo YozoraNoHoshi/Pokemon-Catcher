@@ -55,7 +55,7 @@ export type BerrySprites = { readonly [berry in BerryIndex]: string };
 
 // Battle-Related Types
 
-export type BattleStates = 'active' | 'caught' | 'flee';
+export type BattleStates = 'active' | 'caught' | 'flee' | 'fainted';
 
 export type CatchMessage = {
   readonly 0: string;
