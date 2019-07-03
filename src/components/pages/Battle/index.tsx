@@ -18,10 +18,17 @@ import useBattle from '../../hooks/useBattle';
 import { Pokemon, Berries, Pokeballs } from '../../../types';
 import styled from 'styled-components';
 import StatusBar from '../../atoms/StatusBar';
+import MessageLog from '../../molecules/MessageLog';
 
-const BattleScreen = styled.div`
-  position: relative;
-  width: 33vw;
+const BattleScreen = styled(Flex)`
+  width: 50vw;
+  & > div {
+    width: 100%;
+  }
+  & > div.battle-view {
+    position: relative;
+    margin: 10px;
+  }
 `;
 
 interface Props {
@@ -36,9 +43,10 @@ function Battle(props: Props): JSX.Element {
     status,
     selectedBerry,
     hpPercent,
-    message,
+    messages,
     selectBerry,
     selectPokeball,
+    fleeRate,
     useBerry,
     throwPokeball
   } = useBattle(props.pokemon, props.modifyPokemon);
@@ -46,21 +54,19 @@ function Battle(props: Props): JSX.Element {
   const berrySprite: string = BERRY_SPRITES[selectedBerry];
   const hp = Math.floor(hpPercent * 100);
   return (
-    <Flex column alCenter cWidth={'50vw'}>
-      <MessageBox>
-        {message || `The ${props.pokemon.species} is staring at you.`}
-      </MessageBox>
-      <Flex column alCenter style={{ margin: '10px' }}>
+    <BattleScreen column alCenter cWidth={'50vw'}>
+      <MessageLog messages={messages} />
+      <Flex className="battle-view" column alCenter>
         {battleStatus !== 'caught' ? (
-          <BattleScreen>
-            <StatusBar hp={hp} status={status} />
+          <>
+            <StatusBar hp={hp} status={status} fleeRate={fleeRate} />
             <Card
               noLink
               name={props.pokemon.name}
               species={props.pokemon.species}
               sprite={props.pokemon.sprite}
             />
-          </BattleScreen>
+          </>
         ) : (
           <Sprite sHeight={150} src={pokeballSprite} />
         )}
@@ -120,7 +126,7 @@ function Battle(props: Props): JSX.Element {
           </ChangeScreenButton>
         )}
       </Flex>
-    </Flex>
+    </BattleScreen>
   );
 }
 
