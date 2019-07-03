@@ -2,40 +2,37 @@ import { useState } from 'react';
 import { getPokemon } from '../../../api';
 import { Pokemon } from '../../../types';
 
+type PkmnIdx = 'waiting' | 'loading' | 'found' | 'not-found' | 'error';
+
 export default function usePokedex(): {
   pokemon: Pokemon;
-  loading: boolean;
-  foundPokemon: boolean;
+  foundPokemon: PkmnIdx;
   searchPokemon: (nameOrId: number | string) => void;
 } {
   const [pokemon, setPokemon] = useState({} as Pokemon);
-  const [loading, setLoading] = useState(false);
-  const [foundPokemon, setFoundPokemon] = useState(false);
+  const [foundPokemon, setFoundPokemon] = useState('waiting' as PkmnIdx);
   // const [pastSearch, setPastSearch] = useState([]);
   // const dispatch = useDispatch()
 
   const searchPokemon = async (nameOrId: number | string) => {
-    setLoading(true);
+    setFoundPokemon('loading');
     try {
       let newPokemon: Pokemon | any[] = await getPokemon(nameOrId, '/habitats');
       if (!Array.isArray(newPokemon)) {
         // TODO - Dispatch to store containing pokemon (before it gets updated) for past searches
         setPokemon(newPokemon);
-        setFoundPokemon(true);
+        setFoundPokemon('found');
       } else {
         // No match
-        setLoading(false);
-        setFoundPokemon(false);
+        setFoundPokemon('not-found');
       }
     } catch (error) {
-      setLoading(false);
-      setFoundPokemon(false);
+      setFoundPokemon('error');
     }
   };
 
   return {
     pokemon,
-    loading,
     foundPokemon,
     searchPokemon
   };

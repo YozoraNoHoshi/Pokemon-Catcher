@@ -21,7 +21,7 @@ interface Props extends RouteComponentProps {
 // pastSearch will come from redux store
 
 function Pokedex(props: Props): JSX.Element {
-  const { pokemon, loading, foundPokemon, searchPokemon } = usePokedex();
+  const { pokemon, foundPokemon, searchPokemon } = usePokedex();
   const {
     id,
     habitats,
@@ -31,7 +31,6 @@ function Pokedex(props: Props): JSX.Element {
     catch_rate,
     sprite
   } = pokemon as PokemonWithHabitat;
-  const noResults = !loading && !foundPokemon;
 
   const pastSearches = props.pastSearch.map(
     (p: PokemonWithHabitat, i: number) => {
@@ -54,9 +53,9 @@ function Pokedex(props: Props): JSX.Element {
     <DexContainer>
       <Flex column alCenter>
         <SearchPokedex submit={searchPokemon} />
-        {noResults && <Flex>No Pokemon found.</Flex>}
-        {loading && <div />}
-        {foundPokemon === true && (
+        {foundPokemon === 'not-found' && <Flex>No Pokemon found.</Flex>}
+        {foundPokemon === 'loading' && <div />}
+        {foundPokemon === 'found' && (
           <DetailedCard
             id={id}
             habitats={habitats}
