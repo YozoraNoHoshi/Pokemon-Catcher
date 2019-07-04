@@ -1,6 +1,4 @@
 import { useState, useCallback, useRef } from 'react';
-import determineCatchResult from '../../../helpers/determineCatchResult';
-import hpPercentageMessage from '../../../helpers/hpPercentageMessage';
 import {
   CATCH_MESSAGES,
   POKEBALLS,
@@ -18,8 +16,11 @@ import {
   BerryIndex,
   BattleStates
 } from '../../../types';
+import determineCatchResult from '../../../helpers/determineCatchResult';
+import hpPercentageMessage from '../../../helpers/hpPercentageMessage';
 import calcFleeRate from '../../../helpers/calcFleeRate';
 import getStatusDuration from '../../../helpers/getStatusDuration';
+import addMessage from '../../../helpers/addMessage';
 
 export default function useBattle(
   pokemon: Pokemon,
@@ -55,7 +56,7 @@ export default function useBattle(
       let runRoll = Math.random() * 100;
       if (runRoll < fleeRate) {
         setBattleStatus('flee');
-        setMessages([...messages, 'Oh no! The wild Pokemon got away!']);
+        setMessages(addMessage('Oh no! The wild Pokemon got away!'));
         return;
       } else if (Math.random() < 0.25) {
         let runChance = calcFleeRate(
@@ -71,14 +72,15 @@ export default function useBattle(
       }
     }
 
-    if (statusDuration.current >= maxStatusDuration.current) {
+    if (
+      status !== 'normal' &&
+      statusDuration.current > maxStatusDuration.current
+    ) {
       statusDuration.current = 0;
-      maxStatusDuration.current = -1;
-
-      setMessages([
-        ...messages,
-        `The wild ${pokemon.species} recovered from ${status}!`
-      ]);
+      maxStatusDuration.current = 0;
+      setMessages(
+        addMessage(`The wild ${pokemon.species} recovered from ${status}!`)
+      );
       setStatus('normal');
     } else statusDuration.current += 1;
 
@@ -95,8 +97,7 @@ export default function useBattle(
           : `The ${
               pokemon.species
             } ate the berry and had ${berryEffect} inflicted!`;
-
-      setMessages([...messages, newMessage]);
+      setMessages(addMessage(newMessage));
       setStatus(berryEffect);
       maxStatusDuration.current = getStatusDuration(statusMultiplier[status]);
     } else if (HP_BERRIES.hasOwnProperty(selectedBerry)) {
@@ -104,7 +105,7 @@ export default function useBattle(
       let newHPPercent = hpPercent - berryEffect;
 
       if (newHPPercent < 0) {
-        setMessages([...messages, `The wild ${pokemon.species} fainted!`]);
+        setMessages(addMessage(`The wild ${pokemon.species} fainted!`));
         setBattleStatus('fainted');
         setHPPercent(0);
       } else {
@@ -112,7 +113,7 @@ export default function useBattle(
           pokemon.species
         } ate the berry! It looks ${hpPercentageMessage(newHPPercent)}...`;
         setHPPercent(newHPPercent);
-        setMessages([...messages, newMessage]);
+        setMessages(addMessage(newMessage));
       }
     }
   }, [selectedBerry, hpPercent, pokemon]);
@@ -125,7 +126,7 @@ export default function useBattle(
       hpPercent
     );
 
-    setMessages([...messages, CATCH_MESSAGES[result]]);
+    setMessages(addMessage(CATCH_MESSAGES[result]));
 
     if (result === 4) {
       cb({
