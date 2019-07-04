@@ -50,7 +50,7 @@ export default function useBattle(
         setBattleStatus('flee');
         setMessages([...messages, 'Oh no! The wild Pokemon got away!']);
       } else {
-        if (Math.random() < 0.34) {
+        if (Math.random() < 0.25) {
           let runChance = calcFleeRate(pokemon.catch_rate, turns, fleeRate);
           setFleeRate(runChance);
         } else {
