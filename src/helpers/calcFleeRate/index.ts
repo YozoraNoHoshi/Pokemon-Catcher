@@ -6,10 +6,10 @@
  */
 export default function calcFleeRate(
   catchRate: number,
-  turns: [number, number],
+  elapsedTurns: number,
+  relativeTurns: number,
   prevRate: number = 0
 ): number {
-  const [elapsedTurns, relativeTurns] = turns;
   if (catchRate === 0) return 1;
   if (elapsedTurns <= 5 || relativeTurns < 0) return 0;
 

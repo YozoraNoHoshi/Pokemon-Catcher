@@ -1,7 +1,13 @@
-import { useState, useCallback, Dispatch, SetStateAction } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import determineCatchResult from '../../../helpers/determineCatchResult';
 import hpPercentageMessage from '../../../helpers/hpPercentageMessage';
-import { CATCH_MESSAGES, POKEBALLS, BERRIES, HP_BERRIES } from '../../../data';
+import {
+  CATCH_MESSAGES,
+  POKEBALLS,
+  BERRIES,
+  HP_BERRIES,
+  statusMultiplier
+} from '../../../data';
 import {
   Pokemon,
   CaughtPokemon,
@@ -13,6 +19,7 @@ import {
   BattleStates
 } from '../../../types';
 import calcFleeRate from '../../../helpers/calcFleeRate';
+import getStatusDuration from '../../../helpers/getStatusDuration';
 
 export default function useBattle(
   pokemon: Pokemon,
@@ -20,20 +27,20 @@ export default function useBattle(
 ) {
   const [pokeball, setPokeball] = useState('poke-ball' as PokeballIndex);
   const [status, setStatus] = useState('normal' as StatusIndex);
+  const [battleStatus, setBattleStatus] = useState('active' as BattleStates);
   const [selectedBerry, setSelectedBerry] = useState(
     'oran-berry' as BerryIndex
   );
   const [hpPercent, setHPPercent] = useState(1);
-  const [battleStatus, setBattleStatus] = useState('active' as BattleStates);
   const [messages, setMessages] = useState([
     `A wild ${pokemon.species} appeared!`
   ]);
-  const [statusDuration, setStatusDuraton] = useState(0);
   const [fleeRate, setFleeRate] = useState(0);
-  const [turns, setTurns]: [
-    [number, number],
-    Dispatch<SetStateAction<[number, number]>>
-  ] = useState([0, 0]);
+
+  const elapsedTurns = useRef(0);
+  const relativeTurns = useRef(0);
+  const statusDuration = useRef(0);
+  const maxStatusDuration = useRef(0);
 
   const selectBerry = (berry: BerryIndex): void => {
     if (BERRIES.hasOwnProperty(berry)) setSelectedBerry(berry);
@@ -49,46 +56,53 @@ export default function useBattle(
       if (runRoll < fleeRate) {
         setBattleStatus('flee');
         setMessages([...messages, 'Oh no! The wild Pokemon got away!']);
-      } else {
-        if (Math.random() < 0.25) {
-          let runChance = calcFleeRate(pokemon.catch_rate, turns, fleeRate);
-          setFleeRate(runChance);
-        } else {
-          if (Math.random() < 0.5) {
-            let addedHP = Math.floor(Math.random() * 10) / 100;
-            setHPPercent(hp => hp + addedHP);
-          }
-        }
+        return;
+      } else if (Math.random() < 0.25) {
+        let runChance = calcFleeRate(
+          pokemon.catch_rate,
+          elapsedTurns.current,
+          relativeTurns.current,
+          fleeRate
+        );
+        setFleeRate(runChance);
+      } else if (Math.random() < 0.5) {
+        let addedHP = Math.floor(Math.random() * 10) / 100;
+        setHPPercent(hp => hp + addedHP);
       }
-    } else {
-      // If berry is hp altering berry, chance to recover from status effect
-      // Percentage based on the status multiplier - if it is a hard status then the chance is larger
-      // Chance to recover increases every turn
-      // if berry is status inflicting berry, do nothing
     }
-    setTurns(t => [t[0] + 1, t[1] + 1]);
-    if (status !== 'normal') {
-      setStatusDuraton(s => s + 1);
-    } else setStatusDuraton(0);
+
+    if (statusDuration.current >= maxStatusDuration.current) {
+      statusDuration.current = 0;
+      maxStatusDuration.current = -1;
+
+      setMessages([
+        ...messages,
+        `The wild ${pokemon.species} recovered from ${status}!`
+      ]);
+      setStatus('normal');
+    } else statusDuration.current += 1;
+
+    elapsedTurns.current += 1;
+    relativeTurns.current += 1;
   };
 
   const useBerry = useCallback((): void => {
     if (BERRIES.hasOwnProperty(selectedBerry)) {
       let berryEffect = BERRIES[selectedBerry as CatchBerriesIndex];
-      // Message needs to be changed
       let newMessage: string =
         selectedBerry === 'oran-berry'
           ? `The ${pokemon.species} returned to normal!`
           : `The ${
               pokemon.species
             } ate the berry and had ${berryEffect} inflicted!`;
+
       setMessages([...messages, newMessage]);
       setStatus(berryEffect);
+      maxStatusDuration.current = getStatusDuration(statusMultiplier[status]);
     } else if (HP_BERRIES.hasOwnProperty(selectedBerry)) {
-      // Affects HP - Razz Berry and the other Berries from Lets Go!
-      // Pokemon faints if berry brings it below 0? NYI
       let berryEffect = HP_BERRIES[selectedBerry as HPBerriesIndex];
       let newHPPercent = hpPercent - berryEffect;
+
       if (newHPPercent < 0) {
         setMessages([...messages, `The wild ${pokemon.species} fainted!`]);
         setBattleStatus('fainted');
@@ -110,8 +124,9 @@ export default function useBattle(
       status,
       hpPercent
     );
-    result = 0;
+
     setMessages([...messages, CATCH_MESSAGES[result]]);
+
     if (result === 4) {
       cb({
         ...pokemon,
@@ -129,7 +144,6 @@ export default function useBattle(
     hpPercent,
     status,
     fleeRate,
-    statusDuration,
     selectedBerry,
     selectBerry,
     useBerry,
