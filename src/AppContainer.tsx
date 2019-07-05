@@ -1,5 +1,5 @@
 import { PureComponent } from 'react';
-import { CaughtPokemon } from './types';
+import { CaughtPokemon, Inventory, BerryIndex, PokeballIndex } from './types';
 
 interface Props {
   children: (arg: any) => any;
@@ -7,7 +7,7 @@ interface Props {
 interface State {
   habitat: string;
   currentPokemon: CaughtPokemon[];
-  inventory: { [item: string]: { name: string; quantity: number } };
+  inventory: Inventory;
   loading: boolean;
 }
 // Move this to redux eventually
@@ -30,21 +30,21 @@ class AppContainer extends PureComponent<Props, State> {
     this.setState({ habitat });
   };
 
-  modifyItems = (
-    item: string | { name: string; quantity: number },
-    quantity: number = 1
-  ) => {
-    // Item = string means used an item, object means add an item
+  modifyItems = (item: BerryIndex | PokeballIndex, quantity: number) => {
+    //Quanity is negative if using an item
     let inventory = { ...this.state.inventory };
-    if (typeof item === 'string') {
-      inventory[item].quantity <= quantity
+    let selectedItem = inventory[item];
+
+    if (quantity < 0) {
+      selectedItem.quantity <= quantity
         ? delete inventory[item]
-        : (inventory[item].quantity -= quantity);
+        : (selectedItem.quantity += quantity);
     } else {
-      let addedItem = inventory[item.name];
-      if (!addedItem) addedItem = { ...item, quantity: 0 };
-      addedItem.quantity += quantity;
+      selectedItem
+        ? (selectedItem.quantity += quantity)
+        : (inventory[item] = { name: item, quantity });
     }
+
     this.setState({ inventory });
   };
 

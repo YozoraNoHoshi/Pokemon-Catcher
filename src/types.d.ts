@@ -26,6 +26,16 @@ export interface MissingNo extends Pokemon {
 }
 
 // Item-Related Types
+
+export type Item = {
+  readonly name: string;
+  quantity: number;
+  readonly description?: string;
+};
+
+export type ItemIndex = PokeballIndex | BerryIndex;
+export type Inventory = { readonly [item in ItemIndex]: Item };
+
 export type PokeballIndex =
   | 'poke-ball'
   | 'great-ball'
@@ -39,15 +49,15 @@ export type PokeballSprites = { readonly [pokeball in PokeballIndex]: string };
 
 export type HPBerriesIndex = 'razz-berry';
 
-export type HPBerries = { readonly [berry in HPBerriesIndex]: number };
-
 export type CatchBerriesIndex = 'oran-berry';
+
+export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
+
+export type HPBerries = { readonly [berry in HPBerriesIndex]: number };
 
 export type CatchBerries = {
   readonly [berry in CatchBerriesIndex]: StatusIndex
 };
-
-export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
 
 export type Berries = HPBerries & CatchBerries;
 
