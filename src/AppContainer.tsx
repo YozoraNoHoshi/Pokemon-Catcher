@@ -34,17 +34,21 @@ class AppContainer extends PureComponent<Props, State> {
   modifyItems = (item: BerryIndex | PokeballIndex, quantity: number) => {
     //Quanity is negative if using an item
     let inventory = { ...this.state.inventory };
-    let selectedItem = inventory[item];
+
+    let currentBag = POKEBALLS.hasOwnProperty(item)
+      ? inventory.pokeballs
+      : inventory.berries;
+    let selectedItem = currentBag[item];
 
     if (quantity < 0) {
       selectedItem.quantity <= quantity
-        ? delete inventory[item]
+        ? delete currentBag[item]
         : (selectedItem.quantity += quantity);
     } else {
       let category = POKEBALLS.hasOwnProperty(item) ? 'pokeball' : 'berry';
       selectedItem
         ? (selectedItem.quantity += quantity)
-        : (inventory[item] = { name: item, quantity, category });
+        : (currentBag[item] = { name: item, quantity, category });
     }
 
     this.setState({ inventory });

@@ -35,7 +35,9 @@ export type Item = {
 };
 
 export type ItemIndex = PokeballIndex | BerryIndex;
-export type Inventory = { readonly [item in ItemIndex]: Item };
+export type PokeballBag = { readonly [item in PokeballIndex]: Item };
+export type BerryBag = { readonly [item in BerryIndex]: Item };
+export type Inventory = { pokeballs: PokeballBag; berries: BerrBag };
 
 export type PokeballIndex =
   | 'poke-ball'
