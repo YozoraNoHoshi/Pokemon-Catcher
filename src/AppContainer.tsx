@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import { CaughtPokemon, Inventory, BerryIndex, PokeballIndex } from './types';
+import { POKEBALLS } from './data';
 
 interface Props {
   children: (arg: any) => any;
@@ -40,9 +41,10 @@ class AppContainer extends PureComponent<Props, State> {
         ? delete inventory[item]
         : (selectedItem.quantity += quantity);
     } else {
+      let category = POKEBALLS.hasOwnProperty(item) ? 'pokeball' : 'berry';
       selectedItem
         ? (selectedItem.quantity += quantity)
-        : (inventory[item] = { name: item, quantity });
+        : (inventory[item] = { name: item, quantity, category });
     }
 
     this.setState({ inventory });

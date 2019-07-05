@@ -30,6 +30,7 @@ export interface MissingNo extends Pokemon {
 export type Item = {
   readonly name: string;
   quantity: number;
+  readonly category: string;
   readonly description?: string;
 };
 
