@@ -1,4 +1,5 @@
 const db = require('../db');
+const { generateTag } = require('../helpers/helpers');
 
 // habitat table contains (name, description)
 // habitat_inhabitants (habitat, pokemon)
@@ -35,6 +36,7 @@ class Habitat {
       WHERE ph.habitat = $1 ORDER BY random() LIMIT 1;`,
       [name]
     );
+    habitatPokemon.rows[0].tag = generateTag();
     return habitatPokemon.rows[0];
   }
 }
