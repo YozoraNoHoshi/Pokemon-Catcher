@@ -52,6 +52,7 @@ function ModalMenu(props: Props): JSX.Element {
         className="modal"
         active={open}
         onClick={toggleModal}
+        buttonHeight={props.sprite ? '50px' : undefined}
       >
         {props.sprite && <StyledSprite src={props.sprite} />}
         {props.buttonText}

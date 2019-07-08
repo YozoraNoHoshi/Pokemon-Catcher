@@ -11,6 +11,8 @@ export type Props = {
   large?: boolean;
   as?: any;
   type?: string;
+  buttonHeight?: string | number;
+  noMargin?: boolean;
 } & Width &
   Style;
 
@@ -22,11 +24,12 @@ const MenuButton: StyledComponent<'div', any, Props, never> = styled.div`
   text-align: center;
   box-sizing: border-box;
   padding: 10px;
-  margin: 5px;
+  margin: ${setMargin};
   background: ${background};
   border-radius: 3px;
   text-decoration: none;
   box-shadow: 0 0 3px black;
+  ${buttonHeight}
   ${fontSize}
   ${width}
   :hover {
@@ -34,6 +37,19 @@ const MenuButton: StyledComponent<'div', any, Props, never> = styled.div`
     cursor: pointer;
   }
 `;
+
+function setMargin({ noMargin }: Props) {
+  // return '5px';
+  return noMargin ? '0px' : '5px';
+}
+
+function buttonHeight(props: Props) {
+  if (typeof props.buttonHeight === 'number')
+    return `height: ${props.buttonHeight}%;`;
+  if (typeof props.buttonHeight === 'string')
+    return `height: ${props.buttonHeight};`;
+  return null;
+}
 
 function background(props: Props) {
   return getCSSProperties(

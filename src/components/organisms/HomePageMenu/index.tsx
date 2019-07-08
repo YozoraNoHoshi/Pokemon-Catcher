@@ -21,7 +21,7 @@ function HomePageMenu(props: Props & Width): JSX.Element {
 
   return (
     <Flex column cWidth={props.cWidth}>
-      <Flex cWidth={100}>
+      <Flex>
         <ChangeScreenButton
           to="/battle"
           pokeRed
@@ -35,13 +35,16 @@ function HomePageMenu(props: Props & Width): JSX.Element {
         <ChangeScreenButton to="/habitats">Transit Center</ChangeScreenButton>
         <ChangeScreenButton to="/pokedex">Pokedex</ChangeScreenButton>
       </Flex>
-      <Flex row>
+      <Flex row cWidth={100}>
         <MenuButton cWidth={100} onClick={saveGame}>
           Save
         </MenuButton>
         <MenuButton cWidth={100} onClick={loadGame}>
           Load
         </MenuButton>
+      </Flex>
+      <Flex>
+        <ChangeScreenButton to="/mart">[UNDER CONSTRUCTION]</ChangeScreenButton>
       </Flex>
     </Flex>
   );

@@ -6,7 +6,6 @@ import Card from '../../atoms/Card';
 import InventoryMenu from '../../organisms/InventoryMenu';
 import ModalMenu from '../../molecules/ModalMenu';
 import Sprite from '../../atoms/Sprite';
-import MessageBox from '../../atoms/MessageBox';
 import {
   BAG_SPRITE,
   POKEBALL_SPRITES,
@@ -15,7 +14,7 @@ import {
 } from '../../../data';
 
 import useBattle from '../../hooks/useBattle';
-import { Pokemon, Berries, Pokeballs } from '../../../types';
+import { Pokemon, Item } from '../../../types';
 import styled from 'styled-components';
 import StatusBar from '../../atoms/StatusBar';
 import MessageLog from '../../molecules/MessageLog';
@@ -75,7 +74,7 @@ function Battle(props: Props): JSX.Element {
         {battleStatus === 'active' ? (
           <>
             <Flex column cWidth={100}>
-              <MenuButton onClick={throwPokeball} style={{ height: '50px' }}>
+              <MenuButton onClick={throwPokeball} buttonHeight="50px">
                 <Flex row jCenter alCenter cWidth={100}>
                   <Sprite sHeight={100} src={pokeballSprite} />
                   PokeBall
@@ -85,27 +84,26 @@ function Battle(props: Props): JSX.Element {
                 buttonText="Bag"
                 sprite={BAG_SPRITE}
                 style={{
-                  height: '50px',
                   flexDirection: 'row'
                 }}
               >
                 <InventoryMenu
-                  pokeballs={[] as Pokeballs[]}
-                  berries={[] as Berries[]}
+                  pokeballs={[] as Item[]}
+                  berries={[] as Item[]}
                   selectPokeBall={selectPokeball}
                   selectBerry={selectBerry}
                 />
               </ModalMenu>
             </Flex>
             <Flex column cWidth={100}>
-              <MenuButton onClick={useBerry} style={{ height: '50px' }}>
-                <Flex row jCenter alCenter cWidth={100}>
+              <MenuButton onClick={useBerry} buttonHeight="50px" cWidth={100}>
+                <Flex row jCenter alCenter>
                   <Sprite sHeight={100} src={berrySprite} />
                   Berry
                 </Flex>
               </MenuButton>
-              <ChangeScreenButton to="/" style={{ height: '50px' }}>
-                <Flex row jCenter alCenter cWidth={100}>
+              <ChangeScreenButton to="/" buttonHeight="50px">
+                <Flex row jCenter alCenter>
                   <Sprite sHeight={100} src={ESCAPE_ROPE} />
                   Run!
                 </Flex>
