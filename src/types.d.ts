@@ -7,13 +7,14 @@ export type Habitats = {
 
 // Pokemon-Related Types
 export type Pokemon = {
-  readonly id: number;
+  readonly id: string;
   readonly title: string;
   readonly flavor_text: string;
   readonly catch_rate: number;
   readonly name?: string;
   readonly species: string;
   readonly sprite: string;
+  readonly tag?: string;
 };
 
 export type CaughtPokemon = Pokemon & { pokeball: string };
@@ -28,16 +29,15 @@ export interface MissingNo extends Pokemon {
 // Item-Related Types
 
 export type Item = {
+  readonly id: string;
   readonly name: string;
   quantity: number;
-  readonly category: string;
+  readonly price?: number;
+  readonly category?: ItemPouches;
   readonly description?: string;
 };
 
-export type ItemIndex = PokeballIndex | BerryIndex;
-export type PokeballBag = { readonly [item in PokeballIndex]: Item };
-export type BerryBag = { readonly [item in BerryIndex]: Item };
-export type Inventory = { pokeballs: PokeballBag; berries: BerrBag };
+export type ItemPouches = 'pokeballs' | 'berries';
 
 export type PokeballIndex =
   | 'poke-ball'
@@ -46,15 +46,13 @@ export type PokeballIndex =
   | 'park-ball'
   | 'master-ball';
 
+export type HPBerriesIndex = 'razz-berry';
+export type CatchBerriesIndex = 'oran-berry';
+export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
+
 export type Pokeballs = { readonly [pokeball in PokeballIndex]: number };
 
 export type PokeballSprites = { readonly [pokeball in PokeballIndex]: string };
-
-export type HPBerriesIndex = 'razz-berry';
-
-export type CatchBerriesIndex = 'oran-berry';
-
-export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
 
 export type HPBerries = { readonly [berry in HPBerriesIndex]: number };
 
@@ -65,6 +63,10 @@ export type CatchBerries = {
 export type Berries = HPBerries & CatchBerries;
 
 export type BerrySprites = { readonly [berry in BerryIndex]: string };
+
+export type ItemIndex = PokeballIndex | BerryIndex;
+export type BagContents = { [item: string]: Item };
+export type Inventory = { pokeballs: BagContents; berries: BagContents };
 
 // Battle-Related Types
 
