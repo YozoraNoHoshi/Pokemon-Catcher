@@ -6,9 +6,11 @@ app.use(express.json());
 app.use(cors());
 
 const pokemonRoutes = require('./routes/pokemon');
+const martRoutes = require('./routes/mart');
 const habitatsRoutes = require('./routes/habitats');
 
 app.use('/pokemon', pokemonRoutes);
+app.use('/mart', martRoutes);
 app.use('/habitats', habitatsRoutes);
 
 app.use(function(req, res, next) {
