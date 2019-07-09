@@ -52,6 +52,7 @@ function Battle(props: Props): JSX.Element {
   const pokeballSprite: string = POKEBALL_SPRITES[pokeball];
   const berrySprite: string = BERRY_SPRITES[selectedBerry];
   const hp = Math.floor(hpPercent * 100);
+
   return (
     <BattleScreen column alCenter cWidth={'50vw'}>
       <MessageLog messages={messages} />
