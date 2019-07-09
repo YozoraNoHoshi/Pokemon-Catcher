@@ -12,32 +12,33 @@ interface Props extends RouteComponentProps {
   modifyPokemon: (pokemon: Pokemon | string | number) => void;
 }
 
+type LoadingTypes = 'loading' | 'not-found' | 'success';
+
 const errorMessage =
   'The Pal Park is currently closed for maintenance. We apologize for the inconvenience.';
 
 function PreBattle(props: Props): JSX.Element {
-  const [loading, setLoading] = useState(true);
   const [pokemon, setPokemon] = useState({} as Pokemon);
-  const [noPokemon, setNoPokemon] = useState(false);
+  const [loadState, setLoadState] = useState('loading' as LoadingTypes);
 
   useEffect(() => {
     (async function() {
       try {
+        setLoadState('loading');
         let pokemon = props.riggedPokemon
           ? await getPokemon(props.riggedPokemon)
           : await getBattlePokemon(props.habitat);
         setPokemon(pokemon);
-        setNoPokemon(false);
-        setLoading(false);
+        setLoadState('success');
       } catch (error) {
-        setNoPokemon(true);
-        setLoading(false);
+        setLoadState('not-found');
       }
     })();
   }, [props.riggedPokemon, props.habitat]);
 
-  if (loading) return <Loading />;
-  if (noPokemon) return <PalParkClosed message={errorMessage} />;
+  if (loadState === 'loading') return <Loading />;
+  if (loadState === 'not-found')
+    return <PalParkClosed message={errorMessage} />;
   return <Battle pokemon={pokemon} modifyPokemon={props.modifyPokemon} />;
 }
 
