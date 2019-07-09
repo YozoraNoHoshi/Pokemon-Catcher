@@ -46,8 +46,18 @@ export type PokeballIndex =
   | 'park-ball'
   | 'master-ball';
 
-export type HPBerriesIndex = 'razz-berry';
-export type CatchBerriesIndex = 'oran-berry';
+export type HPBerriesIndex =
+  | 'razz-berry'
+  | 'silver-razz-berry'
+  | 'golden-razz-berry';
+export type CatchBerriesIndex =
+  | 'oran-berry'
+  | 'rawst-berry'
+  | 'cheri-berry'
+  | 'chesto-berry'
+  | 'aspear-berry'
+  | 'lum-berry'
+  | 'pecha-berry';
 export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
 
 export type Pokeballs = { readonly [pokeball in PokeballIndex]: number };

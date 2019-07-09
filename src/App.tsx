@@ -6,7 +6,7 @@ import Pokedex from './components/pages/Pokedex';
 import HabitatMenu from './components/pages/HabitatMenu';
 import HomePage from './components/pages/HomePage';
 import NotFound from './components/pages/NotFound';
-import Mart from './components/pages/Mart';
+import PreMart from './components/organisms/PreMart';
 import FooterMenu from './components/organisms/FooterMenu';
 import PreBattle from './components/organisms/PreBattle';
 import { PokemonWithHabitat } from './types';
@@ -45,7 +45,7 @@ const App: React.FC = (props: Props) => {
                 currentHabitat={state.habitat}
                 changeHabitat={changeHabitat}
               />
-              <Mart path="/mart" />
+              <PreMart path="/mart" />
               <Pokedex
                 path="/pokedex"
                 // Temporary Filler prop until redux
