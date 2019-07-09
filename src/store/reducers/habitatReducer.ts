@@ -1,6 +1,5 @@
 import { Action } from '../../types';
 import { MOVE_AREA } from '../actions';
-// import { #1 } from "./actions.js"
 
 interface Habitats {
   habitat: string;

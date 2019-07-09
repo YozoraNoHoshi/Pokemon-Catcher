@@ -1,20 +1,23 @@
 import { Action } from '../../types';
-import { UPDATE_TRAINER } from '../actions';
-// import { #1 } from "./actions.js"
+import { UPDATE_TRAINER_MONEY, UPDATE_TRAINER_NAME } from '../actions';
 
 interface TrainerInfo {
   name: string;
+  money: number;
 }
 
-const INITIAL_STATE: TrainerInfo = { name: '' };
+const INITIAL_STATE: TrainerInfo = { name: '', money: 3000 };
 
 function trainerReducer(
   state: TrainerInfo = INITIAL_STATE,
-  action: Action<string>
+  action: Action<string | number>
 ) {
   switch (action.type) {
-    case UPDATE_TRAINER:
+    case UPDATE_TRAINER_NAME:
       return { ...state, name: action.payload };
+
+    case UPDATE_TRAINER_MONEY:
+      return { ...state, money: action.payload };
 
     default:
       return state;

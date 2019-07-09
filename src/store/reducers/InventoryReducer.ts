@@ -1,31 +1,46 @@
-import { Action } from '../../types';
+import { Action, Item, Inventory, ItemPouches } from '../../types';
 import { ADD_ITEM, USE_ITEM } from '../actions';
-// import { #1 } from "./actions.js"
 
-interface Inventory {
-  [id: string]: any;
+const INITIAL_STATE: Inventory = { pokeballs: {}, berries: {} };
+
+interface ItemAction {
+  id: string;
+  quantity: number;
+  category: ItemPouches;
+  price: number;
 }
-
-const INITIAL_STATE: Inventory = {};
 
 function inventoryReducer(
   state: Inventory = INITIAL_STATE,
-  action: Action<any>
+  action: Action<Item | ItemAction | Item[]>
 ) {
   switch (action.type) {
     case ADD_ITEM: {
-      const payload = action.payload;
-      return { ...state, [payload.id]: payload };
+      if (Array.isArray(action.payload)) {
+        const payload: Item[] = action.payload;
+        const newState = { ...state };
+
+        payload.forEach(
+          (item: Item) => (newState[item.category][item.id] = item)
+        );
+      } else {
+        const payload = action.payload as Item;
+        return { ...state, [payload.id]: payload };
+      }
     }
 
     case USE_ITEM: {
-      const itemId = action.payload;
+      const item = action.payload as ItemAction;
+      const { id: itemId, category, quantity: usedQuantity } = item;
       const newState = { ...state };
-      if (newState.hasOwnProperty(itemId)) {
-        const quantity = newState[itemId].quantity - 1;
+
+      const pouch = newState[category];
+
+      if (pouch.hasOwnProperty(itemId)) {
+        const quantity = pouch[itemId].quantity - (usedQuantity | 1);
         quantity > 0
-          ? (newState[itemId].quantity = quantity)
-          : delete newState[itemId];
+          ? (pouch[itemId].quantity = quantity)
+          : delete pouch[itemId];
       }
 
       return newState;
