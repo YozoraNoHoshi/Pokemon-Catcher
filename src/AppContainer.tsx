@@ -1,6 +1,7 @@
 import { PureComponent } from 'react';
 import { CaughtPokemon, Inventory, BerryIndex, PokeballIndex } from './types';
 import { POKEBALLS } from './data';
+import idToCaps from './helpers/idToCaps';
 
 interface Props {
   children: (arg: any) => any;
@@ -23,10 +24,6 @@ class AppContainer extends PureComponent<Props, State> {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({ loading: false });
-  // }
-
   changeHabitat = (habitat: any) => {
     this.setState({ habitat });
   };
@@ -38,6 +35,7 @@ class AppContainer extends PureComponent<Props, State> {
     let currentBag = POKEBALLS.hasOwnProperty(item)
       ? inventory.pokeballs
       : inventory.berries;
+
     let selectedItem = currentBag[item];
 
     if (quantity < 0) {
@@ -45,10 +43,17 @@ class AppContainer extends PureComponent<Props, State> {
         ? delete currentBag[item]
         : (selectedItem.quantity += quantity);
     } else {
-      let category = POKEBALLS.hasOwnProperty(item) ? 'pokeball' : 'berry';
+      let category = POKEBALLS.hasOwnProperty(item)
+        ? ('pokeballs' as 'pokeballs')
+        : ('berries' as 'berries');
       selectedItem
         ? (selectedItem.quantity += quantity)
-        : (currentBag[item] = { name: item, quantity, category });
+        : (currentBag[item] = {
+            name: idToCaps(item),
+            id: item,
+            quantity,
+            category
+          });
     }
 
     this.setState({ inventory });

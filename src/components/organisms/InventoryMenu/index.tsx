@@ -6,12 +6,15 @@ import {
   Berries,
   PokeballIndex,
   HPBerriesIndex,
-  CatchBerriesIndex
+  CatchBerriesIndex,
+  Inventory,
+  Item
 } from '../../../types';
 
 interface Props {
-  pokeballs: Pokeballs[];
-  berries: Berries[];
+  pokeballs: Item[];
+  berries: Item[];
+  inventory?: Inventory;
   selectPokeBall: (poke: PokeballIndex) => void;
   selectBerry: (berry: HPBerriesIndex | CatchBerriesIndex) => void;
 }
@@ -30,6 +33,8 @@ function InventoryMenu(props: Props): JSX.Element {
       );
     });
   };
+
+  // Iterate over inventory and split it into Pokeballs and Berries
 
   return (
     <Flex row>
