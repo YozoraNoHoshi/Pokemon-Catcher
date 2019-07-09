@@ -18,7 +18,7 @@ function MainMenu(props: Props & Width): JSX.Element {
   const { saveGame, loadGame } = useSaveLoad(props.changeGameState);
   return (
     <MenuFlex column jCenter cWidth={props.cWidth}>
-      <Flex column cWidth={100}>
+      <Flex column>
         <ChangeScreenButton
           to="/battle"
           pokeRed
@@ -40,7 +40,7 @@ function MainMenu(props: Props & Width): JSX.Element {
           Load Game
         </MenuButton>
       </Flex>
-      <Flex cWidth={100}>
+      <Flex>
         <ChangeScreenButton to="/">Return to Park Entrance</ChangeScreenButton>
       </Flex>
     </MenuFlex>
