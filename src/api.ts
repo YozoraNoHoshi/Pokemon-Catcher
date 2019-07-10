@@ -8,7 +8,12 @@ function convertResultToObject(arr: any[]): object {
     return acc;
   }, {});
 }
-
+export async function getPokeMartStock(category?: string) {
+  let query: string = '';
+  if (category) query += `?category=${category}`;
+  let result = await axios.get(`${BASE_URL}/mart${query}`);
+  return result.data.stock;
+}
 export async function getAllHabitats(): Promise<any> {
   let result = await axios.get(`${BASE_URL}/habitats`);
   return convertResultToObject(result.data.habitats);
