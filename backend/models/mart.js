@@ -9,7 +9,10 @@ class Mart {
       query += ' WHERE category = $1';
     }
     const result = await db.query(query, values);
-    return result.rows;
+    return result.rows.reduce((acc, item) => {
+      acc[item.id] = item;
+      return acc;
+    }, {});
   }
 }
 
