@@ -1,9 +1,15 @@
 import React, { useState, memo } from 'react';
 import useMart from '../../hooks/useMart';
 
-import NotFound from '../NotFound';
+import { MartItem } from '../../../types';
 
-interface Props {}
+interface Stock {
+  [id: string]: MartItem;
+}
+
+interface Props {
+  stock?: Stock;
+}
 
 function Mart(props: Props): JSX.Element {
   return (
