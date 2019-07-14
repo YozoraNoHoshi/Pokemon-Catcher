@@ -28,13 +28,22 @@ export interface MissingNo extends Pokemon {
 
 // Item-Related Types
 
+export type MartItem = {
+  id: string;
+  name: string;
+  price: number;
+  flavor_text: string;
+  sprite: string;
+  category: string;
+};
+
 export type Item = {
   readonly id: string;
   readonly name: string;
   quantity: number;
   readonly price?: number;
   readonly category?: ItemPouches;
-  readonly description?: string;
+  readonly flavor_text?: string;
 };
 
 export type ItemPouches = 'pokeballs' | 'berries';
