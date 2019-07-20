@@ -1,3 +1,9 @@
+// Player-Related Types
+export type Player = {
+  name: string;
+  money: number;
+};
+
 // Habitat-Related Types
 export type Habitat = { name: string; description: string };
 
@@ -59,6 +65,7 @@ export type HPBerriesIndex =
   | 'razz-berry'
   | 'silver-razz-berry'
   | 'golden-razz-berry';
+
 export type CatchBerriesIndex =
   | 'oran-berry'
   | 'rawst-berry'
@@ -67,6 +74,7 @@ export type CatchBerriesIndex =
   | 'aspear-berry'
   | 'lum-berry'
   | 'pecha-berry';
+
 export type BerryIndex = CatchBerriesIndex | HPBerriesIndex;
 
 export type Pokeballs = { readonly [pokeball in PokeballIndex]: number };
