@@ -93,8 +93,8 @@ export default function useBattle(
       let berryEffect = BERRIES[selectedBerry as CatchBerriesIndex];
       let newMessage: string =
         selectedBerry === 'oran-berry'
-          ? `The ${pokemon.species} returned to normal!`
-          : `The ${
+          ? `The wild ${pokemon.species} returned to normal!`
+          : `The wild ${
               pokemon.species
             } ate the berry and had ${berryEffect} inflicted!`;
       setMessages(addMessage(newMessage));

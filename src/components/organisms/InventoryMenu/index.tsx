@@ -15,7 +15,7 @@ interface Props {
   pokeballs: Item[];
   berries: Item[];
   inventory?: Inventory;
-  selectPokeBall: (poke: PokeballIndex) => void;
+  selectPokeBall: (poke: PokeballIndex) => void; // Refactor to use event delegation instead
   selectBerry: (berry: HPBerriesIndex | CatchBerriesIndex) => void;
 }
 
